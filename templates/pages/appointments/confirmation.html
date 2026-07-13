@@ -30,31 +30,55 @@
 
     <div id="confirmation-content" hidden>
 
-      <header class="confirmation-page__hero" data-reveal>
+      <header class="confirmation-page__top">
 
-        <div class="confirmation-page__checkmark" aria-hidden="true">
+        <div class="confirmation-page__hero-compact">
 
-          <svg viewBox="0 0 52 52" class="pay-sim__check-svg">
+          <div class="confirmation-page__checkmark confirmation-page__checkmark--sm" aria-hidden="true">
 
-            <circle class="pay-sim__check-circle" cx="26" cy="26" r="24" fill="none"/>
+            <svg viewBox="0 0 52 52" class="pay-sim__check-svg">
 
-            <path class="pay-sim__check-path" fill="none" d="M14 27l8 8 16-16"/>
+              <circle class="pay-sim__check-circle" cx="26" cy="26" r="24" fill="none"/>
 
-          </svg>
+              <path class="pay-sim__check-path" fill="none" d="M14 27l8 8 16-16"/>
+
+            </svg>
+
+          </div>
+
+          <div class="confirmation-page__hero-text">
+
+            <span class="med-badge med-badge--success confirmation-page__badge"><i class="bi bi-patch-check"></i> <span data-i18n="payment.confirmation.badge">Confirmed</span></span>
+
+            <h1 class="confirmation-page__title" data-i18n="payment.confirmation.title">Appointment confirmed</h1>
+
+            <p class="confirmation-page__subtitle" data-i18n="payment.confirmation.subtitle">Your visit is booked and payment has been received.</p>
+
+          </div>
 
         </div>
 
-        <span class="med-section-header__badge med-badge--success"><i class="bi bi-patch-check"></i> <span data-i18n="payment.confirmation.badge">Confirmed</span></span>
+        <div class="confirmation-page__actions confirmation-page__actions--top">
 
-        <h1 class="catalog-page__title" data-i18n="payment.confirmation.title">Appointment confirmed</h1>
+          <a href="/patient/dashboard" class="med-btn med-btn--primary med-btn--sm">
 
-        <p class="catalog-page__subtitle" data-i18n="payment.confirmation.subtitle">Your visit is booked and payment has been received. A reminder will be sent before your appointment.</p>
+            <i class="bi bi-grid"></i> <span data-i18n="payment.confirmation.goDashboard">Go to dashboard</span>
+
+          </a>
+
+          <a href="/doctors" class="med-btn med-btn--outline-neutral med-btn--sm">
+
+            <i class="bi bi-calendar2-plus"></i> <span data-i18n="payment.confirmation.bookAnother">Book another</span>
+
+          </a>
+
+        </div>
 
       </header>
 
 
 
-      <div class="confirmation-page__grid" data-reveal>
+      <div class="confirmation-page__grid">
 
         <section class="booking-panel__card confirmation-page__card confirmation-page__card--details">
 
@@ -211,24 +235,6 @@
         </div>
 
       </div>
-
-
-
-      <footer class="confirmation-page__actions" data-reveal>
-
-        <a href="/patient/dashboard" class="med-btn med-btn--primary med-btn--lg">
-
-          <i class="bi bi-grid"></i> <span data-i18n="payment.confirmation.goDashboard">Go to dashboard</span>
-
-        </a>
-
-        <a href="/doctors" class="med-btn med-btn--outline-neutral">
-
-          <i class="bi bi-calendar2-plus"></i> <span data-i18n="payment.confirmation.bookAnother">Book another visit</span>
-
-        </a>
-
-      </footer>
 
     </div>
 

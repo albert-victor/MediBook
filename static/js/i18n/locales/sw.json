@@ -38,8 +38,6 @@
     "patient": "Mgonjwa",
     "doctor": "Daktari",
     "admin": "Msimamizi",
-    "status": "Hali",
-    "actions": "Vitendo",
     "goodMorning": "Habari za asubuhi",
     "goodAfternoon": "Habari za mchana",
     "goodEvening": "Habari za jioni",
@@ -51,10 +49,7 @@
       "noData": "Hakuna data",
       "loadFailed": "Imeshindwa kupakia data",
       "tryAgain": "Tafadhali jaribu tena baadaye."
-    },
-    "newCount": "{count} mpya",
-    "visit": "ziara",
-    "visits": "ziara"
+    }
   },
   "navigation": {
     "mainAria": "Urambazaji mkuu",
@@ -452,7 +447,7 @@
           "title": "Kampuni",
           "about": "Kuhusu Sisi",
           "partners": "Hospitali Washirika",
-          "careers": "Ajira",
+          "careers": "Jiunge kama Daktari",
           "contact": "Wasiliana"
         },
         "support": {
@@ -500,21 +495,10 @@
       "bookAppointment": "Panga Miadi",
       "viewProfile": "Angalia wasifu",
       "reviews": "Maoni {count}",
-      "experience": "Uzoefu wa miaka {years}",
-      "slotsToday": "nafasi {count} leo",
-      "yearsShort": "miaka"
+      "experience": "Uzoefu wa miaka {years}"
     }
   },
   "auth": {
-    "brand": {
-      "headline": "Kupanga huduma za afya, jinsi mpya.",
-      "tagline": "Panga madaktari waliohakikiwa, simamia miadi, na upokee vikumbusho kwa wakati - kwenye jukwaa moja linaloaminika.",
-      "featureSecure": "Akaunti salama za wagonjwa",
-      "featureAvailability": "Upatikanaji wa muda halisi",
-      "featureReminders": "Vikumbusho vya miadi mahiri",
-      "trustedBy": "Wanaoaminiwa na wagonjwa 12,000+"
-    },
-    "redirecting": "Inakuingiza…",
     "login": {
       "title": "Karibu tena",
       "subtitle": "Ingia ili kusimamia miadi yako na rekodi za afya.",
@@ -542,7 +526,7 @@
       "password": "Nenosiri",
       "passwordHint": "Angalau herufi 8 zenye herufi kubwa, ndogo, na nambari",
       "confirmPassword": "Thibitisha nenosiri",
-      "terms": "Nakubali <a href=\"/terms\" class=\"med-link\">Masharti ya Huduma</a> na <a href=\"/privacy\" class=\"med-link\">Sera ya Faragha</a>",
+      "terms": "Nakubali Masharti ya Huduma na Sera ya Faragha",
       "submit": "Fungua Akaunti",
       "hasAccount": "Tayari una akaunti?",
       "signIn": "Ingia"
@@ -557,7 +541,6 @@
       "successMessage": "Ikiwa kuna akaunti yenye barua pepe hiyo, utapokea kiungo cha kuweka upya nenosiri hivi karibuni."
     },
     "resetPassword": {
-      "badge": "Nenosiri jipya",
       "title": "Weka upya nenosiri",
       "subtitle": "Chagua nenosiri jipya imara kwa akaunti yako.",
       "newPassword": "Nenosiri jipya",
@@ -593,7 +576,6 @@
       "summary": "Muhtasari"
     },
     "alertTitle": "Kupanga hakupatikani",
-    "patientsOnlyTitle": "Akaunti za wagonjwa pekee",
     "slotUnavailableTitle": "Nafasi haipatikani",
     "slotConflict": "Nafasi hii ya miadi tayari imechukuliwa. Tafadhali chagua muda mwingine unaopatikana.",
     "loadDoctorsFailed": "Imeshindwa kupakia madaktari. Tafadhali onyesha upya na ujaribu tena.",
@@ -602,14 +584,6 @@
     "bookedSuccess": "Miadi imepangwa",
     "redirectPayment": "Inaelekeza kwenye malipo…",
     "proceedPayment": "Endelea na Malipo",
-    "cta": {
-      "selectedDoctor": "Daktari aliyechaguliwa",
-      "selectedDate": "Tarehe iliyochaguliwa",
-      "selectedTime": "Muda uliochaguliwa",
-      "almostDone": "Karibu kumaliza",
-      "reviewBooking": "Kagua na lipa",
-      "continueWith": "Endelea na {name}"
-    },
     "stepDoctor": {
       "title": "Chagua daktari",
       "desc": "Chagua mtaalamu unayetaka kumtembelea."
@@ -664,9 +638,7 @@
     "alreadyPaidMessage": "Miadi hii imelipwa. Angalia uthibitisho wako kwa maelezo kamili.",
     "viewConfirmation": "Angalia uthibitisho",
     "unavailableTitle": "Malipo hayapatikani",
-    "notFound": "Miadi hii haikupatikana au haijawa tayari kwa malipo.",
-    "invalidAppointment": "Rejea ya miadi si sahihi. Tafadhali panga tena kutoka dashibodi yako.",
-    "noMethods": "Hakuna njia za malipo zinazopatikana kwa sasa.",
+    "notFound": "Miadi hii haikupatikana.",
     "simulation": {
       "processing": "Inachakata malipo",
       "connecting": "Inaunganisha na mtoa huduma…",
@@ -696,9 +668,6 @@
       "paidAt": "Imelipwa",
       "paymentStatus": "Hali ya malipo",
       "paid": "Imelipwa",
-      "receiptOfficial": "Risiti rasmi ya malipo",
-      "receiptThanks": "Asante kwa kuchagua mediBook. Hifadhi risiti hii kwa kumbukumbu zako.",
-      "printReceipt": "Chapisha risiti",
       "goDashboard": "Nenda kwenye dashibodi",
       "bookAnother": "Panga ziara nyingine",
       "unavailableTitle": "Uthibitisho haupatikani",
@@ -798,8 +767,6 @@
       "subtitle": "Simamia madaktari, wagonjwa, miadi, na mapato katika mediBook.",
       "statsAria": "Takwimu za jukwaa",
       "nav": {
-        "platform": "Jukwaa",
-        "system": "Mfumo",
         "overview": "Muhtasari",
         "doctors": "Madaktari",
         "patients": "Wagonjwa",
@@ -822,8 +789,6 @@
         "doctorDistribution": "Usambazaji wa Madaktari"
       },
       "addDoctor": "Ongeza Daktari",
-      "doctorsHint": "Ongeza, thibitisha, hariri, au zima madaktari kwenye jukwaa.",
-      "viewPublicSite": "Tazama tovuti ya umma",
       "deactivateDoctor": "Zima akaunti ya daktari huyu?",
       "deleteDoctor": "Futa kabisa daktari huyu? Inawezekana tu bila historia ya miadi.",
       "deactivatePatient": "Zima akaunti ya mgonjwa huyu?",
@@ -841,13 +806,7 @@
         "appointments": "Miadi",
         "newPatients": "Wagonjwa Wapya",
         "newDoctors": "Madaktari Wapya",
-        "unavailable": "Ripoti haipatikani",
-        "appointmentStatus": "Hali ya Miadi",
-        "paymentMethods": "Njia za Malipo",
-        "appointmentsTrend": "Mwenendo wa Miadi (miezi 6)",
-        "revenueTrend": "Mwenendo wa Mapato (miezi 6)",
-        "doctorDistribution": "Madaktari kwa Utaalamu",
-        "platformGrowth": "Ukuaji wa Jukwaa"
+        "unavailable": "Ripoti haipatikani"
       },
       "systemNotifications": "Arifa za Mfumo",
       "noNotifications": "Hakuna arifa",
@@ -871,10 +830,7 @@
       "doctorUpdated": "Wasifu wa daktari umehifadhiwa.",
       "doctorDeactivated": "Akaunti ya daktari imezimwa.",
       "doctorDeleted": "Daktari ameondolewa kwenye jukwaa.",
-      "patientDeactivated": "Akaunti ya mgonjwa imezimwa.",
-      "license": "Leseni",
-      "currency": "Sarafu",
-      "visits": "Ziara"
+      "patientDeactivated": "Akaunti ya mgonjwa imezimwa."
     }
   },
   "doctors": {
@@ -955,8 +911,7 @@
     },
     "doctor": {
       "active": "Hai",
-      "inactive": "Haifanyi kazi",
-      "unverified": "Hajathibitishwa"
+      "inactive": "Haifanyi kazi"
     }
   },
   "toast": {
@@ -970,7 +925,7 @@
     "paymentFailed": "Malipo yameshindikana",
     "alreadyPaid": "Tayari imelipwa",
     "phoneRequired": "Nambari ya simu inahitajika",
-    "deactivated": "Sitisha",
+    "deactivated": "Imezimwa",
     "deleted": "Imefutwa",
     "updated": "Imesasishwa",
     "createFailed": "Kuunda kumeshindikana",
@@ -992,18 +947,16 @@
     "networkError": "Hitilafu ya mtandao. Angalia muunganisho wako na ujaribu tena.",
     "slotTaken": "Nafasi hii ya miadi tayari imechukuliwa.",
     "appointmentNotFound": "Miadi haikupatikana.",
-    "paymentRequired": "Malipo yanahitajika kuthibitisha miadi hii.",
-    "patientsOnly": "Wagonjwa pekee",
-    "doctorsOnly": "Madaktari pekee",
-    "adminsOnly": "Wasimamizi pekee",
-    "emailExists": "Mtumiaji mwenye barua pepe hii tayari yupo",
-    "licenseExists": "Nambari ya leseni tayari imesajiliwa"
+    "paymentRequired": "Malipo yanahitajika kuthibitisha miadi hii."
   },
   "errors": {
     "404": {
       "title": "Ukurasa haujapatikana",
-      "message": "Ukurasa unaoutafuta haupo au umehamishwa.",
-      "backHome": "Rudi nyumbani"
+      "apology": "Samahani - ukurasa huu haupatikani kwa sasa.",
+      "message": "Kiungo kinaweza kuwa kimevunjika, au ukurasa umehamishwa. Turudishe kwenye njia sahihi.",
+      "backHome": "Rudi nyumbani",
+      "findDoctors": "Tafuta madaktari",
+      "needHelp": "Unahitaji msaada? Tembelea kituo chetu cha msaada"
     },
     "generic": {
       "title": "Kuna tatizo limetokea",
@@ -1011,37 +964,55 @@
       "retry": "Jaribu tena"
     }
   },
+  "pages": {
+    "legal": {
+      "updated": "Imesasishwa mwisho:"
+    },
+    "privacy": {
+      "badge": "Faragha",
+      "title": "Sera ya Faragha",
+      "subtitle": "Jinsi tunavyokusanya, kutumia, na kulinda taarifa zako binafsi kwenye mediBook."
+    },
+    "terms": {
+      "badge": "Masharti",
+      "title": "Masharti ya Huduma",
+      "subtitle": "Kanuni na masharti ya kutumia mediBook kama mgonjwa au mtoa huduma za afya."
+    },
+    "partners": {
+      "badge": "Washirika",
+      "title": "Hospitali Washirika",
+      "subtitle": "Hospitali na kliniki zinazoaminika zilizounganishwa na mediBook kwa miadi mtandaoni na uratibu wa huduma.",
+      "countLabel": "vituo vya washirika nchini Tanzania",
+      "ctaTitle": "Je, wewe ni daktari aliye na leseni katika hospitali mshirika?",
+      "ctaText": "Omba kujiunga na mediBook na uthibitishwe na timu yetu ya wasimamizi.",
+      "ctaButton": "Jiunge kama daktari"
+    },
+    "careers": {
+      "badge": "Kwa madaktari",
+      "title": "Jiunge na mediBook kama daktari aliyethibitishwa",
+      "subtitle": "Wasilisha vyeti vyako kwa ukaguzi wa wasimamizi. Ukishathibitishwa, wasifu wako utaonekana na wagonjwa waweze kupanga miadi nawe.",
+      "formTitle": "Maombi ya daktari",
+      "formHint": "Wasifu wako hautaonekana kwa wagonjwa hadi msimamizi athibitishe leseni na maelezo yako.",
+      "firstName": "Jina la kwanza",
+      "lastName": "Jina la mwisho",
+      "email": "Barua pepe ya kitaaluma",
+      "phone": "Simu",
+      "password": "Nenosiri",
+      "confirmPassword": "Thibitisha nenosiri",
+      "specialization": "Taaluma",
+      "specializationPlaceholder": "Chagua taaluma",
+      "license": "Nambari ya leseni ya udaktari",
+      "hospital": "Hospitali / kliniki",
+      "fee": "Ada ya uchunguzi (TZS)",
+      "experience": "Miaka ya uzoefu",
+      "qualification": "Sifa (si lazima)",
+      "submit": "Wasilisha maombi"
+    }
+  },
   "footer": {
     "tagline": "Upangaji wa kisasa wa huduma za afya kwa hospitali na wagonjwa.",
     "copyright": "mediBook. Haki zote zimehifadhiwa.",
     "privacy": "Faragha",
     "terms": "Masharti"
-  },
-  "help": {
-    "title": "Kituo cha Msaada",
-    "subtitle": "Majibu kuhusu kupanga miadi, malipo, vikumbusho, na kusimamia huduma yako kwenye mediBook.",
-    "booking": {
-      "title": "Kupanga miadi",
-      "text": "Tafuta daktari, chagua nafasi iliyopo, na thibitisha kwa malipo. Nafasi zilizopo pekee ndizo zinazochaguliwa.",
-      "link": "Panga sasa"
-    },
-    "payment": {
-      "title": "Malipo",
-      "text": "Lipa kupitia M-Pesa, Mixx, Airtel Money, na mifumo mingine inayoungwa mkono. Utapokea nambari ya kumbukumbu baada ya malipo."
-    },
-    "reminders": {
-      "title": "Vikumbusho",
-      "text": "Arifa za barua pepe na wavuti hutumwa saa 24 na saa 2 kabla ya ziara yako."
-    },
-    "faq": {
-      "title": "Maswali",
-      "text": "Soma majibu ya maswali ya kawaida ya wagonjwa.",
-      "link": "Ona maswali"
-    },
-    "contact": {
-      "title": "Unahitaji msaada zaidi?",
-      "text": "Timu yetu ya usaidizi kwa wagonjwa hujibu ndani ya saa 2 siku za kazi.",
-      "button": "Wasiliana na usaidizi"
-    }
   }
 }

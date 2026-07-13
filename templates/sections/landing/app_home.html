@@ -31,6 +31,9 @@
       {% endcall %}
     </div>
 
+    {% include "sections/landing/partials/home_services_carousel.html" %}
+
+    <div class="landing-app__below-fold">
     <div class="landing-app__block" data-reveal>
       <h2 class="landing-app__block-title" id="quick-services-title" data-i18n="landing.appHome.quickServices">Quick Services</h2>
       <div class="landing-app__services" data-reveal-stagger>
@@ -66,6 +69,7 @@
       <i class="bi bi-chevron-double-down"></i>
       <span data-i18n="landing.appHome.scrollHint">{{ app_home.scroll_hint }}</span>
     </p>
+    </div>
 
   </div>
 </section>

@@ -215,7 +215,13 @@ function renderDoctors() {
       data-doctor-id="${d.id}"
       data-reveal-item
       style="transition-delay:${i * 50}ms">
-      <div class="booking-doctor__avatar booking-doctor__avatar--${d.avatar_gradient}">${escapeHtml(d.initials)}</div>
+      <div class="booking-doctor__visual">
+        ${
+          d.image_url
+            ? `<img class="booking-doctor__photo" src="${escapeHtml(d.image_url)}" alt="" loading="lazy">`
+            : `<div class="booking-doctor__avatar booking-doctor__avatar--${d.avatar_gradient}">${escapeHtml(d.initials)}</div>`
+        }
+      </div>
       <div class="booking-doctor__info">
         <h3>${escapeHtml(d.name)}</h3>
         <p>${escapeHtml(d.specialization)} · ${escapeHtml(d.hospital)}</p>

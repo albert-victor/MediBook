@@ -252,6 +252,15 @@
   font-size: var(--font-size-sm);
 }
 
+.booking-doctor__photo {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+}
+
 .booking-doctor__avatar--primary { background: linear-gradient(135deg, var(--med-primary-400), var(--med-primary-700)); }
 .booking-doctor__avatar--teal    { background: linear-gradient(135deg, var(--med-secondary-400), var(--med-secondary-700)); }
 .booking-doctor__avatar--green   { background: linear-gradient(135deg, var(--med-accent-400), var(--med-accent-700)); }
@@ -636,6 +645,24 @@
   margin: 0 auto var(--space-5);
 }
 
+.pay-sim__checkmark--sm {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto var(--space-3);
+}
+
+.pay-sim__success--compact {
+  padding: var(--space-2) 0 var(--space-1);
+}
+
+.pay-sim__redirect-only {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  animation: pay-sim-pulse 1.5s ease-in-out infinite;
+}
+
 .pay-sim__check-svg {
   width: 100%;
   height: 100%;
@@ -731,38 +758,151 @@
   50% { opacity: 1; }
 }
 
-/* ── Confirmation page ────────────────────────────────── */
+/* ── Confirmation page (compact, fits viewport) ───────── */
+
+.confirmation-page.catalog-page {
+  padding-block: var(--space-4) var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .confirmation-page.catalog-page {
+    padding-block: var(--space-5) var(--space-6);
+  }
+}
 
 .confirmation-page {
   background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(56, 160, 106, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(56, 160, 106, 0.06) 0%, transparent 55%),
     var(--color-background-subtle);
 }
 
-.confirmation-page__hero {
-  text-align: center;
-  max-width: 36rem;
-  margin: 0 auto var(--space-10);
+.confirmation-page .med-container {
+  max-width: 56rem;
 }
 
-.confirmation-page__checkmark {
-  width: 88px;
-  height: 88px;
-  margin: 0 auto var(--space-6);
+.confirmation-page__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.confirmation-page__hero-compact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: min(100%, 18rem);
+}
+
+.confirmation-page__checkmark--sm {
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.confirmation-page__hero-text {
+  min-width: 0;
+}
+
+.confirmation-page__badge {
+  margin-bottom: var(--space-1);
+}
+
+.confirmation-page__title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(var(--font-size-lg), 2.5vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.confirmation-page__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: var(--space-1) 0 0;
+  line-height: var(--line-height-snug);
+}
+
+.confirmation-page__actions--top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  flex-shrink: 0;
 }
 
 .confirmation-page__grid {
   display: grid;
-  gap: var(--space-6);
-  max-width: 56rem;
-  margin: 0 auto var(--space-10);
+  gap: var(--space-4);
   align-items: start;
 }
 
 @media (min-width: 768px) {
   .confirmation-page__grid {
-    grid-template-columns: 1fr 1.05fr;
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+.confirmation-page .booking-panel__card {
+  padding: var(--space-4) var(--space-5);
+}
+
+.confirmation-page .booking-panel__title {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-3);
+}
+
+.confirmation-page .booking-summary__row {
+  padding: var(--space-2) 0;
+}
+
+.confirmation-page .med-receipt__perforation {
+  margin-top: var(--space-3);
+}
+
+.confirmation-page .med-receipt__header {
+  padding: var(--space-3) var(--space-4) var(--space-2);
+}
+
+.confirmation-page .med-receipt__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1rem;
+}
+
+.confirmation-page .med-receipt__amount-block {
+  margin: 0 var(--space-4) var(--space-3);
+  padding: var(--space-3);
+}
+
+.confirmation-page .med-receipt__amount {
+  font-size: 1.5rem;
+}
+
+.confirmation-page .med-receipt__reference {
+  margin: 0 var(--space-4) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+}
+
+.confirmation-page .med-receipt__meta {
+  padding: 0 var(--space-4);
+}
+
+.confirmation-page .med-receipt__meta > div {
+  padding: var(--space-2) 0;
+}
+
+.confirmation-page .med-receipt__footer {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+}
+
+.confirmation-page .med-receipt__thanks {
+  display: none;
 }
 
 .confirmation-page__card {
@@ -775,12 +915,18 @@
   word-break: break-all;
 }
 
-.confirmation-page__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  justify-content: center;
-  padding-bottom: var(--space-10);
+@media (max-width: 767px) {
+  .confirmation-page__top {
+    flex-direction: column;
+  }
+
+  .confirmation-page__actions--top {
+    width: 100%;
+  }
+
+  .confirmation-page__actions--top .med-btn {
+    flex: 1;
+  }
 }
 
 /* Legacy payment overlays (kept for reference, unused) */

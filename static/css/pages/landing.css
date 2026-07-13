@@ -122,6 +122,56 @@
   transform: translateX(2px);
 }
 
+/* Services carousel in above-fold app home */
+.landing-app__block--services {
+  min-width: 0;
+}
+
+.landing-app__block--services .med-carousel--services .med-carousel__slide {
+  flex-basis: min(84%, 270px);
+}
+
+.landing-app__block--services .med-service-card__media {
+  aspect-ratio: 2 / 1;
+}
+
+@media (min-width: 768px) {
+  .landing-app__block--services .med-carousel--services .med-carousel__slide {
+    flex-basis: min(38%, 250px);
+  }
+}
+
+.landing-app__block--services .med-service-card__body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.landing-app__block--services .med-service-card__title {
+  font-size: var(--font-size-base);
+}
+
+.landing-app__block--services .med-service-card__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+}
+
+.landing-app__below-fold {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+@media (min-width: 1024px) {
+  .landing-app__below-fold {
+    gap: var(--space-6);
+    padding-top: var(--space-4);
+  }
+}
+
 /* Doctor swiper */
 .landing-app__swiper {
   position: relative;
@@ -224,6 +274,22 @@
   letter-spacing: var(--letter-spacing-tight);
   box-shadow: var(--shadow-md);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.landing-swiper-card__photo {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.landing-swiper-card:hover .landing-swiper-card__photo,
+.landing-swiper-card.is-active .landing-swiper-card__photo {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-lg);
 }
 
 .landing-swiper-card:hover .landing-swiper-card__avatar,
@@ -728,9 +794,18 @@
 
 .landing-app__inner > .landing-app__block:nth-child(2) { animation-delay: 0.08s; }
 .landing-app__inner > .landing-app__block:nth-child(3) { animation-delay: 0.16s; }
-.landing-app__inner > .landing-app__stats { animation-delay: 0.24s; }
-.landing-app__inner > .landing-app__actions { animation-delay: 0.32s; }
-.landing-app__inner > .landing-app__hint { animation-delay: 0.4s; }
+.landing-app__below-fold > [data-reveal],
+.landing-app__below-fold > .landing-app__block,
+.landing-app__below-fold > .landing-app__stats,
+.landing-app__below-fold > .landing-app__actions,
+.landing-app__below-fold > .landing-app__hint {
+  animation: landing-app-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.landing-app__below-fold > .landing-app__block { animation-delay: 0.22s; }
+.landing-app__below-fold > .landing-app__stats { animation-delay: 0.28s; }
+.landing-app__below-fold > .landing-app__actions { animation-delay: 0.34s; }
+.landing-app__below-fold > .landing-app__hint { animation-delay: 0.4s; }
 
 @keyframes landing-app-enter {
   from {
@@ -1162,12 +1237,45 @@
   background: var(--color-surface);
   border: var(--card-border);
   border-radius: var(--radius-2xl);
-  padding: var(--space-6);
+  padding: 0;
+  overflow: hidden;
   box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
   transition:
     transform var(--transition-base),
     box-shadow var(--transition-base),
     border-color var(--transition-fast);
+}
+
+.med-service-card__media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--med-neutral-100);
+}
+
+.med-service-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.med-service-card__icon {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  box-shadow: var(--shadow-md);
+}
+
+.med-service-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-5) var(--space-6) var(--space-6);
 }
 
 .med-service-card:hover {
@@ -1180,7 +1288,7 @@
   font-family: var(--font-family-heading);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  margin: var(--space-4) 0 var(--space-2);
+  margin: 0 0 var(--space-2);
   color: var(--color-text-primary);
 }
 
@@ -1189,6 +1297,7 @@
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0 0 var(--space-4);
+  flex: 1;
 }
 
 .med-service-card__link {
@@ -1199,135 +1308,14 @@
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
   transition: gap var(--transition-fast);
+  margin-top: auto;
 }
 
 .med-service-card:hover .med-service-card__link {
   gap: var(--space-3);
 }
 
-/* ── Doctor card extensions ───────────────────────────── */
-
-.med-doctor-card__visual {
-  position: relative;
-}
-
-.med-doctor-card__avatar {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: white;
-  letter-spacing: var(--letter-spacing-tight);
-}
-
-.med-doctor-card__avatar--primary {
-  background: linear-gradient(145deg, var(--med-primary-400), var(--med-primary-600));
-}
-
-.med-doctor-card__avatar--teal {
-  background: linear-gradient(145deg, var(--med-secondary-400), var(--med-secondary-600));
-}
-
-.med-doctor-card__avatar--green {
-  background: linear-gradient(145deg, var(--med-accent-400), var(--med-accent-600));
-}
-
-.med-doctor-card__avatar--amber {
-  background: linear-gradient(145deg, var(--med-warning-500), var(--med-warning-700));
-}
-
-.med-doctor-card__live {
-  position: absolute;
-  bottom: var(--space-3);
-  left: var(--space-3);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  color: var(--med-success-700);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  padding: var(--space-1-5) var(--space-3);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-sm);
-}
-
-.med-doctor-card__name a {
-  color: var(--color-text-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.med-doctor-card__name a:hover {
-  color: var(--color-primary);
-}
-
-.med-doctor-card__hospital {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  margin: 0 0 var(--space-3);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.med-doctor-card__rating i {
-  color: var(--color-warning);
-}
-
-.med-doctor-card__reviews {
-  color: var(--color-text-muted);
-  font-weight: var(--font-weight-regular);
-}
-
-.med-doctor-card__availability.is-available {
-  color: var(--color-success);
-  font-weight: var(--font-weight-medium);
-}
-
-/* Compact variant */
-.med-doctor-card--compact {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0;
-  border-radius: var(--radius-xl);
-}
-
-.med-doctor-card--compact .med-doctor-card__visual {
-  width: 100px;
-}
-
-.med-doctor-card--compact .med-doctor-card__avatar,
-.med-doctor-card--compact .med-doctor-card__image {
-  aspect-ratio: 1;
-  height: 100%;
-  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
-}
-
-.med-doctor-card--compact .med-doctor-card__live {
-  display: none;
-}
-
-.med-doctor-card--compact .med-doctor-card__body {
-  padding: var(--space-4);
-}
-
-.med-doctor-card--compact .med-doctor-card__meta {
-  margin-bottom: var(--space-3);
-}
-
-.med-doctor-card--compact .med-doctor-card__footer {
-  padding-top: var(--space-3);
-  margin-top: 0;
-  border-top: none;
-}
-
-/* ── Available today section ──────────────────────────── */
+/* ── Doctor card (landing grid overrides) ─────────────── */
 
 .landing-available {
   background: linear-gradient(160deg, var(--med-primary-50) 0%, var(--med-neutral-0) 45%, var(--med-secondary-50) 100%);
@@ -1383,6 +1371,14 @@
   background: var(--color-surface);
 }
 
+.landing-services--trust {
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.landing-services--trust .landing-services__trust {
+  margin-top: 0;
+}
+
 .landing-services__featured {
   display: grid;
   gap: var(--space-5);
@@ -1397,8 +1393,10 @@
 }
 
 .med-service-card--featured {
-  padding: var(--space-7);
   border-color: var(--med-primary-100);
+}
+
+.med-service-card--featured .med-service-card__body {
   background: linear-gradient(160deg, var(--color-surface) 0%, var(--med-primary-50) 100%);
 }
 
@@ -2125,9 +2123,11 @@
   .landing-app__hint i,
   .landing-app__inner > [data-reveal],
   .landing-app__inner > .landing-app__block,
-  .landing-app__inner > .landing-app__stats,
-  .landing-app__inner > .landing-app__actions,
-  .landing-app__inner > .landing-app__hint {
+  .landing-app__below-fold > [data-reveal],
+  .landing-app__below-fold > .landing-app__block,
+  .landing-app__below-fold > .landing-app__stats,
+  .landing-app__below-fold > .landing-app__actions,
+  .landing-app__below-fold > .landing-app__hint {
     animation: none;
   }
 

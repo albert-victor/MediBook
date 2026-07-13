@@ -18,6 +18,7 @@ from app.schemas.doctor import (
     DoctorReviewItem,
     SpecializationOption,
 )
+from app.utils.doctor_images import get_doctor_image_url
 from app.utils.helpers import ensure_utc, utcnow
 
 GRADIENTS = ["primary", "teal", "green", "amber"]
@@ -90,7 +91,7 @@ def _serialize_doctor(db: Session, doctor: Doctor, now) -> DoctorListItem:
         specialization_slug=spec.slug if spec else "",
         qualification=doctor.qualification or "MBBS",
         hospital=doctor.hospital_name,
-        image_url=doctor.avatar_url,
+        image_url=get_doctor_image_url(doctor.id, doctor.gender, doctor.avatar_url),
         avatar_gradient=GRADIENTS[doctor.id % len(GRADIENTS)],
         rating=float(doctor.rating or 4.8),
         review_count=doctor.review_count or 0,

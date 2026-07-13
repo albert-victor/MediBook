@@ -1,0 +1,17 @@
+{% from "macros/service_card.html" import service_card %}
+{% from "macros/carousel.html" import carousel_shell %}
+
+<div class="landing-app__block landing-app__block--services" id="services" data-reveal>
+  <div class="landing-app__block-head">
+    <h2 class="landing-app__block-title" data-i18n="landing.services.title">Medical services</h2>
+    <a href="/services" class="landing-app__block-link">
+      <span data-i18n="landing.services.allServices">All services</span> <i class="bi bi-arrow-right"></i>
+    </a>
+  </div>
+
+  {% call carousel_shell(autoplay=5000, aria_label="Medical services", aria_i18n="landing.services.ariaCarousel", modifier="services") %}
+    {% for service in services %}
+    {{ service_card(service, carousel=true) }}
+    {% endfor %}
+  {% endcall %}
+</div>

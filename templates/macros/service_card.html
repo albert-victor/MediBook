@@ -1,12 +1,25 @@
 {% macro service_card(service, featured=false, carousel=false) %}
 <article class="med-service-card{% if featured %} med-service-card--featured{% endif %}{% if carousel %} med-carousel__slide{% endif %}"{% if carousel %} data-carousel-slide{% else %} data-reveal-item{% endif %}>
-  <div class="med-service-card__icon med-icon-box{% if featured %} med-icon-box--lg{% else %} med-icon-box--md{% endif %} med-icon-box--{{ service.color }}">
-    <i class="bi {{ service.icon }}"></i>
+  <figure class="med-service-card__media">
+    <img
+      class="med-service-card__img"
+      src="/static/{{ service.image }}"
+      alt="{{ service.title }}"
+      width="800"
+      height="500"
+      loading="lazy"
+      decoding="async"
+    >
+    <span class="med-service-card__icon med-icon-box{% if featured %} med-icon-box--md{% else %} med-icon-box--sm{% endif %} med-icon-box--{{ service.color }}" aria-hidden="true">
+      <i class="bi {{ service.icon }}"></i>
+    </span>
+  </figure>
+  <div class="med-service-card__body">
+    <h3 class="med-service-card__title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h3>
+    <p class="med-service-card__desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
+    <a href="#search-doctors" class="med-service-card__link">
+      <span data-i18n="landing.appHome.bookAppointment">Book now</span> <i class="bi bi-arrow-right"></i>
+    </a>
   </div>
-  <h3 class="med-service-card__title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h3>
-  <p class="med-service-card__desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
-  <a href="#search-doctors" class="med-service-card__link">
-    <span data-i18n="landing.appHome.bookAppointment">Book now</span> <i class="bi bi-arrow-right"></i>
-  </a>
 </article>
 {% endmacro %}

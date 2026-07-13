@@ -67,21 +67,16 @@
 
 .available-page__grid {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-4);
   grid-template-columns: minmax(0, 1fr);
-  max-width: 72rem;
+  max-width: 56rem;
   margin-inline: auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .available-page__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .available-page__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 72rem;
   }
 }
 
@@ -90,21 +85,23 @@
   flex-direction: column;
   background: var(--color-surface);
   border: var(--card-border);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .available-page__card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .available-page__card .med-doctor-card {
   border: none;
   border-radius: 0;
   box-shadow: none;
+  overflow: hidden;
+  background: transparent;
 }
 
 .available-page__card .med-doctor-card:hover {
@@ -112,15 +109,84 @@
   box-shadow: none;
 }
 
+/* Compact horizontal card on this page */
+.available-page__card .med-doctor-card--compact {
+  grid-template-columns: 4.75rem 1fr;
+  border-radius: 0;
+}
+
+.available-page__card .med-doctor-card__visual {
+  width: 4.75rem;
+  border-radius: 0;
+}
+
+.available-page__card .med-doctor-card__avatar,
+.available-page__card .med-doctor-card__image {
+  width: 4.75rem;
+  min-height: 4.75rem;
+  aspect-ratio: 1;
+  font-size: var(--font-size-base);
+  padding: var(--space-2);
+  border-radius: 0;
+}
+
+.available-page__card .med-doctor-card__body {
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  min-width: 0;
+}
+
+.available-page__card .med-doctor-card__name {
+  font-size: var(--font-size-sm);
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.available-page__card .med-doctor-card__specialty {
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.available-page__card .med-doctor-card__hospital {
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.available-page__card .med-doctor-card__meta {
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.available-page__card .med-doctor-card__availability {
+  display: none;
+}
+
+.available-page__card .med-doctor-card__footer {
+  padding-top: var(--space-2);
+  margin-top: 0;
+  border-top: none;
+}
+
+.available-page__card .med-doctor-card__fee {
+  font-size: var(--font-size-sm);
+}
+
 .available-page__slots {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
   border-top: 1px solid var(--color-divider);
   background: var(--med-primary-50);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
 }
 

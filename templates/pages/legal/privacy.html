@@ -1,0 +1,33 @@
+{% extends "layouts/public.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/content.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page content-page legal-page">
+  <div class="med-container">
+    <header class="catalog-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge" data-i18n="pages.privacy.badge">Privacy</span>
+      <h1 class="catalog-page__title" data-i18n="pages.privacy.title">Privacy Policy</h1>
+      <p class="catalog-page__subtitle" data-i18n="pages.privacy.subtitle">
+        How we collect, use, and protect your personal information on mediBook.
+      </p>
+      <p class="content-page__updated"><span data-i18n="pages.legal.updated">Last updated:</span> {{ legal.updated }}</p>
+    </header>
+
+    <div class="legal-page__body" data-reveal>
+      {% for section in legal.sections %}
+      <article class="legal-section" id="{{ section.id }}">
+        <h2 class="legal-section__title">{{ section.title }}</h2>
+        {% for paragraph in section.paragraphs %}
+        <p class="legal-section__text">{{ paragraph }}</p>
+        {% endfor %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

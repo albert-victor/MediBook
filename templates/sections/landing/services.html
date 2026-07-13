@@ -1,31 +1,7 @@
-{% from "macros/section_header.html" import section_header %}
-{% from "macros/service_card.html" import service_card %}
-{% from "macros/carousel.html" import carousel_shell %}
-
-<section class="landing-section landing-page landing-services" id="services" aria-labelledby="services-title">
+<section class="landing-section landing-page landing-services landing-services--trust" id="services-trust" aria-labelledby="services-trust-title">
   <div class="med-container landing-page__wrap">
-    <div class="landing-section__head-row" data-reveal>
-      {{ section_header(
-        title="Comprehensive medical services",
-        subtitle="From routine check-ups to specialized care - everything your family needs.",
-        badge="What we offer",
-        align="left",
-        i18n_badge="landing.services.badge",
-        i18n_title="landing.services.title",
-        i18n_subtitle="landing.services.subtitle"
-      ) }}
-      <a href="/services" class="med-btn med-btn--outline med-btn--sm">
-        <span data-i18n="landing.services.allServices">All services</span> <i class="bi bi-arrow-right"></i>
-      </a>
-    </div>
-
-    {% call carousel_shell(autoplay=5000, aria_label="Medical services", aria_i18n="landing.services.ariaCarousel", modifier="services") %}
-      {% for service in services %}
-      {{ service_card(service, carousel=true) }}
-      {% endfor %}
-    {% endcall %}
-
     <div class="landing-services__trust" data-reveal>
+      <h2 class="med-sr-only" id="services-trust-title" data-i18n="landing.services.badge">What we offer</h2>
       <div class="landing-services__trust-item">
         <i class="bi bi-hospital"></i>
         <div>

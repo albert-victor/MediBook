@@ -1,0 +1,208 @@
+{% extends "layouts/public.html" %}
+
+{% from "macros/form_field.html" import form_input, form_password, form_checkbox, form_select %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/content.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page content-page careers-page">
+  <div class="med-container">
+    <header class="catalog-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge" data-i18n="pages.careers.badge">For doctors</span>
+      <h1 class="catalog-page__title" data-i18n="pages.careers.title">Join mediBook as a verified doctor</h1>
+      <p class="catalog-page__subtitle" data-i18n="pages.careers.subtitle">
+        Submit your credentials for admin review. Once verified, your profile goes live and patients can book appointments with you.
+      </p>
+    </header>
+
+    <ol class="careers-steps" data-reveal-stagger>
+      {% for step in careers.steps %}
+      <li class="careers-step" data-reveal-item>
+        <span class="careers-step__icon med-icon-box med-icon-box--sm med-icon-box--teal">
+          <i class="bi {{ step.icon }}"></i>
+        </span>
+        <div>
+          <h2 class="careers-step__title">{{ step.title }}</h2>
+          <p class="careers-step__text">{{ step.description }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+
+    <div class="careers-form-wrap med-card" data-reveal>
+      <div class="careers-form-wrap__header">
+        <h2 class="careers-form-wrap__title" data-i18n="pages.careers.formTitle">Doctor application</h2>
+        <p class="careers-form-wrap__hint" data-i18n="pages.careers.formHint">
+          Your profile stays hidden from patients until an administrator verifies your licence and details.
+        </p>
+      </div>
+
+      <form class="careers-form" method="post" action="/careers" novalidate data-careers-form>
+        <div class="med-form-row med-form-row--2">
+          {{ form_input(
+            name="first_name",
+            label="First name",
+            value=form_values.get('first_name', ''),
+            error=errors.get('first_name'),
+            required=true,
+            placeholder="Sarah",
+            autocomplete="given-name",
+            i18n_label="pages.careers.firstName",
+            icon="fa-solid fa-user"
+          ) }}
+          {{ form_input(
+            name="last_name",
+            label="Last name",
+            value=form_values.get('last_name', ''),
+            error=errors.get('last_name'),
+            required=true,
+            placeholder="Okello",
+            autocomplete="family-name",
+            i18n_label="pages.careers.lastName",
+            icon="fa-solid fa-user"
+          ) }}
+        </div>
+
+        <div class="med-form-row med-form-row--2">
+          {{ form_input(
+            name="email",
+            type="email",
+            label="Professional email",
+            value=form_values.get('email', ''),
+            error=errors.get('email'),
+            required=true,
+            placeholder="doctor@hospital.co.tz",
+            autocomplete="email",
+            i18n_label="pages.careers.email",
+            icon="fa-solid fa-envelope"
+          ) }}
+          {{ form_input(
+            name="phone",
+            type="tel",
+            label="Phone",
+            value=form_values.get('phone', ''),
+            error=errors.get('phone'),
+            placeholder="+255 7XX XXX XXX",
+            autocomplete="tel",
+            i18n_label="pages.careers.phone",
+            icon="fa-solid fa-phone"
+          ) }}
+        </div>
+
+        <div class="med-form-row med-form-row--2">
+          {{ form_password(
+            name="password",
+            label="Password",
+            error=errors.get('password'),
+            required=true,
+            hint="At least 8 characters with upper, lower, and a number.",
+            i18n_label="pages.careers.password",
+            i18n_hint="auth.register.passwordHint",
+            icon="fa-solid fa-lock"
+          ) }}
+          {{ form_password(
+            name="confirm_password",
+            label="Confirm password",
+            error=errors.get('confirm_password'),
+            required=true,
+            i18n_label="pages.careers.confirmPassword",
+            icon="fa-solid fa-lock"
+          ) }}
+        </div>
+
+        {{ form_select(
+          name="specialization_id",
+          label="Specialization",
+          options=specializations,
+          value=form_values.get('specialization_id', ''),
+          error=errors.get('specialization_id'),
+          required=true,
+          placeholder="Select specialization",
+          i18n_label="pages.careers.specialization",
+          i18n_placeholder="pages.careers.specializationPlaceholder"
+        ) }}
+
+        <div class="med-form-row med-form-row--2">
+          {{ form_input(
+            name="license_number",
+            label="Medical licence number",
+            value=form_values.get('license_number', ''),
+            error=errors.get('license_number'),
+            required=true,
+            placeholder="MD-TZ-XXX",
+            i18n_label="pages.careers.license",
+            icon="fa-solid fa-id-card"
+          ) }}
+          {{ form_input(
+            name="hospital_name",
+            label="Hospital / clinic",
+            value=form_values.get('hospital_name', ''),
+            error=errors.get('hospital_name'),
+            required=true,
+            placeholder="City Medical Centre",
+            i18n_label="pages.careers.hospital",
+            icon="bi bi-hospital"
+          ) }}
+        </div>
+
+        <div class="med-form-row med-form-row--2">
+          {{ form_input(
+            name="consultation_fee",
+            type="number",
+            label="Consultation fee (TZS)",
+            value=form_values.get('consultation_fee', ''),
+            error=errors.get('consultation_fee'),
+            required=true,
+            placeholder="50000",
+            i18n_label="pages.careers.fee"
+          ) }}
+          {{ form_input(
+            name="experience_years",
+            type="number",
+            label="Years of experience",
+            value=form_values.get('experience_years', '0'),
+            error=errors.get('experience_years'),
+            placeholder="5",
+            i18n_label="pages.careers.experience"
+          ) }}
+        </div>
+
+        {{ form_input(
+          name="qualification",
+          label="Qualification (optional)",
+          value=form_values.get('qualification', ''),
+          error=errors.get('qualification'),
+          placeholder="MBChB, MMed, etc.",
+          i18n_label="pages.careers.qualification"
+        ) }}
+
+        {{ form_checkbox(
+          name="terms_accepted",
+          label='I agree to the <a href="/terms" class="med-link">Terms of Service</a> and <a href="/privacy" class="med-link">Privacy Policy</a>',
+          checked=form_values.get('terms_accepted', false),
+          error=errors.get('terms_accepted'),
+          i18n_label_html="auth.register.terms"
+        ) }}
+
+        {% if errors.get('_form') %}
+        <div class="med-alert med-alert--error" role="alert">
+          <p class="med-alert__message">{{ errors.get('_form') }}</p>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="med-btn med-btn--primary med-btn--lg careers-form__submit" data-i18n="pages.careers.submit">
+          Submit application
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/pages/careers.js') }}"></script>
+{% endblock %}

@@ -54,7 +54,7 @@
     <div class="available-page__grid" data-reveal-stagger>
       {% for doctor in doctors %}
       <article class="available-page__card">
-        {{ doctor_card(doctor) }}
+        {{ doctor_card(doctor, variant="compact") }}
         <div class="available-page__slots">
           <i class="bi bi-clock-history"></i>
           <span><strong>{{ doctor.slots_today }}</strong> slots remaining today</span>

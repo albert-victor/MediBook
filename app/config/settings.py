@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     app_env: str = "development"
     debug: bool = True
     secret_key: str = "change-me-to-a-long-random-string"
-    static_asset_version: str = "20260713g"
+    static_asset_version: str = "20260713h"
 
     # Server
     host: str = "127.0.0.1"

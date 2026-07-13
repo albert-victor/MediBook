@@ -1,0 +1,51 @@
+{% extends "layouts/public.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/content.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page content-page partners-page">
+  <div class="med-container">
+    <header class="catalog-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge" data-i18n="pages.partners.badge">Partners</span>
+      <h1 class="catalog-page__title" data-i18n="pages.partners.title">Partner Hospitals</h1>
+      <p class="catalog-page__subtitle" data-i18n="pages.partners.subtitle">
+        Trusted hospitals and clinics connected to mediBook for online booking and care coordination.
+      </p>
+      <p class="content-page__stat">{{ partners.count }} <span data-i18n="pages.partners.countLabel">partner facilities across Tanzania</span></p>
+    </header>
+
+    <div class="partners-page__grid" data-reveal-stagger>
+      {% for hospital in partners.hospitals %}
+      <article class="partner-card med-card" data-reveal-item>
+        <div class="partner-card__icon med-icon-box med-icon-box--md med-icon-box--primary">
+          <i class="bi bi-hospital"></i>
+        </div>
+        <h2 class="partner-card__name">{{ hospital.name }}</h2>
+        <p class="partner-card__location">
+          <i class="bi bi-geo-alt"></i>
+          {{ hospital.city }}, {{ hospital.region }}
+        </p>
+        <ul class="partner-card__tags">
+          {% for specialty in hospital.specialties %}
+          <li>{{ specialty }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="content-page__cta med-callout" data-reveal>
+      <span class="med-callout__icon"><i class="bi bi-person-badge"></i></span>
+      <div>
+        <strong data-i18n="pages.partners.ctaTitle">Are you a licensed doctor at a partner hospital?</strong>
+        <p data-i18n="pages.partners.ctaText">Apply to join mediBook and get verified by our admin team.</p>
+        <a href="/careers" class="med-btn med-btn--primary med-btn--sm med-mt-4" data-i18n="pages.partners.ctaButton">Join as a doctor</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

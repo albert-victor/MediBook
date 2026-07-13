@@ -74,6 +74,29 @@
 </div>
 {% endmacro %}
 
+{% macro form_select(name, label, options, value="", error=none, required=false, placeholder="Select...", i18n_label=none, i18n_placeholder=none) %}
+<div class="med-form-group" data-field="{{ name }}">
+  <label class="med-form-label {% if required %}med-form-label--required{% endif %}" for="{{ name }}"{% if i18n_label %} data-i18n="{{ i18n_label }}"{% endif %}>
+    {{ label }}
+  </label>
+  <select
+    id="{{ name }}"
+    name="{{ name }}"
+    class="med-input med-select {% if error %}med-input--error{% endif %}"
+    {% if required %}required{% endif %}
+    data-validate
+  >
+    <option value="" disabled {% if not value %}selected{% endif %}{% if i18n_placeholder %} data-i18n="{{ i18n_placeholder }}"{% endif %}>{{ placeholder }}</option>
+    {% for opt in options %}
+    <option value="{{ opt.id }}" {% if value|string == opt.id|string %}selected{% endif %}>{{ opt.name }}</option>
+    {% endfor %}
+  </select>
+  {% if error %}
+  <span class="med-form-error" role="alert"><i class="bi bi-exclamation-circle"></i> {{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
 {% macro form_checkbox(name, label, checked=false, error=none, i18n_label=none, i18n_label_html=none) %}
 <div class="med-form-group" data-field="{{ name }}">
   <label class="med-check">

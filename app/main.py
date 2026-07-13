@@ -33,6 +33,8 @@ from app.models import (  # noqa: F401 - register all models
 )
 from app.routes import auth_router, dashboard_router, web_router
 from app.scheduler import shutdown_scheduler, start_scheduler
+from app.services.landing_service import get_footer_data
+from app.templating import templates
 from app.utils import AppException
 
 settings = get_settings()
@@ -64,6 +66,31 @@ class NoCacheStaticFiles(StaticFiles):
             response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
             response.headers["Pragma"] = "no-cache"
         return response
+
+
+def _wants_html_error(request: Request) -> bool:
+    """Return HTML error pages for browser navigation, JSON for API clients."""
+    path = request.url.path
+    if path.startswith("/api"):
+        return False
+    accept = request.headers.get("accept", "")
+    if "application/json" in accept and "text/html" not in accept:
+        return False
+    return True
+
+
+def _not_found_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="pages/errors/404.html",
+        context={
+            "request": request,
+            "page_title": "Page not found - mediBook",
+            "page_description": "The page you requested could not be found.",
+            "footer": get_footer_data(),
+        },
+        status_code=404,
+    )
 
 
 def create_app() -> FastAPI:
@@ -105,10 +132,14 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(AppException)
     async def app_exception_handler(request: Request, exc: AppException):
+        if exc.status_code == 404 and _wants_html_error(request):
+            return _not_found_page(request)
         return JSONResponse(status_code=exc.status_code, content={"detail": exc.message})
 
     @app.exception_handler(StarletteHTTPException)
     async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+        if exc.status_code == 404 and _wants_html_error(request):
+            return _not_found_page(request)
         return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
     @app.exception_handler(RequestValidationError)

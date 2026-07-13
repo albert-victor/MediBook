@@ -840,6 +840,15 @@
   flex-shrink: 0;
 }
 
+.pdash-doctor__photo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+}
+
 .pdash-doctor__avatar--primary { background: linear-gradient(135deg, var(--med-primary-400), var(--med-primary-600)); }
 .pdash-doctor__avatar--teal    { background: linear-gradient(135deg, var(--med-secondary-400), var(--med-secondary-600)); }
 .pdash-doctor__avatar--green   { background: linear-gradient(135deg, var(--med-accent-400), var(--med-accent-600)); }

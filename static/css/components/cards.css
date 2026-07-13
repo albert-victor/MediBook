@@ -170,6 +170,7 @@
 }
 
 .med-doctor-card__image {
+  display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
@@ -222,4 +223,131 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
+}
+
+.med-doctor-card__visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.med-doctor-card__avatar {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--space-4);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1;
+}
+
+.med-doctor-card__avatar--primary {
+  background: linear-gradient(145deg, var(--med-primary-400), var(--med-primary-600));
+}
+
+.med-doctor-card__avatar--teal {
+  background: linear-gradient(145deg, var(--med-secondary-400), var(--med-secondary-600));
+}
+
+.med-doctor-card__avatar--green {
+  background: linear-gradient(145deg, var(--med-accent-400), var(--med-accent-600));
+}
+
+.med-doctor-card__avatar--amber {
+  background: linear-gradient(145deg, var(--med-warning-500), var(--med-warning-700));
+}
+
+.med-doctor-card__live {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: calc(100% - var(--space-6));
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--med-success-700);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: var(--space-1-5) var(--space-3);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+.med-doctor-card__name a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.med-doctor-card__name a:hover {
+  color: var(--color-primary);
+}
+
+.med-doctor-card__hospital {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.med-doctor-card__rating i {
+  color: var(--color-warning);
+}
+
+.med-doctor-card__reviews {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+}
+
+.med-doctor-card__availability.is-available {
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium);
+}
+
+.med-doctor-card--compact {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+  border-radius: var(--radius-xl);
+}
+
+.med-doctor-card--compact .med-doctor-card__visual {
+  width: 100px;
+  overflow: hidden;
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+.med-doctor-card--compact .med-doctor-card__avatar,
+.med-doctor-card--compact .med-doctor-card__image {
+  aspect-ratio: 1;
+  height: 100%;
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+.med-doctor-card--compact .med-doctor-card__live {
+  display: none;
+}
+
+.med-doctor-card--compact .med-doctor-card__body {
+  padding: var(--space-4);
+}
+
+.med-doctor-card--compact .med-doctor-card__meta {
+  margin-bottom: var(--space-3);
+}
+
+.med-doctor-card--compact .med-doctor-card__footer {
+  padding-top: var(--space-3);
+  margin-top: 0;
+  border-top: none;
 }

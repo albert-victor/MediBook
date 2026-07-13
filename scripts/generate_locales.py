@@ -259,7 +259,7 @@ EN = {
             "terms": "Terms",
             "columns": {
                 "services": {"title": "Services", "findDoctor": "Find a Doctor", "bookAppointment": "Book Appointment", "labDiagnostics": "Lab & Diagnostics", "telehealth": "Telehealth"},
-                "company": {"title": "Company", "about": "About Us", "partners": "Partner Hospitals", "careers": "Careers", "contact": "Contact"},
+                "company": {"title": "Company", "about": "About Us", "partners": "Partner Hospitals", "careers": "Join as a Doctor", "contact": "Contact"},
                 "support": {"title": "Support", "helpCentre": "Help Centre", "faqs": "FAQs", "privacyPolicy": "Privacy Policy", "termsOfService": "Terms of Service"}
             },
             "social": {"twitter": "Twitter", "instagram": "Instagram", "linkedin": "LinkedIn", "facebook": "Facebook"}
@@ -646,8 +646,58 @@ EN = {
         "paymentRequired": "Payment is required to confirm this appointment."
     },
     "errors": {
-        "404": {"title": "Page not found", "message": "The page you're looking for doesn't exist or has been moved.", "backHome": "Back to home"},
+        "404": {
+            "title": "Page not found",
+            "apology": "We're sorry - this page isn't available right now.",
+            "message": "The link may be broken, or the page may have been moved. Let's get you back on track.",
+            "backHome": "Back to home",
+            "findDoctors": "Find doctors",
+            "needHelp": "Need help? Visit our help centre",
+        },
         "generic": {"title": "Something went wrong", "message": "An unexpected error occurred. Please try again.", "retry": "Try again"}
+    },
+    "pages": {
+        "legal": {"updated": "Last updated:"},
+        "privacy": {
+            "badge": "Privacy",
+            "title": "Privacy Policy",
+            "subtitle": "How we collect, use, and protect your personal information on mediBook.",
+        },
+        "terms": {
+            "badge": "Terms",
+            "title": "Terms of Service",
+            "subtitle": "Rules and conditions for using mediBook as a patient or healthcare provider.",
+        },
+        "partners": {
+            "badge": "Partners",
+            "title": "Partner Hospitals",
+            "subtitle": "Trusted hospitals and clinics connected to mediBook for online booking and care coordination.",
+            "countLabel": "partner facilities across Tanzania",
+            "ctaTitle": "Are you a licensed doctor at a partner hospital?",
+            "ctaText": "Apply to join mediBook and get verified by our admin team.",
+            "ctaButton": "Join as a doctor",
+        },
+        "careers": {
+            "badge": "For doctors",
+            "title": "Join mediBook as a verified doctor",
+            "subtitle": "Submit your credentials for admin review. Once verified, your profile goes live and patients can book appointments with you.",
+            "formTitle": "Doctor application",
+            "formHint": "Your profile stays hidden from patients until an administrator verifies your licence and details.",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Professional email",
+            "phone": "Phone",
+            "password": "Password",
+            "confirmPassword": "Confirm password",
+            "specialization": "Specialization",
+            "specializationPlaceholder": "Select specialization",
+            "license": "Medical licence number",
+            "hospital": "Hospital / clinic",
+            "fee": "Consultation fee (TZS)",
+            "experience": "Years of experience",
+            "qualification": "Qualification (optional)",
+            "submit": "Submit application",
+        },
     },
     "footer": {
         "tagline": "Modern healthcare scheduling for hospitals and patients.",
@@ -900,7 +950,7 @@ SW = {
             "terms": "Masharti",
             "columns": {
                 "services": {"title": "Huduma", "findDoctor": "Tafuta Daktari", "bookAppointment": "Panga Miadi", "labDiagnostics": "Maabara na Uchunguzi", "telehealth": "Huduma za Mtandaoni"},
-                "company": {"title": "Kampuni", "about": "Kuhusu Sisi", "partners": "Hospitali Washirika", "careers": "Ajira", "contact": "Wasiliana"},
+                "company": {"title": "Kampuni", "about": "Kuhusu Sisi", "partners": "Hospitali Washirika", "careers": "Jiunge kama Daktari", "contact": "Wasiliana"},
                 "support": {"title": "Usaidizi", "helpCentre": "Kituo cha Msaada", "faqs": "Maswali", "privacyPolicy": "Sera ya Faragha", "termsOfService": "Masharti ya Huduma"}
             },
             "social": {"twitter": "Twitter", "instagram": "Instagram", "linkedin": "LinkedIn", "facebook": "Facebook"}
@@ -1287,8 +1337,58 @@ SW = {
         "paymentRequired": "Malipo yanahitajika kuthibitisha miadi hii."
     },
     "errors": {
-        "404": {"title": "Ukurasa haujapatikana", "message": "Ukurasa unaoutafuta haupo au umehamishwa.", "backHome": "Rudi nyumbani"},
+        "404": {
+            "title": "Ukurasa haujapatikana",
+            "apology": "Samahani - ukurasa huu haupatikani kwa sasa.",
+            "message": "Kiungo kinaweza kuwa kimevunjika, au ukurasa umehamishwa. Turudishe kwenye njia sahihi.",
+            "backHome": "Rudi nyumbani",
+            "findDoctors": "Tafuta madaktari",
+            "needHelp": "Unahitaji msaada? Tembelea kituo chetu cha msaada",
+        },
         "generic": {"title": "Kuna tatizo limetokea", "message": "Hitilafu isiyotarajiwa imetokea. Tafadhali jaribu tena.", "retry": "Jaribu tena"}
+    },
+    "pages": {
+        "legal": {"updated": "Imesasishwa mwisho:"},
+        "privacy": {
+            "badge": "Faragha",
+            "title": "Sera ya Faragha",
+            "subtitle": "Jinsi tunavyokusanya, kutumia, na kulinda taarifa zako binafsi kwenye mediBook.",
+        },
+        "terms": {
+            "badge": "Masharti",
+            "title": "Masharti ya Huduma",
+            "subtitle": "Kanuni na masharti ya kutumia mediBook kama mgonjwa au mtoa huduma za afya.",
+        },
+        "partners": {
+            "badge": "Washirika",
+            "title": "Hospitali Washirika",
+            "subtitle": "Hospitali na kliniki zinazoaminika zilizounganishwa na mediBook kwa miadi mtandaoni na uratibu wa huduma.",
+            "countLabel": "vituo vya washirika nchini Tanzania",
+            "ctaTitle": "Je, wewe ni daktari aliye na leseni katika hospitali mshirika?",
+            "ctaText": "Omba kujiunga na mediBook na uthibitishwe na timu yetu ya wasimamizi.",
+            "ctaButton": "Jiunge kama daktari",
+        },
+        "careers": {
+            "badge": "Kwa madaktari",
+            "title": "Jiunge na mediBook kama daktari aliyethibitishwa",
+            "subtitle": "Wasilisha vyeti vyako kwa ukaguzi wa wasimamizi. Ukishathibitishwa, wasifu wako utaonekana na wagonjwa waweze kupanga miadi nawe.",
+            "formTitle": "Maombi ya daktari",
+            "formHint": "Wasifu wako hautaonekana kwa wagonjwa hadi msimamizi athibitishe leseni na maelezo yako.",
+            "firstName": "Jina la kwanza",
+            "lastName": "Jina la mwisho",
+            "email": "Barua pepe ya kitaaluma",
+            "phone": "Simu",
+            "password": "Nenosiri",
+            "confirmPassword": "Thibitisha nenosiri",
+            "specialization": "Taaluma",
+            "specializationPlaceholder": "Chagua taaluma",
+            "license": "Nambari ya leseni ya udaktari",
+            "hospital": "Hospitali / kliniki",
+            "fee": "Ada ya uchunguzi (TZS)",
+            "experience": "Miaka ya uzoefu",
+            "qualification": "Sifa (si lazima)",
+            "submit": "Wasilisha maombi",
+        },
     },
     "footer": {
         "tagline": "Upangaji wa kisasa wa huduma za afya kwa hospitali na wagonjwa.",

@@ -26,37 +26,51 @@
     <div class="services-page__grid">
       {% for service in services %}
       <article class="services-page__card" data-reveal-item>
-        <div class="services-page__card-head">
-          <div class="med-icon-box med-icon-box--lg med-icon-box--{{ service.color }}">
+        <figure class="services-page__media">
+          <img
+            class="services-page__img"
+            src="{{ url_for('static', path=service.image) }}"
+            alt="{{ service.title }}"
+            width="800"
+            height="500"
+            loading="lazy"
+            decoding="async"
+          >
+          <span class="services-page__media-icon med-icon-box med-icon-box--md med-icon-box--{{ service.color }}" aria-hidden="true">
             <i class="bi {{ service.icon }}"></i>
+          </span>
+        </figure>
+
+        <div class="services-page__card-body">
+          <div class="services-page__card-head">
+            <div>
+              <h2 class="services-page__card-title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h2>
+              {% if service.duration %}
+              <span class="services-page__duration"><i class="bi bi-clock"></i> <span data-i18n="landing.services.{{ service.id }}.duration">{{ service.duration }}</span></span>
+              {% endif %}
+            </div>
           </div>
-          <div>
-            <h2 class="services-page__card-title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h2>
-            {% if service.duration %}
-            <span class="services-page__duration"><i class="bi bi-clock"></i> <span data-i18n="landing.services.{{ service.id }}.duration">{{ service.duration }}</span></span>
-            {% endif %}
-          </div>
+
+          <p class="services-page__card-desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
+
+          {% if service.ideal_for %}
+          <p class="services-page__ideal">
+            <span data-i18n="landing.services.{{ service.id }}.ideal_for">{{ service.ideal_for }}</span>
+          </p>
+          {% endif %}
+
+          {% if service.features %}
+          <ul class="services-page__features">
+            {% for feature in service.features %}
+            <li><i class="bi bi-check-circle-fill"></i> <span data-i18n="landing.services.{{ service.id }}.features.{{ loop.index0 }}">{{ feature }}</span></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          <a href="/#search-doctors" class="med-btn med-btn--primary med-btn--sm services-page__book">
+            <span data-i18n="landing.appHome.bookAppointment">Book this service</span> <i class="bi bi-arrow-right"></i>
+          </a>
         </div>
-
-        <p class="services-page__card-desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
-
-        {% if service.ideal_for %}
-        <p class="services-page__ideal">
-          <span data-i18n="landing.services.{{ service.id }}.ideal_for">{{ service.ideal_for }}</span>
-        </p>
-        {% endif %}
-
-        {% if service.features %}
-        <ul class="services-page__features">
-          {% for feature in service.features %}
-          <li><i class="bi bi-check-circle-fill"></i> <span data-i18n="landing.services.{{ service.id }}.features.{{ loop.index0 }}">{{ feature }}</span></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-        <a href="/#search-doctors" class="med-btn med-btn--primary med-btn--sm services-page__book">
-          <span data-i18n="landing.appHome.bookAppointment">Book this service</span> <i class="bi bi-arrow-right"></i>
-        </a>
       </article>
       {% endfor %}
     </div>

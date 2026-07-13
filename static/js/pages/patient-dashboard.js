@@ -347,7 +347,11 @@ function renderDoctors(containerId, doctors, showBook = true) {
       : `<span class="med-badge med-badge--neutral med-badge--sm">${t("landing.popularDoctors.nextTomorrow")}</span>`;
     return `
       <div class="pdash-doctor" data-reveal-item style="animation-delay:${i * 0.06}s">
-        <div class="pdash-doctor__avatar pdash-doctor__avatar--${grad}">${escapeHtml(d.initials)}</div>
+        ${
+          d.image_url
+            ? `<img class="pdash-doctor__photo" src="${escapeHtml(d.image_url)}" alt="" loading="lazy">`
+            : `<div class="pdash-doctor__avatar pdash-doctor__avatar--${grad}">${escapeHtml(d.initials)}</div>`
+        }
         <div class="pdash-doctor__info">
           <div class="pdash-doctor__name">${escapeHtml(d.name)}</div>
           <div class="pdash-doctor__spec">${escapeHtml(d.specialization)} · ${escapeHtml(d.hospital)}</div>

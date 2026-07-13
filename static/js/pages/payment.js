@@ -182,7 +182,7 @@ async function processPayment() {
       methodLabel: selectedMethodLabel || getMethodLabel(selectedMethod),
       amount: context.amount,
       currency: context.currency,
-      durationMs: 6000,
+      durationMs: 4500,
       onInitiate: () =>
         apiRequest(`/payments/appointment/${appointmentId}/initiate`, {
           method: "POST",

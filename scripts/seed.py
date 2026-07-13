@@ -24,6 +24,7 @@ from app.models import (  # noqa: F401 - register metadata
 from scripts.seeders.admin_seeder import seed_admins
 from scripts.seeders.availability_seeder import seed_availability
 from scripts.seeders.dashboard_seeder import seed_dashboard_data
+from scripts.seeders.doctor_portrait_seeder import seed_doctor_portraits
 from scripts.seeders.doctor_profile_seeder import seed_doctor_profiles
 from scripts.seeders.doctor_seeder import seed_doctors
 from scripts.seeders.patient_seeder import seed_patients
@@ -41,6 +42,7 @@ def main() -> None:
         admins = seed_admins(db)
         doctors = seed_doctors(db)
         profiles = seed_doctor_profiles(db)
+        portraits = seed_doctor_portraits(db)
         patients = seed_patients(db)
         availability = seed_availability(db)
         dashboard = seed_dashboard_data(db)
@@ -52,6 +54,7 @@ def main() -> None:
     print(f"  Admins created:   {admins}")
     print(f"  Doctors created:  {doctors}")
     print(f"  Doctor profiles:  {profiles}")
+    print(f"  Doctor portraits: {portraits}")
     print(f"  Patients created: {patients}")
     print(f"  Availability slots: {availability}")
     print(f"  Dashboard data:   {dashboard}")

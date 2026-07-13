@@ -38,8 +38,6 @@
     "patient": "Patient",
     "doctor": "Doctor",
     "admin": "Administrator",
-    "status": "Status",
-    "actions": "Actions",
     "goodMorning": "Good morning",
     "goodAfternoon": "Good afternoon",
     "goodEvening": "Good evening",
@@ -51,10 +49,7 @@
       "noData": "No data available",
       "loadFailed": "Could not load data",
       "tryAgain": "Please try again later."
-    },
-    "newCount": "{count} new",
-    "visit": "visit",
-    "visits": "visits"
+    }
   },
   "navigation": {
     "mainAria": "Main navigation",
@@ -452,7 +447,7 @@
           "title": "Company",
           "about": "About Us",
           "partners": "Partner Hospitals",
-          "careers": "Careers",
+          "careers": "Join as a Doctor",
           "contact": "Contact"
         },
         "support": {
@@ -500,21 +495,10 @@
       "bookAppointment": "Book Appointment",
       "viewProfile": "View profile",
       "reviews": "{count} reviews",
-      "experience": "{years} yrs experience",
-      "slotsToday": "{count} slots today",
-      "yearsShort": "yrs"
+      "experience": "{years} yrs experience"
     }
   },
   "auth": {
-    "brand": {
-      "headline": "Healthcare scheduling, reimagined.",
-      "tagline": "Book verified doctors, manage appointments, and receive timely reminders - all in one trusted platform.",
-      "featureSecure": "Secure patient accounts",
-      "featureAvailability": "Real-time availability",
-      "featureReminders": "Smart appointment reminders",
-      "trustedBy": "Trusted by 12,000+ patients"
-    },
-    "redirecting": "Signing you in…",
     "login": {
       "title": "Welcome back",
       "subtitle": "Sign in to manage your appointments and health records.",
@@ -542,7 +526,7 @@
       "password": "Password",
       "passwordHint": "At least 8 characters with uppercase, lowercase, and a number",
       "confirmPassword": "Confirm password",
-      "terms": "I agree to the <a href=\"/terms\" class=\"med-link\">Terms of Service</a> and <a href=\"/privacy\" class=\"med-link\">Privacy Policy</a>",
+      "terms": "I agree to the Terms of Service and Privacy Policy",
       "submit": "Create Account",
       "hasAccount": "Already have an account?",
       "signIn": "Sign in"
@@ -557,7 +541,6 @@
       "successMessage": "If an account exists with that email, you'll receive a password reset link shortly."
     },
     "resetPassword": {
-      "badge": "New password",
       "title": "Reset password",
       "subtitle": "Choose a strong new password for your account.",
       "newPassword": "New password",
@@ -593,7 +576,6 @@
       "summary": "Summary"
     },
     "alertTitle": "Booking unavailable",
-    "patientsOnlyTitle": "Patient accounts only",
     "slotUnavailableTitle": "Slot unavailable",
     "slotConflict": "This appointment slot has already been booked. Please choose another available time.",
     "loadDoctorsFailed": "Could not load doctors. Please refresh and try again.",
@@ -602,14 +584,6 @@
     "bookedSuccess": "Appointment booked",
     "redirectPayment": "Redirecting to payment…",
     "proceedPayment": "Proceed to Payment",
-    "cta": {
-      "selectedDoctor": "Selected doctor",
-      "selectedDate": "Selected date",
-      "selectedTime": "Selected time",
-      "almostDone": "Almost done",
-      "reviewBooking": "Review & pay",
-      "continueWith": "Continue with {name}"
-    },
     "stepDoctor": {
       "title": "Select a doctor",
       "desc": "Choose the specialist you'd like to visit."
@@ -664,9 +638,7 @@
     "alreadyPaidMessage": "This appointment has been paid. View your confirmation for full details.",
     "viewConfirmation": "View confirmation",
     "unavailableTitle": "Payment unavailable",
-    "notFound": "This appointment could not be found or is not ready for payment.",
-    "invalidAppointment": "Invalid appointment reference. Please book again from your dashboard.",
-    "noMethods": "No payment methods are available right now.",
+    "notFound": "This appointment could not be found.",
     "simulation": {
       "processing": "Processing payment",
       "connecting": "Connecting to provider…",
@@ -696,9 +668,6 @@
       "paidAt": "Paid at",
       "paymentStatus": "Payment status",
       "paid": "Paid",
-      "receiptOfficial": "Official payment receipt",
-      "receiptThanks": "Thank you for choosing mediBook. Keep this receipt for your records.",
-      "printReceipt": "Print receipt",
       "goDashboard": "Go to dashboard",
       "bookAnother": "Book another visit",
       "unavailableTitle": "Confirmation unavailable",
@@ -798,8 +767,6 @@
       "subtitle": "Manage doctors, patients, appointments, and revenue across mediBook.",
       "statsAria": "Platform statistics",
       "nav": {
-        "platform": "Platform",
-        "system": "System",
         "overview": "Overview",
         "doctors": "Doctors",
         "patients": "Patients",
@@ -822,8 +789,6 @@
         "doctorDistribution": "Doctor Distribution"
       },
       "addDoctor": "Add Doctor",
-      "doctorsHint": "Add, verify, edit, or deactivate doctors on the platform.",
-      "viewPublicSite": "View public site",
       "deactivateDoctor": "Deactivate this doctor?",
       "deleteDoctor": "Permanently delete this doctor? Only possible without appointment history.",
       "deactivatePatient": "Deactivate this patient?",
@@ -841,13 +806,7 @@
         "appointments": "Appointments",
         "newPatients": "New Patients",
         "newDoctors": "New Doctors",
-        "unavailable": "Report unavailable",
-        "appointmentStatus": "Appointment Status",
-        "paymentMethods": "Payment Methods",
-        "appointmentsTrend": "Appointments Trend (6 mo)",
-        "revenueTrend": "Revenue Trend (6 mo)",
-        "doctorDistribution": "Doctors by Specialty",
-        "platformGrowth": "Platform Growth"
+        "unavailable": "Report unavailable"
       },
       "systemNotifications": "System Notifications",
       "noNotifications": "No notifications",
@@ -871,10 +830,7 @@
       "doctorUpdated": "Doctor profile saved.",
       "doctorDeactivated": "Doctor account has been deactivated.",
       "doctorDeleted": "Doctor removed from the platform.",
-      "patientDeactivated": "Patient account deactivated.",
-      "license": "License",
-      "currency": "Currency",
-      "visits": "Visits"
+      "patientDeactivated": "Patient account deactivated."
     }
   },
   "doctors": {
@@ -955,8 +911,7 @@
     },
     "doctor": {
       "active": "Active",
-      "inactive": "Inactive",
-      "unverified": "Unverified"
+      "inactive": "Inactive"
     }
   },
   "toast": {
@@ -970,7 +925,7 @@
     "paymentFailed": "Payment failed",
     "alreadyPaid": "Already paid",
     "phoneRequired": "Phone required",
-    "deactivated": "Deactivate",
+    "deactivated": "Deactivated",
     "deleted": "Deleted",
     "updated": "Updated",
     "createFailed": "Create failed",
@@ -992,18 +947,16 @@
     "networkError": "Network error. Check your connection and try again.",
     "slotTaken": "This appointment slot has already been booked.",
     "appointmentNotFound": "Appointment not found.",
-    "paymentRequired": "Payment is required to confirm this appointment.",
-    "patientsOnly": "Patients only",
-    "doctorsOnly": "Doctors only",
-    "adminsOnly": "Admins only",
-    "emailExists": "A user with this email already exists",
-    "licenseExists": "License number already registered"
+    "paymentRequired": "Payment is required to confirm this appointment."
   },
   "errors": {
     "404": {
       "title": "Page not found",
-      "message": "The page you're looking for doesn't exist or has been moved.",
-      "backHome": "Back to home"
+      "apology": "We're sorry - this page isn't available right now.",
+      "message": "The link may be broken, or the page may have been moved. Let's get you back on track.",
+      "backHome": "Back to home",
+      "findDoctors": "Find doctors",
+      "needHelp": "Need help? Visit our help centre"
     },
     "generic": {
       "title": "Something went wrong",
@@ -1011,37 +964,55 @@
       "retry": "Try again"
     }
   },
+  "pages": {
+    "legal": {
+      "updated": "Last updated:"
+    },
+    "privacy": {
+      "badge": "Privacy",
+      "title": "Privacy Policy",
+      "subtitle": "How we collect, use, and protect your personal information on mediBook."
+    },
+    "terms": {
+      "badge": "Terms",
+      "title": "Terms of Service",
+      "subtitle": "Rules and conditions for using mediBook as a patient or healthcare provider."
+    },
+    "partners": {
+      "badge": "Partners",
+      "title": "Partner Hospitals",
+      "subtitle": "Trusted hospitals and clinics connected to mediBook for online booking and care coordination.",
+      "countLabel": "partner facilities across Tanzania",
+      "ctaTitle": "Are you a licensed doctor at a partner hospital?",
+      "ctaText": "Apply to join mediBook and get verified by our admin team.",
+      "ctaButton": "Join as a doctor"
+    },
+    "careers": {
+      "badge": "For doctors",
+      "title": "Join mediBook as a verified doctor",
+      "subtitle": "Submit your credentials for admin review. Once verified, your profile goes live and patients can book appointments with you.",
+      "formTitle": "Doctor application",
+      "formHint": "Your profile stays hidden from patients until an administrator verifies your licence and details.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Professional email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "specialization": "Specialization",
+      "specializationPlaceholder": "Select specialization",
+      "license": "Medical licence number",
+      "hospital": "Hospital / clinic",
+      "fee": "Consultation fee (TZS)",
+      "experience": "Years of experience",
+      "qualification": "Qualification (optional)",
+      "submit": "Submit application"
+    }
+  },
   "footer": {
     "tagline": "Modern healthcare scheduling for hospitals and patients.",
     "copyright": "mediBook. All rights reserved.",
     "privacy": "Privacy",
     "terms": "Terms"
-  },
-  "help": {
-    "title": "Help Centre",
-    "subtitle": "Answers about booking, payments, reminders, and managing your care on mediBook.",
-    "booking": {
-      "title": "Booking appointments",
-      "text": "Search for a doctor, pick an available slot, and confirm with payment. Only open slots are selectable.",
-      "link": "Book now"
-    },
-    "payment": {
-      "title": "Payments",
-      "text": "Pay via M-Pesa, Mixx, Airtel Money, and other supported mobile wallets. You receive a reference number after payment."
-    },
-    "reminders": {
-      "title": "Reminders",
-      "text": "Email and web notifications are sent 24 hours and 2 hours before your visit."
-    },
-    "faq": {
-      "title": "FAQs",
-      "text": "Browse answers to the most common patient questions.",
-      "link": "View FAQs"
-    },
-    "contact": {
-      "title": "Need more help?",
-      "text": "Our patient support team typically replies within 2 hours on business days.",
-      "button": "Contact support"
-    }
   }
 }

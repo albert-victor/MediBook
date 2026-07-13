@@ -7,6 +7,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.utils.doctor_images import get_doctor_image_url
+
 
 def get_landing_context() -> dict[str, Any]:
     """Return all data needed to render the public landing page."""
@@ -195,6 +197,7 @@ def get_services() -> list[dict[str, Any]]:
     ]
     for service in services:
         service.update(_SERVICE_DETAILS.get(service["id"], {}))
+        service["image"] = f"assets/images/services/{service['id']}.jpg"
     return services
 
 
@@ -269,18 +272,18 @@ def get_available_today_page_context() -> dict[str, Any]:
 
 def get_popular_doctors() -> list[dict[str, Any]]:
     doctors_data = [
-        (1, "Dr. Sarah Okello", "Cardiologist", "City Medical Centre", 4.9, 128, 15, 85000, True, 3),
-        (2, "Dr. James Mwangi", "General Physician", "Kilimanjaro Clinic", 4.8, 96, 12, 45000, True, 5),
-        (3, "Dr. Fatuma Saidi", "Pediatrician", "Hope Children's Hospital", 4.9, 214, 18, 55000, False, 0),
-        (4, "Dr. Peter Kimaro", "Orthopedic Surgeon", "Orthocare Institute", 4.7, 87, 20, 95000, True, 2),
-        (5, "Dr. Grace Mushi", "Dermatologist", "Skin Health Clinic", 4.8, 156, 10, 60000, True, 4),
-        (6, "Dr. David Lyimo", "Neurologist", "NeuroCare Hospital", 4.9, 73, 22, 120000, True, 1),
-        (7, "Dr. Neema Juma", "Gynecologist", "Women's Wellness Centre", 4.9, 189, 14, 70000, False, 0),
-        (8, "Dr. Robert Msigwa", "Dentist", "Smile Dental Studio", 4.6, 112, 8, 40000, True, 6),
-        (9, "Dr. Aisha Hassan", "Ophthalmologist", "Vision Plus Eye Centre", 4.8, 94, 16, 75000, True, 2),
-        (10, "Dr. Emmanuel Tenga", "Psychiatrist", "MindCare Clinic", 4.9, 67, 11, 90000, True, 3),
-        (11, "Dr. Christina Massawe", "Endocrinologist", "Diabetes & Hormone Centre", 4.7, 58, 13, 80000, False, 0),
-        (12, "Dr. George Marwa", "Urologist", "Men's Health Institute", 4.8, 81, 17, 95000, True, 2),
+        (1, "Dr. Sarah Okello", "Cardiologist", "City Medical Centre", 4.9, 128, 15, 85000, True, 3, "female"),
+        (2, "Dr. James Mwangi", "General Physician", "Kilimanjaro Clinic", 4.8, 96, 12, 45000, True, 5, "male"),
+        (3, "Dr. Fatuma Saidi", "Pediatrician", "Hope Children's Hospital", 4.9, 214, 18, 55000, False, 0, "female"),
+        (4, "Dr. Peter Kimaro", "Orthopedic Surgeon", "Orthocare Institute", 4.7, 87, 20, 95000, True, 2, "male"),
+        (5, "Dr. Grace Mushi", "Dermatologist", "Skin Health Clinic", 4.8, 156, 10, 60000, True, 4, "female"),
+        (6, "Dr. David Lyimo", "Neurologist", "NeuroCare Hospital", 4.9, 73, 22, 120000, True, 1, "male"),
+        (7, "Dr. Neema Juma", "Gynecologist", "Women's Wellness Centre", 4.9, 189, 14, 70000, False, 0, "female"),
+        (8, "Dr. Robert Msigwa", "Dentist", "Smile Dental Studio", 4.6, 112, 8, 40000, True, 6, "male"),
+        (9, "Dr. Aisha Hassan", "Ophthalmologist", "Vision Plus Eye Centre", 4.8, 94, 16, 75000, True, 2, "female"),
+        (10, "Dr. Emmanuel Tenga", "Psychiatrist", "MindCare Clinic", 4.9, 67, 11, 90000, True, 3, "male"),
+        (11, "Dr. Christina Massawe", "Endocrinologist", "Diabetes & Hormone Centre", 4.7, 58, 13, 80000, False, 0, "female"),
+        (12, "Dr. George Marwa", "Urologist", "Men's Health Institute", 4.8, 81, 17, 95000, True, 2, "male"),
     ]
     return [_doctor(*d) for d in doctors_data]
 
@@ -300,6 +303,7 @@ def _doctor(
     fee: int,
     available_today: bool,
     slots_today: int,
+    gender: str = "male",
 ) -> dict[str, Any]:
     initials = "".join(part[0] for part in name.replace("Dr. ", "").split()[:2])
     return {
@@ -308,8 +312,9 @@ def _doctor(
         "initials": initials,
         "specialization": specialization,
         "hospital": hospital,
-        "image_url": None,
+        "image_url": get_doctor_image_url(id_, gender),
         "avatar_gradient": ["primary", "teal", "green", "amber"][id_ % 4],
+        "gender": gender,
         "rating": rating,
         "review_count": review_count,
         "experience_years": experience_years,
@@ -598,7 +603,7 @@ def get_footer_data() -> dict[str, Any]:
                 "links": [
                     {"label": "About Us", "url": "/about"},
                     {"label": "Partner Hospitals", "url": "/partners"},
-                    {"label": "Careers", "url": "/careers"},
+                    {"label": "Join as a Doctor", "url": "/careers"},
                     {"label": "Contact", "url": "/contact"},
                 ],
             },

@@ -1,24 +1,22 @@
 /**
  * Payment Simulation Module
- * Reuses med-modal for processing + success flow (simulation only).
+ * Single modal for processing, then redirect to confirmation (no overlapping UI).
  */
 
 import { openModal, closeModal } from "../core/modal.js";
-import { toast } from "../core/toast.js";
 import { t } from "../i18n/translator.js";
-import { paymentStatus } from "../i18n/statusLabels.js";
 
-const DEFAULT_DURATION_MS = 6000;
-const REDIRECT_DELAY_MS = 2200;
+const DEFAULT_DURATION_MS = 4500;
+const REDIRECT_DELAY_MS = 700;
 
 /**
  * @param {Object} options
  * @param {string} options.methodLabel
  * @param {number} options.amount
  * @param {string} options.currency
- * @param {number} [options.durationMs=6000]
- * @param {() => Promise<any>} options.onInitiate - called when modal opens
- * @param {() => Promise<any>} options.onComplete - called after animation
+ * @param {number} [options.durationMs=4500]
+ * @param {() => Promise<any>} options.onInitiate
+ * @param {() => Promise<any>} options.onComplete
  * @param {(result: any) => void} [options.onSuccess]
  */
 export async function runPaymentSimulation({
@@ -44,6 +42,7 @@ export async function runPaymentSimulation({
   const progressBar = backdrop.querySelector(".pay-sim__progress-bar");
   const statusEl = backdrop.querySelector(".pay-sim__status");
   const bodyEl = backdrop.querySelector(".pay-sim__body");
+  const titleEl = backdrop.querySelector(".med-modal__title");
 
   try {
     if (onInitiate) await onInitiate();
@@ -80,13 +79,9 @@ export async function runPaymentSimulation({
     throw err;
   }
 
-  showSuccessState(bodyEl, result, methodLabel, formattedAmount);
-  toast.success(
-    t("toast.paymentSuccessful"),
-    `${t("payment.simulation.reference")}: ${result.reference_number}`
-  );
-
   if (onSuccess) onSuccess(result);
+
+  showRedirectState(bodyEl, titleEl);
 
   await sleep(REDIRECT_DELAY_MS);
   closeModal();
@@ -125,32 +120,20 @@ function buildModalElement(methodLabel, formattedAmount) {
   return modal;
 }
 
-function showSuccessState(bodyEl, result, methodLabel, formattedAmount) {
+function showRedirectState(bodyEl, titleEl) {
+  if (titleEl) titleEl.textContent = t("payment.simulation.successTitle");
   if (!bodyEl) return;
-
-  const statusLabel = paymentStatus(result.status, result.status_label);
 
   bodyEl.classList.add("pay-sim__body--success");
   bodyEl.innerHTML = `
-    <div class="pay-sim__success">
-      <div class="pay-sim__checkmark" aria-hidden="true">
+    <div class="pay-sim__success pay-sim__success--compact">
+      <div class="pay-sim__checkmark pay-sim__checkmark--sm" aria-hidden="true">
         <svg viewBox="0 0 52 52" class="pay-sim__check-svg">
           <circle class="pay-sim__check-circle" cx="26" cy="26" r="24" fill="none"/>
           <path class="pay-sim__check-path" fill="none" d="M14 27l8 8 16-16"/>
         </svg>
       </div>
-      <h3 class="pay-sim__success-title">${escapeHtml(t("payment.simulation.successTitle"))}</h3>
-      <p class="pay-sim__success-message">${escapeHtml(t("payment.simulation.successMessage"))}</p>
-      <div class="pay-sim__ref">
-        <span>${escapeHtml(t("payment.simulation.reference"))}</span>
-        <strong>${escapeHtml(result.reference_number)}</strong>
-      </div>
-      <dl class="pay-sim__details">
-        <div><dt>${escapeHtml(t("payment.simulation.method"))}</dt><dd>${escapeHtml(methodLabel)}</dd></div>
-        <div><dt>${escapeHtml(t("payment.simulation.amount"))}</dt><dd>${escapeHtml(formattedAmount)}</dd></div>
-        <div><dt>${escapeHtml(t("payment.simulation.status"))}</dt><dd><span class="med-badge med-badge--success">${escapeHtml(statusLabel)}</span></dd></div>
-      </dl>
-      <p class="pay-sim__redirect">${escapeHtml(t("payment.simulation.redirecting"))}</p>
+      <p class="pay-sim__redirect-only">${escapeHtml(t("payment.simulation.redirecting"))}</p>
     </div>
   `;
 }

@@ -1,9 +1,18 @@
 {% macro doctor_swiper_card(doctor) %}
 <article class="landing-swiper-card med-carousel__slide" data-carousel-slide>
   <div class="landing-swiper-card__visual">
+    {% if doctor.image_url %}
+    <img
+      class="landing-swiper-card__photo"
+      src="{{ doctor.image_url }}"
+      alt="{{ doctor.name }}"
+      loading="lazy"
+    >
+    {% else %}
     <div class="landing-swiper-card__avatar landing-swiper-card__avatar--{{ doctor.avatar_gradient | default('primary') }}" aria-hidden="true">
       {{ doctor.initials }}
     </div>
+    {% endif %}
     {% if doctor.available_today %}
     <span class="landing-swiper-card__badge">
       <span class="med-status-dot med-status-dot--success med-status-dot--pulse"></span>
