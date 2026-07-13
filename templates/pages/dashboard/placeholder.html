@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+<div class="med-container med-py-16">
+  <div class="med-card" style="max-width: 480px; margin: 0 auto; text-align: center;">
+    <div class="med-icon-circle med-icon-circle--lg med-icon-circle--primary" style="margin: 0 auto var(--space-4);">
+      <i class="bi bi-speedometer2"></i>
+    </div>
+    <h1 class="med-h3">{{ page_title }}</h1>
+    <p class="med-text-secondary">Welcome, {{ current_user.full_name }}. This dashboard is coming soon.</p>
+    <form method="post" action="/logout" class="med-mt-6">
+      <button type="submit" class="med-btn med-btn--outline-neutral">Sign Out</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

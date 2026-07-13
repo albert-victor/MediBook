@@ -1,0 +1,47 @@
+{% set footer_col_ids = ['services', 'company', 'support'] %}
+{% set footer_link_keys = {
+  'services': ['findDoctor', 'bookAppointment', 'labDiagnostics', 'telehealth'],
+  'company': ['about', 'partners', 'careers', 'contact'],
+  'support': ['helpCentre', 'faqs', 'privacyPolicy', 'termsOfService']
+} %}
+{% set footer_social_keys = ['twitter', 'instagram', 'linkedin', 'facebook'] %}
+<footer class="med-footer">
+  <div class="med-container">
+    <div class="med-footer__grid">
+      <div class="med-footer__brand">
+        <div class="med-footer__logo">
+          <span class="med-footer__logo-icon"><i class="bi bi-heart-pulse-fill"></i></span>
+          <span class="med-footer__logo-text">{{ footer.brand }}</span>
+        </div>
+        <p class="med-footer__desc" data-i18n="footer.tagline">{{ footer.tagline }}</p>
+        <div class="med-footer__social">
+          {% for link in footer.social %}
+          <a href="{{ link.url }}" class="med-footer__social-link" aria-label="{{ link.label }}" data-i18n-aria="landing.footer.social.{{ footer_social_keys[loop.index0] }}">
+            <i class="bi {{ link.icon }}"></i>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% for column in footer.columns %}
+      {% set col_id = footer_col_ids[loop.index0] %}
+      <div>
+        <h3 class="med-footer__heading" data-i18n="landing.footer.columns.{{ col_id }}.title">{{ column.title }}</h3>
+        <ul class="med-footer__links">
+          {% for link in column.links %}
+          <li><a href="{{ link.url }}" class="med-footer__link" data-i18n="landing.footer.columns.{{ col_id }}.{{ footer_link_keys[col_id][loop.index0] }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="med-footer__bottom">
+      <span>&copy; <span data-i18n="footer.copyright">{{ footer.copyright }}</span></span>
+      <div class="med-footer__legal">
+        <a href="/privacy" data-i18n="footer.privacy">Privacy</a>
+        <a href="/terms" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

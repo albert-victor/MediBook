@@ -1,0 +1,374 @@
+{% extends "layouts/public.html" %}
+
+
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}?v={{ static_v }}">
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/booking.css') }}?v={{ static_v }}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="catalog-page booking-page" id="booking-page">
+
+  <div class="med-container">
+
+    <header class="booking-page__header" data-reveal>
+
+      <a href="/doctors" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToDoctors">Back to doctors</span></a>
+
+      <span class="med-section-header__badge"><i class="bi bi-calendar2-plus"></i> <span data-i18n="booking.badge">Book appointment</span></span>
+
+      <h1 class="catalog-page__title" data-i18n="booking.title">Schedule your visit</h1>
+
+      <p class="catalog-page__subtitle" data-i18n="booking.subtitle">
+
+        Choose your doctor, pick an available time, and confirm your appointment in a few simple steps.
+
+      </p>
+
+    </header>
+
+
+
+    <nav class="booking-steps" id="booking-steps" data-i18n-aria="booking.progressAria" data-reveal>
+
+      <div class="booking-steps__item is-active" data-step="1">
+
+        <span class="booking-steps__num">1</span>
+
+        <span class="booking-steps__label" data-i18n="booking.steps.doctor">Doctor</span>
+
+      </div>
+
+      <div class="booking-steps__line"></div>
+
+      <div class="booking-steps__item" data-step="2">
+
+        <span class="booking-steps__num">2</span>
+
+        <span class="booking-steps__label" data-i18n="booking.steps.date">Date</span>
+
+      </div>
+
+      <div class="booking-steps__line"></div>
+
+      <div class="booking-steps__item" data-step="3">
+
+        <span class="booking-steps__num">3</span>
+
+        <span class="booking-steps__label" data-i18n="booking.steps.time">Time</span>
+
+      </div>
+
+      <div class="booking-steps__line"></div>
+
+      <div class="booking-steps__item" data-step="4">
+
+        <span class="booking-steps__num">4</span>
+
+        <span class="booking-steps__label" data-i18n="booking.steps.reason">Reason</span>
+
+      </div>
+
+      <div class="booking-steps__line"></div>
+
+      <div class="booking-steps__item" data-step="5">
+
+        <span class="booking-steps__num">5</span>
+
+        <span class="booking-steps__label" data-i18n="booking.steps.summary">Summary</span>
+
+      </div>
+
+    </nav>
+
+
+
+    <div class="med-alert med-alert--danger booking-page__alert" id="booking-alert" hidden role="alert">
+
+      <span class="med-alert__icon"><i class="bi bi-exclamation-triangle-fill"></i></span>
+
+      <div class="med-alert__content">
+
+        <div class="med-alert__title" id="booking-alert-title" data-i18n="booking.alertTitle">Booking unavailable</div>
+
+        <div class="med-alert__message" id="booking-alert-message"></div>
+
+      </div>
+
+      <button type="button" class="med-alert__close" id="booking-alert-close" data-i18n-aria="common.dismiss">
+
+        <i class="bi bi-x"></i>
+
+      </button>
+
+    </div>
+
+
+
+    <!-- Step 1: Doctor -->
+
+    <div class="booking-panel is-active" id="step-doctor" data-step-panel="1" data-reveal>
+
+      <div class="booking-panel__card">
+
+        <h2 class="booking-panel__title"><i class="bi bi-person-badge"></i> <span data-i18n="booking.stepDoctor.title">Select a doctor</span></h2>
+
+        <p class="booking-panel__desc" data-i18n="booking.stepDoctor.desc">Choose the specialist you'd like to visit.</p>
+
+
+
+        <div class="booking-page__loading" id="doctors-loading">
+
+          <span class="med-spinner"></span>
+
+          <span data-i18n="common.loadingDoctors">Loading doctors…</span>
+
+        </div>
+
+
+
+        <div class="booking-doctors" id="booking-doctors" data-reveal-stagger hidden></div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Step 2: Date -->
+
+    <div class="booking-panel" id="step-date" data-step-panel="2" hidden>
+
+      <div class="booking-panel__card">
+
+        <h2 class="booking-panel__title"><i class="bi bi-calendar3"></i> <span data-i18n="booking.stepDate.title">Select a date</span></h2>
+
+        <p class="booking-panel__desc">Pick a day for your consultation with <strong id="selected-doctor-name">-</strong>.</p>
+
+
+
+        <div class="med-form-group">
+
+          <label class="med-form-label med-form-label--required" for="booking-date" data-i18n="booking.stepDate.label">Appointment date</label>
+
+          <input type="date" id="booking-date" class="med-input" required>
+
+          <p class="med-form-hint" data-i18n="booking.stepDate.hint">Available slots load automatically after you choose a date.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Step 3: Time slots -->
+
+    <div class="booking-panel" id="step-time" data-step-panel="3" hidden>
+
+      <div class="booking-panel__card">
+
+        <h2 class="booking-panel__title"><i class="bi bi-clock"></i> <span data-i18n="booking.stepTime.title">Select a time slot</span></h2>
+
+        <p class="booking-panel__desc">
+
+          Available slots for <strong id="selected-date-label">-</strong>.
+
+          <span class="booking-panel__legend">
+
+            <span class="booking-panel__legend-item booking-panel__legend-item--available" data-i18n="booking.stepTime.available">Available</span>
+
+            <span class="booking-panel__legend-item booking-panel__legend-item--booked" data-i18n="booking.stepTime.booked">Booked</span>
+
+          </span>
+
+        </p>
+
+
+
+        <div class="booking-page__loading" id="slots-loading" hidden>
+
+          <span class="med-spinner"></span>
+
+          <span data-i18n="common.loadingSlots">Loading time slots…</span>
+
+        </div>
+
+
+
+        <div class="booking-slots" id="booking-slots" data-reveal-stagger></div>
+
+
+
+        <div class="med-empty booking-slots__empty" id="slots-empty" hidden>
+
+          <div class="med-empty__illustration"><i class="bi bi-calendar-x"></i></div>
+
+          <h3 class="med-empty__title" data-i18n="booking.stepTime.emptyTitle">No slots on this day</h3>
+
+          <p class="med-empty__message" data-i18n="booking.stepTime.emptyMessage">Try another date or choose a different doctor.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Step 4: Reason -->
+
+    <div class="booking-panel" id="step-reason" data-step-panel="4" hidden>
+
+      <div class="booking-panel__card">
+
+        <h2 class="booking-panel__title"><i class="bi bi-chat-left-text"></i> <span data-i18n="booking.stepReason.title">Reason for visit</span></h2>
+
+        <p class="booking-panel__desc" data-i18n="booking.stepReason.desc">Briefly describe your symptoms or the purpose of your visit.</p>
+
+
+
+        <div class="med-form-group">
+
+          <label class="med-form-label" for="booking-reason" data-i18n="booking.stepReason.label">Reason for visit</label>
+
+          <textarea id="booking-reason" class="med-textarea" rows="4" maxlength="1000"
+
+            data-i18n-placeholder="booking.stepReason.placeholder"
+
+            placeholder="e.g. Follow-up consultation, recurring headaches, annual check-up…"></textarea>
+
+          <p class="med-form-hint" data-i18n="booking.stepReason.hint">Optional - helps the doctor prepare for your visit.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Step 5: Summary -->
+
+    <div class="booking-panel" id="step-summary" data-step-panel="5" hidden>
+
+      <div class="booking-panel__card">
+
+        <h2 class="booking-panel__title"><i class="bi bi-clipboard-check"></i> <span data-i18n="booking.stepSummary.title">Booking summary</span></h2>
+
+        <p class="booking-panel__desc" data-i18n="booking.stepSummary.desc">Review your appointment details before proceeding to payment.</p>
+
+
+
+        <dl class="booking-summary" id="booking-summary">
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.doctor">Doctor</dt>
+
+            <dd id="summary-doctor">-</dd>
+
+          </div>
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.department">Department</dt>
+
+            <dd id="summary-department">-</dd>
+
+          </div>
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.date">Date</dt>
+
+            <dd id="summary-date">-</dd>
+
+          </div>
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.time">Time</dt>
+
+            <dd id="summary-time">-</dd>
+
+          </div>
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.fee">Consultation fee</dt>
+
+            <dd id="summary-fee">-</dd>
+
+          </div>
+
+          <div class="booking-summary__row">
+
+            <dt data-i18n="booking.stepSummary.status">Status</dt>
+
+            <dd><span class="med-badge med-badge--warning" id="summary-status" data-i18n="booking.stepSummary.pendingPayment">Pending Payment</span></dd>
+
+          </div>
+
+        </dl>
+
+      </div>
+
+    </div>
+
+
+
+    <footer class="booking-cta" id="booking-cta" aria-hidden="true">
+
+      <div class="booking-cta__surface">
+
+        <div class="booking-cta__summary">
+
+          <span class="booking-cta__label" id="booking-cta-label"></span>
+
+          <span class="booking-cta__value" id="booking-cta-value"></span>
+
+        </div>
+
+        <div class="booking-cta__actions">
+
+          <button type="button" class="med-btn med-btn--outline-neutral" id="btn-back" hidden>
+
+            <i class="bi bi-arrow-left"></i> <span data-i18n="common.back">Back</span>
+
+          </button>
+
+          <button type="button" class="med-btn med-btn--primary med-btn--lg" id="btn-next" disabled>
+
+            <span data-i18n="common.continue">Continue</span> <i class="bi bi-arrow-right"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="module" src="{{ url_for('static', path='js/pages/booking.js') }}?v={{ static_v }}"></script>
+
+{% endblock %}
+

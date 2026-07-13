@@ -1,0 +1,10 @@
+{% if flash %}
+<div class="med-alert med-alert--{{ flash.category | default('success') }} med-mb-6" role="alert">
+  <span class="med-alert__icon">
+    <i class="bi bi-{% if flash.category == 'error' %}x-circle{% elif flash.category == 'warning' %}exclamation-triangle{% elif flash.category == 'info' %}info-circle{% else %}check-circle{% endif %}-fill"></i>
+  </span>
+  <div class="med-alert__content">
+    <p class="med-alert__message">{{ flash.message }}</p>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %}
+
+{% block body_class %}med-public{% endblock %}
+
+{% block body %}
+  {% include "components/navbar.html" %}
+  <main id="main-content">
+    {% set flash = get_flash(request) %}
+    {% include "components/flash.html" %}
+    {% block content %}{% endblock %}
+  </main>
+  {% include "components/footer.html" %}
+{% endblock %}

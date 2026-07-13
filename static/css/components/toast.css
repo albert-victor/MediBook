@@ -1,0 +1,167 @@
+/**
+ * mediBook Design System - Toast Notifications
+ */
+
+.med-toast-container {
+  position: fixed;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 400px;
+  width: calc(100% - var(--space-12));
+  pointer-events: none;
+}
+
+.med-toast-container--bottom {
+  top: auto;
+  bottom: var(--space-6);
+}
+
+.med-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-toast);
+  pointer-events: auto;
+  animation: med-toast-in var(--transition-base) var(--ease-spring);
+}
+
+.med-toast.is-leaving {
+  animation: med-toast-out var(--transition-fast) var(--ease-out) forwards;
+}
+
+@keyframes med-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes med-toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.med-toast__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+}
+
+.med-toast--success .med-toast__icon {
+  background: var(--med-success-50);
+  color: var(--color-success);
+}
+
+.med-toast--error .med-toast__icon {
+  background: var(--med-danger-50);
+  color: var(--color-danger);
+}
+
+.med-toast--warning .med-toast__icon {
+  background: var(--med-warning-50);
+  color: var(--color-warning);
+}
+
+.med-toast--info .med-toast__icon {
+  background: var(--med-info-50);
+  color: var(--color-info);
+}
+
+.med-toast__content {
+  flex: 1;
+  min-width: 0;
+  padding-top: var(--space-1);
+}
+
+.med-toast__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-0-5);
+}
+
+.med-toast__message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-snug);
+}
+
+.med-toast__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.med-toast__close:hover {
+  background: var(--med-neutral-100);
+  color: var(--color-text-primary);
+}
+
+/* Progress bar for auto-dismiss */
+.med-toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--med-neutral-100);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  overflow: hidden;
+}
+
+.med-toast {
+  position: relative;
+  overflow: hidden;
+}
+
+.med-toast__progress-bar {
+  height: 100%;
+  background: var(--color-primary);
+  animation: med-toast-progress linear forwards;
+}
+
+.med-toast--success .med-toast__progress-bar { background: var(--color-success); }
+.med-toast--error   .med-toast__progress-bar { background: var(--color-danger); }
+.med-toast--warning .med-toast__progress-bar { background: var(--color-warning); }
+
+@keyframes med-toast-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+@media (max-width: 480px) {
+  .med-toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+    width: auto;
+  }
+}

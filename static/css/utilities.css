@@ -1,0 +1,12 @@
+/**
+ * Visibility utilities — must load after component styles.
+ */
+
+[hidden],
+.med-alert[hidden],
+.med-callout[hidden],
+.booking-page__loading[hidden],
+.booking-doctors[hidden],
+.booking-panel[hidden] {
+  display: none !important;
+}

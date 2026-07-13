@@ -1,0 +1,145 @@
+/**
+ * Available today doctors - full listing page
+ */
+
+@import url("services.css");
+
+.available-page {
+  background: linear-gradient(160deg, var(--med-primary-50) 0%, var(--med-neutral-0) 40%, var(--med-secondary-50) 100%);
+}
+
+.available-page__hero .med-section-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.available-page__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.available-page__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.available-page__stat-value {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.available-page__stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.available-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+.available-page__filters-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.available-page__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .available-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .available-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.available-page__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: var(--card-border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.available-page__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.available-page__card .med-doctor-card {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.available-page__card .med-doctor-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.available-page__slots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-divider);
+  background: var(--med-primary-50);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.available-page__slots i {
+  color: var(--color-primary);
+}
+
+.available-page__slots span strong {
+  color: var(--color-primary);
+}
+
+.available-page__slots .med-btn {
+  margin-left: auto;
+}
+
+@media (max-width: 639px) {
+  .available-page__slots .med-btn {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+  }
+}

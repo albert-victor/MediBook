@@ -1,0 +1,76 @@
+{% extends "layouts/public.html" %}
+{% from "macros/doctor_card.html" import doctor_card %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/available_today.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page available-page">
+  <div class="med-container">
+    <header class="catalog-page__hero available-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge">
+        <span class="med-status-dot med-status-dot--success med-status-dot--pulse"></span>
+        <span data-i18n="landing.availableToday.badge">Live availability</span>
+      </span>
+      <h1 class="catalog-page__title" data-i18n="landing.availableToday.pageTitle">Doctors available today</h1>
+      <p class="catalog-page__subtitle" data-i18n="landing.availableToday.pageSubtitle">
+        Real-time open slots from verified specialists. Book now before they're taken -
+        updated live across partner hospitals.
+      </p>
+
+      <div class="available-page__stats">
+        <div class="available-page__stat">
+          <span class="available-page__stat-value">{{ doctor_count }}</span>
+          <span class="available-page__stat-label" data-i18n="landing.availableToday.doctorsAvailable">Doctors available</span>
+        </div>
+        <div class="available-page__stat">
+          <span class="available-page__stat-value">{{ total_slots }}</span>
+          <span class="available-page__stat-label" data-i18n="landing.availableToday.openSlots">Open slots today</span>
+        </div>
+        <div class="available-page__stat">
+          <span class="available-page__stat-value">25+</span>
+          <span class="available-page__stat-label" data-i18n="landing.availableToday.partnerHospitals">Partner hospitals</span>
+        </div>
+      </div>
+
+      <div class="catalog-page__hero-actions">
+        <a href="/register" class="med-btn med-btn--accent">
+          <i class="bi bi-calendar-plus"></i> <span data-i18n="landing.availableToday.registerToBook">Register to book</span>
+        </a>
+        <a href="/doctors" class="med-btn med-btn--outline" data-i18n="landing.availableToday.browseAll">Browse all doctors</a>
+      </div>
+    </header>
+
+    {% if doctors %}
+    <div class="available-page__filters" data-reveal data-i18n-aria="landing.search.ariaSpecialty" aria-label="Filter by specialty">
+      <span class="available-page__filters-label" data-i18n="landing.search.popularLabel">Popular:</span>
+      {% for term in search.popular_searches[:6] %}
+      <a href="/doctors?specialty={{ term | replace(' ', '+') }}" class="med-pill">{{ term }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="available-page__grid" data-reveal-stagger>
+      {% for doctor in doctors %}
+      <article class="available-page__card">
+        {{ doctor_card(doctor) }}
+        <div class="available-page__slots">
+          <i class="bi bi-clock-history"></i>
+          <span><strong>{{ doctor.slots_today }}</strong> slots remaining today</span>
+          <a href="{{ doctor.book_url }}" class="med-btn med-btn--primary med-btn--sm" data-i18n="landing.availableToday.bookEarliest">Book earliest slot</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="med-empty" data-reveal>
+      <div class="med-empty__illustration"><i class="bi bi-calendar-x"></i></div>
+      <h2 class="med-empty__title" data-i18n="landing.availableToday.noSameDayTitle">No same-day slots right now</h2>
+      <p class="med-empty__message" data-i18n="landing.availableToday.noSameDayMessage">Check back later today or browse all doctors for upcoming availability.</p>
+      <a href="/doctors" class="med-btn med-btn--primary" data-i18n="landing.availableToday.browseAll">Browse all doctors</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

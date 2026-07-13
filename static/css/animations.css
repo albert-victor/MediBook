@@ -1,0 +1,137 @@
+/**
+ * mediBook Design System - Animations, Transitions & Hover Effects
+ */
+
+/* ── Scroll reveal ────────────────────────────────────── */
+
+.reveal,
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slower) var(--ease-out),
+    transform var(--duration-slower) var(--ease-out);
+}
+
+.reveal.is-visible,
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.95);
+}
+
+[data-reveal="scale"].is-visible {
+  transform: scale(1);
+}
+
+[data-reveal="slide-left"] {
+  transform: translateX(-24px);
+}
+
+[data-reveal="slide-left"].is-visible {
+  transform: translateX(0);
+}
+
+/* Stagger children */
+[data-reveal-stagger] [data-reveal-item] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+[data-reveal-stagger] [data-reveal-item].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hover lift ───────────────────────────────────────── */
+
+.med-hover-lift {
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.med-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.med-hover-scale {
+  transition: transform var(--transition-fast);
+}
+
+.med-hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.med-hover-glow:hover {
+  box-shadow: var(--shadow-primary);
+}
+
+/* ── Fade utilities ───────────────────────────────────── */
+
+.med-fade-in {
+  animation: med-fade-in var(--duration-slow) var(--ease-out);
+}
+
+.med-fade-up {
+  animation: med-fade-up var(--duration-slow) var(--ease-out);
+}
+
+.med-scale-in {
+  animation: med-scale-in var(--duration-base) var(--ease-spring);
+}
+
+@keyframes med-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes med-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes med-scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Transition utilities ─────────────────────────────── */
+
+.med-transition       { transition: all var(--transition-base); }
+.med-transition-fast  { transition: all var(--transition-fast); }
+.med-transition-slow  { transition: all var(--transition-slow); }
+
+/* ── Reduced motion ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  [data-reveal],
+  [data-reveal-stagger] [data-reveal-item] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .med-hover-lift:hover,
+  .med-hover-scale:hover {
+    transform: none;
+  }
+
+  .med-fade-in,
+  .med-fade-up,
+  .med-scale-in {
+    animation: none;
+  }
+}

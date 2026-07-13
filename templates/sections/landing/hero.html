@@ -1,0 +1,78 @@
+{% set hero_trust_keys = ['trustVerified', 'trustReminders', 'trustSlots'] %}
+<section class="landing-hero" aria-labelledby="hero-title">
+  <div class="landing-hero__bg" aria-hidden="true">
+    <div class="landing-hero__orb landing-hero__orb--1"></div>
+    <div class="landing-hero__orb landing-hero__orb--2"></div>
+    <div class="landing-hero__orb landing-hero__orb--3"></div>
+  </div>
+
+  <div class="med-container landing-hero__grid">
+    <div class="landing-hero__content" data-reveal>
+      <span class="landing-hero__badge">
+        <i class="bi bi-patch-check-fill"></i> <span data-i18n="landing.hero.badge">{{ hero.badge }}</span>
+      </span>
+
+      <h1 class="landing-hero__title" id="hero-title">
+        <span data-i18n="landing.hero.title">{{ hero.title }}</span>
+        <span class="landing-hero__highlight" data-i18n="landing.hero.titleHighlight">{{ hero.title_highlight }}</span>
+      </h1>
+
+      <p class="landing-hero__subtitle" data-i18n="landing.hero.subtitle">{{ hero.subtitle }}</p>
+
+      <div class="landing-hero__actions">
+        <a href="{{ hero.primary_cta.url }}" class="med-btn med-btn--primary med-btn--lg">
+          <span data-i18n="landing.hero.primaryCta">{{ hero.primary_cta.label }}</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+        <a href="{{ hero.secondary_cta.url }}" class="med-btn med-btn--outline med-btn--lg" data-i18n="landing.hero.secondaryCta">
+          {{ hero.secondary_cta.label }}
+        </a>
+      </div>
+
+      <ul class="landing-hero__trust">
+        {% for item in hero.trust_items %}
+        <li>
+          <i class="bi {{ item.icon }}"></i>
+          <span data-i18n="landing.hero.{{ hero_trust_keys[loop.index0] }}">{{ item.label }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="landing-hero__preview" data-reveal="scale">
+      <div class="landing-hero__preview-card landing-hero__preview-card--main">
+        <div class="landing-hero__preview-header">
+          <span class="med-overline" data-i18n="landing.hero.previewUpcoming">Upcoming visit</span>
+          <span class="med-status med-status--{{ hero.preview.status }}" data-i18n="landing.hero.previewConfirmed">Confirmed</span>
+        </div>
+        <div class="landing-hero__preview-body">
+          <div class="landing-hero__preview-avatar">JM</div>
+          <div>
+            <p class="landing-hero__preview-doctor">{{ hero.preview.appointment }}</p>
+            <p class="landing-hero__preview-specialty">{{ hero.preview.specialty }}</p>
+          </div>
+        </div>
+        <div class="landing-hero__preview-time">
+          <i class="bi bi-clock"></i> {{ hero.preview.time }}
+        </div>
+        <p class="landing-hero__preview-patient"><span data-i18n="common.patient">Patient</span>: {{ hero.preview.patient_name }}</p>
+      </div>
+
+      <div class="landing-hero__preview-card landing-hero__preview-card--float landing-hero__preview-card--reminder">
+        <i class="bi bi-bell-fill"></i>
+        <div>
+          <strong data-i18n="landing.hero.previewReminderTitle">Reminder set</strong>
+          <span data-i18n="landing.hero.previewReminderSub">24h & 2h before visit</span>
+        </div>
+      </div>
+
+      <div class="landing-hero__preview-card landing-hero__preview-card--float landing-hero__preview-card--rating">
+        <i class="bi bi-star-fill"></i>
+        <div>
+          <strong data-i18n="landing.hero.previewRatingTitle">4.9 avg rating</strong>
+          <span data-i18n="landing.hero.previewRatingSub">From 2,400+ reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

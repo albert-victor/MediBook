@@ -1,0 +1,148 @@
+/**
+ * mediBook Design System - Badges & Pills
+ */
+
+.med-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  height: var(--badge-height);
+  padding: 0 var(--space-2-5);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  border-radius: var(--badge-radius);
+  white-space: nowrap;
+}
+
+.med-badge--sm {
+  height: 1.25rem;
+  padding: 0 var(--space-2);
+  font-size: 0.6875rem;
+}
+
+.med-badge--lg {
+  height: 1.75rem;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+/* Variants */
+.med-badge--primary {
+  background: var(--med-primary-50);
+  color: var(--med-primary-700);
+}
+
+.med-badge--secondary {
+  background: var(--med-secondary-50);
+  color: var(--med-secondary-700);
+}
+
+.med-badge--accent {
+  background: var(--med-accent-50);
+  color: var(--med-accent-700);
+}
+
+.med-badge--success {
+  background: var(--med-success-50);
+  color: var(--med-success-700);
+}
+
+.med-badge--warning {
+  background: var(--med-warning-50);
+  color: var(--med-warning-700);
+}
+
+.med-badge--danger {
+  background: var(--med-danger-50);
+  color: var(--med-danger-700);
+}
+
+.med-badge--info {
+  background: var(--med-info-50);
+  color: var(--med-info-600);
+}
+
+.med-badge--neutral {
+  background: var(--med-neutral-100);
+  color: var(--med-neutral-600);
+}
+
+/* Solid badges */
+.med-badge--solid-primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.med-badge--solid-success {
+  background: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.med-badge--solid-danger {
+  background: var(--color-danger);
+  color: var(--color-text-inverse);
+}
+
+/* Outlined */
+.med-badge--outline {
+  background: transparent;
+  border: 1.5px solid currentColor;
+}
+
+.med-badge--outline.med-badge--primary {
+  color: var(--color-primary);
+  background: transparent;
+}
+
+/* Dot badge */
+.med-badge--dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+/* Pill (larger, for tags) */
+.med-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: var(--med-neutral-50);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.med-pill:hover {
+  background: var(--med-neutral-100);
+  border-color: var(--color-border);
+}
+
+.med-pill--active {
+  background: var(--med-primary-50);
+  border-color: var(--med-primary-200);
+  color: var(--color-primary);
+}
+
+/* Appointment status badges */
+.med-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-1) var(--space-2-5);
+  border-radius: var(--radius-full);
+}
+
+.med-status--scheduled  { background: var(--med-info-50);    color: var(--med-info-600); }
+.med-status--confirmed  { background: var(--med-success-50); color: var(--med-success-700); }
+.med-status--pending    { background: var(--med-warning-50); color: var(--med-warning-700); }
+.med-status--cancelled  { background: var(--med-danger-50);  color: var(--med-danger-700); }
+.med-status--completed  { background: var(--med-neutral-100); color: var(--med-neutral-600); }

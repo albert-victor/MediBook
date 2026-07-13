@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+
+{% block body_class %}pdash{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/patient-dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<header class="pdash-header" id="pdash-header">
+  <div class="pdash-header__inner med-container">
+    <a href="/" class="pdash-header__brand">
+      <span class="pdash-header__logo"><i class="bi bi-heart-pulse-fill"></i></span>
+      <span>medi<span>Book</span></span>
+    </a>
+
+    <nav class="pdash-header__nav" data-i18n-aria="navigation.mainAria">
+      <a href="/patient/dashboard" class="pdash-header__link pdash-header__link--active" data-i18n="navigation.myHealth">My Health</a>
+      <a href="/doctors/available-today" class="pdash-header__link" data-i18n="navigation.bookVisit">Book Visit</a>
+      <a href="/services" class="pdash-header__link" data-i18n="navigation.services">Services</a>
+      <a href="/help" class="pdash-header__link" data-i18n="navigation.help">Help</a>
+    </nav>
+
+    <div class="pdash-header__actions">
+      <button type="button" class="pdash-header__notify" id="pdash-notify-btn" data-i18n-aria="dashboard.patient.notifications">
+        <i class="bi bi-bell"></i>
+        <span class="pdash-header__notify-badge" id="pdash-notify-badge" hidden>0</span>
+      </button>
+
+      {% include "components/language_switcher.html" %}
+
+      {% set user = get_current_user(request) %}
+      <div class="pdash-header__profile">
+        <div class="pdash-header__avatar" id="pdash-avatar">{{ user.first_name[0] }}{{ user.last_name[0] }}</div>
+        <div class="pdash-header__profile-text">
+          <span class="pdash-header__name" id="pdash-profile-name">{{ user.first_name }}</span>
+          <span class="pdash-header__role" data-i18n="common.patient">Patient</span>
+        </div>
+      </div>
+
+      <form method="post" action="/logout">
+        <button type="submit" class="pdash-header__signout" data-i18n-aria="navigation.signOut">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<main class="pdash-main" id="pdash-main">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="pdash-footer">
+  <div class="med-container pdash-footer__inner">
+    <p>&copy; {{ now().year }} mediBook. <span data-i18n="dashboard.patient.footerTagline">Your health, your schedule.</span></p>
+    <a href="/help" data-i18n="navigation.needAssistance">Need assistance?</a>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/pages/patient-dashboard.js') }}"></script>
+{% endblock %}

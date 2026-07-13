@@ -1,0 +1,12 @@
+{% macro service_card(service, featured=false, carousel=false) %}
+<article class="med-service-card{% if featured %} med-service-card--featured{% endif %}{% if carousel %} med-carousel__slide{% endif %}"{% if carousel %} data-carousel-slide{% else %} data-reveal-item{% endif %}>
+  <div class="med-service-card__icon med-icon-box{% if featured %} med-icon-box--lg{% else %} med-icon-box--md{% endif %} med-icon-box--{{ service.color }}">
+    <i class="bi {{ service.icon }}"></i>
+  </div>
+  <h3 class="med-service-card__title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h3>
+  <p class="med-service-card__desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
+  <a href="#search-doctors" class="med-service-card__link">
+    <span data-i18n="landing.appHome.bookAppointment">Book now</span> <i class="bi bi-arrow-right"></i>
+  </a>
+</article>
+{% endmacro %}

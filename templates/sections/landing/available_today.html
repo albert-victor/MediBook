@@ -1,0 +1,43 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/doctor_card.html" import doctor_card %}
+{% from "macros/carousel.html" import carousel_shell %}
+
+<section class="landing-section landing-page landing-available" id="available-today" aria-labelledby="available-title">
+  <div class="med-container landing-page__wrap">
+    <div class="landing-page__header landing-available__header" data-reveal>
+      {{ section_header(
+        title="Available today",
+        subtitle="Real-time slots from verified doctors - book now before they're taken.",
+        badge="Live availability",
+        i18n_badge="landing.availableToday.badge",
+        i18n_title="landing.availableToday.title",
+        i18n_subtitle="landing.availableToday.subtitle"
+      ) }}
+      <div class="landing-available__actions">
+        <a href="/register" class="med-btn med-btn--accent">
+          <i class="bi bi-person-plus"></i> <span data-i18n="landing.availableToday.registerToBook">Register to book</span>
+        </a>
+        <a href="/doctors/available-today" class="med-btn med-btn--outline">
+          <span data-i18n="landing.availableToday.viewAll">View all available doctors</span> <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    {% if available_today %}
+    {% call carousel_shell(autoplay=4500, aria_label="Doctors available today", aria_i18n="landing.availableToday.ariaCarousel", modifier="available") %}
+      {% for doctor in available_today %}
+      <div class="med-carousel__slide" data-carousel-slide>
+        {{ doctor_card(doctor) }}
+      </div>
+      {% endfor %}
+    {% endcall %}
+    {% else %}
+    <div class="med-empty med-empty--inline landing-available__empty" data-reveal>
+      <div class="med-empty__illustration"><i class="bi bi-calendar-x"></i></div>
+      <h3 class="med-empty__title" data-i18n="landing.availableToday.noSlotsTitle">No slots today</h3>
+      <p class="med-empty__message" data-i18n="landing.availableToday.noSlotsMessage">Check back tomorrow or browse all doctors.</p>
+      <a href="/doctors" class="med-btn med-btn--outline" data-i18n="landing.availableToday.browseAll">Browse all doctors</a>
+    </div>
+    {% endif %}
+  </div>
+</section>

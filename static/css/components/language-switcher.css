@@ -1,0 +1,66 @@
+/**
+ * Language switcher - compact globe + EN/SW
+ */
+
+.med-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--med-neutral-100);
+  border-radius: var(--radius-lg);
+  background: var(--med-neutral-50);
+  flex-shrink: 0;
+}
+
+.med-lang__icon {
+  font-size: 0.85rem;
+  color: var(--med-secondary-500);
+  margin-right: 2px;
+}
+
+.med-lang__code {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--med-primary-500);
+  cursor: pointer;
+  padding: 2px 3px;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.med-lang__code:hover {
+  color: var(--med-primary-600);
+  background: var(--med-primary-50);
+}
+
+.med-lang__code:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.med-lang__code.is-active {
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+
+.med-lang__sep {
+  font-size: 0.65rem;
+  color: var(--med-neutral-300);
+  user-select: none;
+  line-height: 1;
+}
+
+.pdash-header__actions .med-lang,
+.med-topnav__actions .med-lang {
+  margin-right: var(--space-1);
+}
+
+.auth-layout__lang .med-lang {
+  background: #fff;
+}

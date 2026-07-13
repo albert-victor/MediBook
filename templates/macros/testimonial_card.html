@@ -1,0 +1,17 @@
+{% macro testimonial_card(item) %}
+<blockquote class="med-testimonial med-carousel__slide" data-carousel-slide>
+  <div class="med-testimonial__stars" aria-label="{{ item.rating }} out of 5 stars">
+    {% for i in range(item.rating) %}
+    <i class="bi bi-star-fill"></i>
+    {% endfor %}
+  </div>
+  <p class="med-testimonial__quote">"<span data-i18n="landing.testimonials.items.{{ item.id }}.quote">{{ item.quote }}</span>"</p>
+  <footer class="med-testimonial__author">
+    <div class="med-testimonial__avatar">{{ item.initials }}</div>
+    <div>
+      <cite class="med-testimonial__name">{{ item.name }}</cite>
+      <span class="med-testimonial__role">{{ item.role }}</span>
+    </div>
+  </footer>
+</blockquote>
+{% endmacro %}

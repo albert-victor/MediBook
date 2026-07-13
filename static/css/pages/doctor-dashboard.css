@@ -1,0 +1,411 @@
+/**
+ * Doctor Dashboard - extends patient dashboard shell
+ */
+
+.ddash {
+  background: linear-gradient(180deg, var(--med-secondary-50) 0%, var(--color-bg) 320px);
+}
+
+.ddash-hero .pdash-hero__eyebrow {
+  color: var(--color-secondary);
+}
+
+/* ── Toolbar & tabs ───────────────────────────────────── */
+
+.ddash-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.ddash-search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.ddash-date {
+  width: auto;
+  min-width: 10rem;
+}
+
+.ddash-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.ddash-tab {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  background: var(--med-neutral-50);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ddash-tab:hover {
+  color: var(--color-primary);
+  background: var(--med-primary-50);
+}
+
+.ddash-tab.is-active {
+  color: var(--color-primary);
+  background: var(--med-primary-50);
+  border-color: var(--med-primary-200);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ── Appointment cards ────────────────────────────────── */
+
+.ddash-appt-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ddash-appt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--med-neutral-50);
+  border: 1px solid var(--med-neutral-100);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+  animation: ddash-fade-up 0.5s var(--ease-out) both;
+}
+
+.ddash-appt:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--med-primary-100);
+  background: #fff;
+}
+
+.ddash-appt__avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--med-primary-400), var(--med-secondary-400));
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-lg);
+}
+
+.ddash-appt__avatar--lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-base);
+}
+
+.ddash-appt__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ddash-appt__name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.ddash-appt__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.ddash-appt__notes {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+  font-style: italic;
+}
+
+/* ── Patients list ────────────────────────────────────── */
+
+.ddash-patients {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.ddash-patient {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  animation: ddash-fade-up 0.5s var(--ease-out) both;
+}
+
+.ddash-patient:hover {
+  background: var(--med-primary-50);
+  transform: translateX(4px);
+}
+
+.ddash-patient__arrow {
+  color: var(--color-text-muted);
+  margin-left: auto;
+}
+
+/* ── Activity ─────────────────────────────────────────── */
+
+.ddash-activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.ddash-activity-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  animation: ddash-fade-up 0.45s var(--ease-out) both;
+}
+
+.ddash-activity-item__dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  flex-shrink: 0;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+}
+
+.ddash-activity-item__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.ddash-activity-item__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ── Calendar ─────────────────────────────────────────── */
+
+.ddash-cal-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.ddash-cal-nav__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--med-neutral-50);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.ddash-cal-nav__btn:hover {
+  background: var(--med-primary-50);
+  color: var(--color-primary);
+}
+
+.ddash-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-1);
+}
+
+.ddash-cal__head {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-1);
+}
+
+.ddash-cal__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 2.5rem;
+  padding: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+  animation: ddash-fade-up 0.4s var(--ease-out) both;
+}
+
+.ddash-cal__day:hover:not(.ddash-cal__day--empty) {
+  background: var(--med-primary-50);
+  border-color: var(--med-primary-100);
+}
+
+.ddash-cal__day--empty {
+  cursor: default;
+}
+
+.ddash-cal__day--today {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.ddash-cal__day--active {
+  background: var(--med-secondary-50);
+}
+
+.ddash-cal__day em {
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-secondary);
+  background: var(--med-secondary-100);
+  padding: 0 4px;
+  border-radius: var(--radius-full);
+  line-height: 1.4;
+}
+
+/* ── Detail modal ─────────────────────────────────────── */
+
+.ddash-detail {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ddash-detail > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ddash-detail > div:last-child {
+  border-bottom: none;
+}
+
+.ddash-detail dt {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.ddash-detail dd {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-align: right;
+}
+
+.ddash-modal__footer {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ddash-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.ddash-patient-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  background: var(--med-neutral-50);
+  border-radius: var(--radius-xl);
+}
+
+.ddash-patient-hero p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.ddash-notes h4 {
+  font-size: var(--font-size-sm);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+.ddash-notes ul {
+  margin: 0;
+  padding-left: var(--space-5);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+@keyframes ddash-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .ddash-toolbar {
+    flex-direction: column;
+  }
+
+  .ddash-date {
+    width: 100%;
+  }
+
+  .ddash-modal__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ddash-modal__actions {
+    flex-direction: column;
+  }
+
+  .ddash-modal__actions .med-btn {
+    width: 100%;
+  }
+}

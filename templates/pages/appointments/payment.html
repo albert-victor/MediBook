@@ -1,0 +1,184 @@
+{% extends "layouts/public.html" %}
+
+
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}?v={{ static_v }}">
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/booking.css') }}?v={{ static_v }}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="catalog-page payment-page" id="payment-page" data-appointment-id="{{ appointment_id }}">
+
+  <div class="med-container">
+
+    <header class="booking-page__header" data-reveal>
+
+      <a href="/patient/dashboard" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToDashboard">Back to dashboard</span></a>
+
+      <span class="med-section-header__badge"><i class="bi bi-shield-check"></i> <span data-i18n="payment.badge">Secure payment</span></span>
+
+      <h1 class="catalog-page__title" data-i18n="payment.title">Complete your payment</h1>
+
+      <p class="catalog-page__subtitle" data-i18n="payment.subtitle">Simulated mobile money checkout - your appointment is reserved while you pay.</p>
+
+    </header>
+
+
+
+    <div class="booking-page__loading" id="payment-loading">
+
+      <span class="med-spinner med-spinner--lg"></span>
+
+      <span data-i18n="common.loadingPayment">Loading payment details…</span>
+
+    </div>
+
+
+
+    <div id="payment-content" hidden>
+
+      <div class="payment-layout" data-reveal>
+
+        <aside class="payment-page__summary-card">
+
+          <h2 class="booking-panel__title"><i class="bi bi-receipt"></i> <span data-i18n="payment.appointment">Appointment</span></h2>
+
+          <dl class="booking-summary booking-summary--compact" id="payment-summary">
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.doctor">Doctor</dt>
+
+              <dd id="pay-doctor">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.department">Department</dt>
+
+              <dd id="pay-department">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.dateTime">Date &amp; time</dt>
+
+              <dd id="pay-datetime">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row booking-summary__row--total">
+
+              <dt data-i18n="payment.amountDue">Amount due</dt>
+
+              <dd id="pay-amount">-</dd>
+
+            </div>
+
+          </dl>
+
+        </aside>
+
+
+
+        <div class="payment-page__form-card" id="payment-form-section">
+
+          <h2 class="booking-panel__title"><i class="bi bi-phone"></i> <span data-i18n="payment.chooseMethod">Choose payment method</span></h2>
+
+
+
+          <div class="payment-methods" id="payment-methods" data-reveal-stagger></div>
+
+
+
+          <div class="med-form-group">
+
+            <label class="med-form-label med-form-label--required" for="payment-phone" data-i18n="payment.mobileNumber">Mobile number</label>
+
+            <div class="med-input-wrap">
+
+              <span class="med-input-wrap__icon"><i class="bi bi-telephone"></i></span>
+
+              <input type="tel" id="payment-phone" class="med-input" data-i18n-placeholder="payment.mobilePlaceholder" placeholder="+255 7XX XXX XXX" required>
+
+            </div>
+
+          </div>
+
+
+
+          <button type="button" class="med-btn med-btn--primary med-btn--block med-btn--lg" id="btn-pay">
+
+            <i class="bi bi-lock-fill"></i> <span data-i18n="payment.payNow">Pay now</span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="med-callout med-callout--success" id="payment-already-paid" hidden data-reveal>
+
+        <span class="med-callout__icon"><i class="bi bi-check-circle-fill"></i></span>
+
+        <div>
+
+          <strong data-i18n="payment.alreadyPaidTitle">Payment already completed</strong>
+
+          <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-sm);color:var(--color-text-secondary)" data-i18n="payment.alreadyPaidMessage">
+
+            This appointment has been paid. View your confirmation for full details.
+
+          </p>
+
+          <a href="#" class="med-btn med-btn--primary med-btn--sm" id="btn-view-confirmation" style="margin-top:var(--space-4)">
+
+            <span data-i18n="payment.viewConfirmation">View confirmation</span> <i class="bi bi-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="med-empty" id="payment-error" hidden>
+
+      <div class="med-empty__illustration"><i class="bi bi-exclamation-circle"></i></div>
+
+      <h2 class="med-empty__title" data-i18n="payment.unavailableTitle">Payment unavailable</h2>
+
+      <p class="med-empty__message" id="payment-error-message" data-i18n="payment.notFound">This appointment could not be found.</p>
+
+      <a href="/patient/dashboard" class="med-btn med-btn--primary" data-i18n="navigation.backToDashboard">Back to dashboard</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="module" src="{{ url_for('static', path='js/pages/payment.js') }}?v={{ static_v }}"></script>
+
+{% endblock %}
+

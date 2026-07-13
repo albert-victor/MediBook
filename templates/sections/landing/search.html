@@ -1,0 +1,19 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "components/search_bar.html" import search_bar %}
+
+<section class="landing-section landing-search" id="search-doctors" aria-labelledby="search-title">
+  <div class="med-container">
+    {{ section_header(
+      title=search.title,
+      subtitle=search.subtitle,
+      badge="Smart search",
+      i18n_badge="landing.search.badge",
+      i18n_title="landing.search.title",
+      i18n_subtitle="landing.search.subtitle"
+    ) }}
+
+    <div data-reveal>
+      {{ search_bar(search) }}
+    </div>
+  </div>
+</section>

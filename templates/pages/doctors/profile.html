@@ -1,0 +1,89 @@
+{% extends "layouts/public.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/doctor-profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page doctor-profile-page" id="doctor-profile-page" data-doctor-id="{{ doctor_id }}">
+  <div class="med-container">
+    <a href="/doctors" class="catalog-page__back doctor-profile-page__back" data-reveal>
+      <i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToDirectory">Back to directory</span>
+    </a>
+
+    <div class="doctor-profile-page__loading" id="profile-loading">
+      <div class="med-loader">
+        <span class="med-spinner med-spinner--lg"></span>
+        <span class="med-loader__text" data-i18n="common.loadingProfile">Loading doctor profile…</span>
+      </div>
+    </div>
+
+    <div id="profile-content" hidden>
+      <header class="doctor-profile-page__hero" data-reveal>
+        <div class="doctor-profile-page__hero-visual" id="profile-visual"></div>
+        <div class="doctor-profile-page__hero-info">
+          <div class="doctor-profile-page__badges" id="profile-badges"></div>
+          <h1 class="doctor-profile-page__name" id="profile-name"></h1>
+          <p class="doctor-profile-page__specialty" id="profile-specialty"></p>
+          <p class="doctor-profile-page__qualification" id="profile-qualification"></p>
+          <div class="doctor-profile-page__meta" id="profile-meta"></div>
+          <div class="doctor-profile-page__hero-actions">
+            <a href="#" class="med-btn med-btn--primary" id="profile-book-btn">
+              <i class="bi bi-calendar-plus"></i> <span data-i18n="doctors.profile.bookAppointment">Book Appointment</span>
+            </a>
+            <div class="doctor-profile-page__fee" id="profile-fee"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="doctor-profile-page__grid">
+        <div class="doctor-profile-page__main">
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-person-lines-fill"></i> <span data-i18n="doctors.profile.about">About</span></h2>
+            <p class="doctor-profile-page__bio" id="profile-bio"></p>
+          </section>
+
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-mortarboard"></i> <span data-i18n="doctors.profile.education">Education</span></h2>
+            <ul class="doctor-profile-page__list" id="profile-education"></ul>
+          </section>
+
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-chat-quote"></i> <span data-i18n="doctors.profile.reviews">Patient Reviews</span></h2>
+            <div class="doctor-profile-page__reviews" id="profile-reviews" data-reveal-stagger></div>
+          </section>
+        </div>
+
+        <aside class="doctor-profile-page__sidebar">
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-calendar-week"></i> <span data-i18n="doctors.profile.schedule">Working Schedule</span></h2>
+            <div class="doctor-profile-page__schedule" id="profile-schedule"></div>
+          </section>
+
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-translate"></i> <span data-i18n="doctors.profile.languages">Languages</span></h2>
+            <div class="doctor-profile-page__tags" id="profile-languages"></div>
+          </section>
+
+          <section class="doctor-profile-page__card" data-reveal>
+            <h2 class="doctor-profile-page__card-title"><i class="bi bi-calendar3"></i> <span data-i18n="doctors.profile.calendar">Availability Calendar</span></h2>
+            <div class="doctor-profile-page__calendar" id="profile-calendar"></div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <div class="med-empty" id="profile-error" hidden>
+      <div class="med-empty__illustration"><i class="bi bi-person-x"></i></div>
+      <h2 class="med-empty__title" data-i18n="doctors.profile.notFoundTitle">Doctor not found</h2>
+      <p class="med-empty__message" data-i18n="doctors.profile.notFoundMessage">This profile may have been removed or is no longer available.</p>
+      <a href="/doctors" class="med-btn med-btn--primary" data-i18n="doctors.profile.browseDoctors">Browse doctors</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/pages/doctor-profile.js') }}"></script>
+{% endblock %}

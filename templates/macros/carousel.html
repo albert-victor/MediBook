@@ -1,0 +1,28 @@
+{% macro carousel_shell(autoplay=4000, aria_label="Carousel", aria_i18n=none, modifier="") %}
+<div
+  class="med-carousel{% if modifier %} med-carousel--{{ modifier }}{% endif %}"
+  data-carousel
+  data-carousel-autoplay="{{ autoplay }}"
+  aria-label="{{ aria_label }}"
+  {% if aria_i18n %}data-i18n-aria="{{ aria_i18n }}"{% endif %}
+>
+  <button type="button" class="med-carousel__nav med-carousel__nav--prev" data-carousel-prev aria-label="Previous slide">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+
+  <div class="med-carousel__viewport" data-carousel-viewport aria-live="polite">
+    <div class="med-carousel__track" data-carousel-track>
+      {{ caller() }}
+    </div>
+    <div class="med-carousel__progress" aria-hidden="true">
+      <span class="med-carousel__progress-bar" data-carousel-progress></span>
+    </div>
+  </div>
+
+  <button type="button" class="med-carousel__nav med-carousel__nav--next" data-carousel-next aria-label="Next slide">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+
+  <div class="med-carousel__dots" data-carousel-dots role="tablist" aria-label="Carousel pagination"></div>
+</div>
+{% endmacro %}

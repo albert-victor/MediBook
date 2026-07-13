@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+
+{% block body_class %}adash{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/admin-dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+{% set user = get_current_user(request) %}
+
+<div class="adash-shell">
+  <div class="med-sidebar-backdrop" id="adash-sidebar-backdrop" aria-hidden="true"></div>
+
+  <aside class="med-sidebar adash-sidebar" id="adash-sidebar" aria-label="Admin navigation">
+    <div class="med-sidebar__header">
+      <a href="/admin/dashboard" class="med-sidebar__brand">
+        <span class="med-sidebar__logo"><i class="bi bi-shield-lock-fill"></i></span>
+        <span class="med-sidebar__brand-text">medi<span>Book</span> Admin</span>
+      </a>
+    </div>
+
+    <nav class="med-sidebar__nav adash-sidebar__nav" id="adash-nav" data-i18n-aria="navigation.mainAria">
+      <div class="med-sidebar__section">
+        <p class="med-sidebar__section-title" data-i18n="dashboard.admin.nav.platform">Platform</p>
+        <button type="button" class="med-sidebar__item adash-nav__btn is-active" data-panel="overview">
+          <i class="bi bi-speedometer2 med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.overview">Overview</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="doctors">
+          <i class="bi bi-person-badge med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.doctors">Doctors</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="patients">
+          <i class="bi bi-people med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.patients">Patients</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="appointments">
+          <i class="bi bi-calendar2-week med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.appointments">Appointments</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="payments">
+          <i class="bi bi-wallet2 med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.payments">Payments</span>
+        </button>
+      </div>
+
+      <div class="med-sidebar__section">
+        <p class="med-sidebar__section-title" data-i18n="dashboard.admin.nav.system">System</p>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="reports">
+          <i class="bi bi-file-earmark-bar-graph med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.reports">Reports</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="notifications">
+          <i class="bi bi-bell med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.notifications">Notifications</span>
+        </button>
+        <button type="button" class="med-sidebar__item adash-nav__btn" data-panel="settings">
+          <i class="bi bi-gear med-sidebar__item-icon"></i>
+          <span class="med-sidebar__item-label" data-i18n="dashboard.admin.nav.settings">Settings</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="med-sidebar__footer">
+      <a href="/" class="med-sidebar__item adash-sidebar__site-link">
+        <i class="bi bi-box-arrow-up-right med-sidebar__item-icon"></i>
+        <span class="med-sidebar__item-label" data-i18n="dashboard.admin.viewPublicSite">View public site</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="adash-workspace">
+    <header class="adash-topbar" id="adash-header">
+      <div class="adash-topbar__left">
+        <button type="button" class="adash-topbar__menu" id="adash-sidebar-toggle" data-i18n-aria="navigation.openMenu">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="adash-topbar__titles">
+          <p class="adash-topbar__eyebrow" id="adash-greeting" data-i18n="common.welcomeBack">Welcome back</p>
+          <h1 class="adash-topbar__title" id="adash-page-title" data-i18n="dashboard.admin.nav.overview">Overview</h1>
+        </div>
+      </div>
+
+      <div class="adash-topbar__actions">
+        {% include "components/language_switcher.html" %}
+
+        <div class="adash-topbar__profile">
+          <div class="adash-topbar__avatar">{{ user.first_name[0] }}{{ user.last_name[0] }}</div>
+          <div class="adash-topbar__profile-text">
+            <span class="adash-topbar__name" id="adash-profile-name">{{ user.first_name }}</span>
+            <span class="adash-topbar__role" data-i18n="common.admin">Administrator</span>
+          </div>
+        </div>
+
+        <form method="post" action="/logout">
+          <button type="submit" class="adash-topbar__signout" data-i18n-aria="navigation.signOut">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <main class="adash-main" id="adash-main">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/pages/admin-dashboard.js') }}"></script>
+{% endblock %}

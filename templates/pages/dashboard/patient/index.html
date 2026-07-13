@@ -1,0 +1,125 @@
+{% extends "layouts/patient_dashboard.html" %}
+
+{% block content %}
+<section class="pdash-hero" id="pdash-hero" data-reveal>
+  <div class="med-container pdash-hero__inner">
+    <div class="pdash-hero__content">
+      <p class="pdash-hero__eyebrow" id="pdash-greeting" data-i18n="common.welcomeBack">Welcome back</p>
+      <h1 class="pdash-hero__title" id="pdash-health-hub">
+        <span id="pdash-patient-name">{{ current_user.first_name }}</span>'s Health Hub
+      </h1>
+      <p class="pdash-hero__subtitle" data-i18n="dashboard.patient.subtitle">Track appointments, payments, and care - all in one personalized space.</p>
+    </div>
+    <div class="pdash-hero__decoration" aria-hidden="true">
+      <div class="pdash-hero__orb pdash-hero__orb--1"></div>
+      <div class="pdash-hero__orb pdash-hero__orb--2"></div>
+      <i class="bi bi-activity pdash-hero__icon"></i>
+    </div>
+  </div>
+</section>
+
+<div class="med-container pdash-body">
+  <!-- Statistics -->
+  <section class="pdash-section" id="stats-section" data-i18n-aria="dashboard.patient.statsAria">
+    <div class="pdash-stats" id="pdash-stats" data-reveal-stagger>
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+    </div>
+  </section>
+
+  <div class="pdash-grid">
+  <!-- Left column -->
+  <div class="pdash-grid__primary">
+    <!-- Upcoming appointment -->
+    <section class="pdash-card pdash-card--featured" id="upcoming-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-calendar-event"></i> <span data-i18n="dashboard.patient.upcomingTitle">Upcoming Appointment</span></h2>
+      </header>
+      <div class="pdash-card__body" id="pdash-upcoming">
+        <div class="pdash-loading-inline"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></div>
+      </div>
+    </section>
+
+    <!-- Reminder -->
+    <section class="pdash-reminder" id="reminder-section" data-reveal hidden>
+      <div class="pdash-reminder__icon"><i class="bi bi-alarm"></i></div>
+      <div class="pdash-reminder__content" id="pdash-reminder"></div>
+    </section>
+
+    <!-- Quick actions -->
+    <section class="pdash-card" id="quick-actions-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-lightning-charge"></i> <span data-i18n="dashboard.patient.quickActions">Quick Actions</span></h2>
+      </header>
+      <div class="pdash-quick-actions" id="pdash-quick-actions" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+
+    <!-- Appointment history -->
+    <section class="pdash-card" id="appointments-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-clock-history"></i> <span data-i18n="dashboard.patient.appointmentHistory">Appointment History</span></h2>
+      </header>
+      <div class="pdash-timeline" id="pdash-appointments" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+
+    <!-- Payment history -->
+    <section class="pdash-card" id="payments-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-wallet2"></i> <span data-i18n="dashboard.patient.paymentHistory">Payment History</span></h2>
+      </header>
+      <div class="pdash-payments" id="pdash-payments" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Right column -->
+  <aside class="pdash-grid__secondary">
+    <!-- Notifications -->
+    <section class="pdash-card" id="notifications-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-bell"></i> <span data-i18n="dashboard.patient.notifications">Notifications</span></h2>
+        <span class="pdash-card__badge" id="pdash-notif-count" hidden></span>
+      </header>
+      <div class="pdash-notifications" id="pdash-notifications" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+
+    <!-- Available doctors -->
+    <section class="pdash-card" id="available-doctors-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-person-check"></i> <span data-i18n="dashboard.patient.availableDoctors">Available Doctors</span></h2>
+        <a href="/doctors/available-today" class="pdash-card__link" data-i18n="common.viewAll">View all</a>
+      </header>
+      <div class="pdash-doctors" id="pdash-available-doctors" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+
+    <!-- Recently visited -->
+    <section class="pdash-card" id="recent-doctors-section" data-reveal>
+      <header class="pdash-card__header">
+        <h2 class="pdash-card__title"><i class="bi bi-arrow-repeat"></i> <span data-i18n="dashboard.patient.recentlyVisited">Recently Visited</span></h2>
+      </header>
+      <div class="pdash-doctors pdash-doctors--compact" id="pdash-recent-doctors" data-reveal-stagger>
+        <div class="med-skeleton med-skeleton--card" data-reveal-item></div>
+      </div>
+    </section>
+  </aside>
+  </div>
+</div>
+{% endblock %}

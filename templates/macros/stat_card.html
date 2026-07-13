@@ -1,0 +1,9 @@
+{% macro stat_card(stat) %}
+<div class="med-stat-card med-stat-card--landing" data-reveal-item>
+  <div class="med-stat-card__icon med-stat-card__icon--{{ stat.color }}">
+    <i class="bi {{ stat.icon }}"></i>
+  </div>
+  <span class="med-stat-card__value">{{ stat.value }}</span>
+  <span class="med-stat-card__label" data-i18n="landing.statistics.{{ stat.id }}.label">{{ stat.label }}</span>
+</div>
+{% endmacro %}

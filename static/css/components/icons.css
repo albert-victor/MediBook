@@ -1,0 +1,76 @@
+/**
+ * mediBook Design System - Icons
+ * Works with Bootstrap Icons (bi-*)
+ */
+
+.med-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.med-icon--xs  { font-size: var(--font-size-xs); }
+.med-icon--sm  { font-size: var(--font-size-sm); }
+.med-icon--md  { font-size: var(--font-size-lg); }
+.med-icon--lg  { font-size: var(--font-size-2xl); }
+.med-icon--xl  { font-size: var(--font-size-3xl); }
+
+/* Icon in circle */
+.med-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.med-icon-circle--sm  { width: 32px; height: 32px; font-size: var(--font-size-sm); }
+.med-icon-circle--md  { width: 44px; height: 44px; font-size: var(--font-size-lg); }
+.med-icon-circle--lg  { width: 56px; height: 56px; font-size: var(--font-size-2xl); }
+
+.med-icon-circle--primary { background: var(--med-primary-50);  color: var(--color-primary); }
+.med-icon-circle--teal    { background: var(--med-secondary-50); color: var(--color-secondary); }
+.med-icon-circle--green   { background: var(--med-accent-50);    color: var(--color-accent); }
+.med-icon-circle--amber   { background: var(--med-warning-50);   color: var(--color-warning); }
+.med-icon-circle--red     { background: var(--med-danger-50);    color: var(--color-danger); }
+.med-icon-circle--neutral { background: var(--med-neutral-100);  color: var(--med-neutral-500); }
+
+/* Icon with soft square background */
+.med-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.med-icon-box--sm { width: 36px; height: 36px; font-size: var(--font-size-base); }
+.med-icon-box--md { width: 48px; height: 48px; font-size: var(--font-size-xl); }
+.med-icon-box--lg { width: 56px; height: 56px; font-size: var(--font-size-2xl); }
+
+.med-icon-box--primary { background: var(--med-primary-50);  color: var(--color-primary); }
+.med-icon-box--teal    { background: var(--med-secondary-50); color: var(--color-secondary); }
+.med-icon-box--green   { background: var(--med-accent-50);    color: var(--color-accent); }
+.med-icon-box--amber   { background: var(--med-warning-50);   color: var(--color-warning); }
+
+/* Feature icon (landing sections) */
+.med-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--med-primary-50), var(--med-secondary-50));
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.med-card:hover .med-feature-icon {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-primary);
+}

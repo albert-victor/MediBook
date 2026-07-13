@@ -1,0 +1,476 @@
+<header class="med-topnav" id="topnav">
+
+
+
+  <div class="med-topnav__inner med-container">
+
+
+
+    {% set user = get_current_user(request) %}
+
+    {% set home_href = dashboard_url(user) if user else "/" %}
+
+    {% if user %}
+    {% set how_it_works_href = "/help" %}
+    {% elif request.url.path == "/" %}
+    {% set how_it_works_href = "#how-it-works" %}
+    {% else %}
+    {% set how_it_works_href = "/#how-it-works" %}
+    {% endif %}
+
+
+
+    <a href="{{ home_href }}" class="med-topnav__brand" data-i18n-title="navigation.brandFull" title="Medical Appointment &amp; Reminder System (mediBook)">
+
+
+
+      <span class="med-topnav__logo"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
+
+
+
+      <span class="med-topnav__brand-stack">
+
+
+
+        <span class="med-topnav__brand-name">medi<span>Book</span></span>
+
+
+
+        <span class="med-topnav__brand-tagline" data-i18n="navigation.brandTagline">Medical Appointment &amp; Reminder System</span>
+
+
+
+      </span>
+
+
+
+    </a>
+
+
+
+    <nav class="med-topnav__nav" data-i18n-aria="navigation.mainAria">
+
+
+
+      {% if user %}
+
+      <a href="{{ home_href }}" class="med-topnav__link" data-i18n="navigation.dashboard">Dashboard</a>
+
+      {% else %}
+
+      <a href="/" class="med-topnav__link" data-i18n="navigation.home">Home</a>
+
+      {% endif %}
+
+
+
+      <a href="/doctors" class="med-topnav__link" data-i18n="navigation.findDoctors">Find Doctors</a>
+
+
+
+      <a href="/services" class="med-topnav__link" data-i18n="navigation.services">Services</a>
+
+
+
+      <a href="{{ how_it_works_href }}" class="med-topnav__link" data-i18n="navigation.howItWorks">How It Works</a>
+
+
+
+      <a href="/faq" class="med-topnav__link" data-i18n="navigation.faq">FAQ</a>
+
+
+
+    </nav>
+
+
+
+    <div class="med-topnav__actions">
+
+
+
+      {% include "components/language_switcher.html" %}
+
+
+
+      {% if user %}
+
+
+
+      <div class="med-dropdown med-topnav__user-menu">
+
+
+
+        <button
+          class="med-topnav__user"
+          type="button"
+          data-dropdown-trigger
+          aria-haspopup="menu"
+          aria-expanded="false"
+          data-i18n-aria="navigation.accountMenu"
+        >
+
+
+
+          <div class="med-topnav__avatar">{{ user.first_name[0] }}{{ user.last_name[0] }}</div>
+
+
+
+          <div class="med-topnav__user-info">
+
+
+
+            <span class="med-topnav__user-name">{{ user.full_name }}</span>
+
+
+
+            <span class="med-topnav__user-role">{{ user.role | capitalize }}</span>
+
+
+
+          </div>
+
+
+
+          <i class="bi bi-chevron-down med-text-muted"></i>
+
+
+
+        </button>
+
+
+
+        <div class="med-dropdown__menu med-dropdown__menu--right">
+
+
+
+          {% if user.is_patient %}
+
+          <a href="/patient/dashboard" class="med-dropdown__item"><i class="bi bi-grid"></i> <span data-i18n="navigation.dashboard">Dashboard</span></a>
+
+          {% elif user.is_doctor %}
+
+          <a href="/doctor/dashboard" class="med-dropdown__item"><i class="bi bi-grid"></i> <span data-i18n="navigation.dashboard">Dashboard</span></a>
+
+          {% elif user.is_admin %}
+
+          <a href="/admin/dashboard" class="med-dropdown__item"><i class="bi bi-grid"></i> <span data-i18n="navigation.adminPanel">Admin</span></a>
+
+          {% endif %}
+
+
+
+          <div class="med-dropdown__divider"></div>
+
+
+
+          <form method="post" action="/logout">
+
+            <button type="submit" class="med-dropdown__item med-dropdown__item--danger">
+
+              <i class="bi bi-box-arrow-right"></i> <span data-i18n="navigation.signOut">Sign Out</span>
+
+            </button>
+
+          </form>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+      {% else %}
+
+
+
+      <a href="/login" class="med-btn med-btn--ghost med-btn--sm" data-i18n="navigation.signIn">Sign In</a>
+
+
+
+      <a href="/register" class="med-btn med-btn--primary med-btn--sm" data-i18n="navigation.register">Register Free</a>
+
+
+
+      {% endif %}
+
+
+
+      <button class="med-topnav__toggle" type="button" data-i18n-aria="navigation.openMenu" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav">
+
+
+
+        <i class="bi bi-list"></i>
+
+
+
+      </button>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <button
+
+    type="button"
+
+    class="med-topnav__mobile-backdrop"
+
+    data-nav-close
+
+    aria-hidden="true"
+
+    tabindex="-1"
+
+  ></button>
+
+
+
+  <nav class="med-topnav__mobile" id="mobile-nav" data-i18n-aria="navigation.mobileAria" aria-hidden="true">
+
+
+
+    <div class="med-topnav__mobile-head">
+
+
+
+      <a href="{{ home_href }}" class="med-topnav__mobile-brand">
+
+
+
+        <span class="med-topnav__logo med-topnav__logo--sm"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
+
+
+
+        <span class="med-topnav__brand-stack">
+
+
+
+          <span class="med-topnav__brand-name">medi<span>Book</span></span>
+
+
+
+          <span class="med-topnav__brand-tagline med-topnav__brand-tagline--drawer" data-i18n="navigation.brandTagline">Medical Appointment &amp; Reminder System</span>
+
+
+
+        </span>
+
+
+
+      </a>
+
+
+
+      <button
+
+        type="button"
+
+        class="med-topnav__mobile-close"
+
+        data-nav-close
+
+        data-i18n-aria="navigation.closeMenu"
+
+      >
+
+        <i class="bi bi-x-lg" aria-hidden="true"></i>
+
+      </button>
+
+
+
+    </div>
+
+
+
+    <div class="med-topnav__mobile-body">
+
+
+
+      <div class="med-topnav__mobile-lang">
+
+        {% include "components/language_switcher.html" %}
+
+      </div>
+
+
+
+      <div class="med-topnav__mobile-nav">
+
+
+
+        {% if user %}
+
+        <a href="{{ home_href }}" class="med-topnav__mobile-link">
+
+          <i class="bi bi-grid" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.dashboard">Dashboard</span>
+
+        </a>
+
+        {% else %}
+
+        <a href="/" class="med-topnav__mobile-link">
+
+          <i class="bi bi-house" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.home">Home</span>
+
+        </a>
+
+        {% endif %}
+
+
+
+        <a href="/doctors" class="med-topnav__mobile-link">
+
+          <i class="bi bi-person-badge" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.findDoctors">Find Doctors</span>
+
+        </a>
+
+
+
+        <a href="/services" class="med-topnav__mobile-link">
+
+          <i class="bi bi-heart-pulse" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.services">Services</span>
+
+        </a>
+
+
+
+        <a href="{{ how_it_works_href }}" class="med-topnav__mobile-link">
+
+          <i class="bi bi-signpost-split" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.howItWorks">How It Works</span>
+
+        </a>
+
+
+
+        <a href="/faq" class="med-topnav__mobile-link">
+
+          <i class="bi bi-question-circle" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.faq">FAQ</span>
+
+        </a>
+
+
+
+        <a href="/help" class="med-topnav__mobile-link">
+
+          <i class="bi bi-life-preserver" aria-hidden="true"></i>
+
+          <span data-i18n="navigation.help">Help</span>
+
+        </a>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="med-topnav__mobile-actions">
+
+
+
+      {% if user %}
+
+
+
+      {% if user.is_patient %}
+
+      <a href="/patient/dashboard" class="med-btn med-btn--primary med-btn--block">
+
+        <i class="bi bi-grid"></i> <span data-i18n="navigation.dashboard">Dashboard</span>
+
+      </a>
+
+      {% elif user.is_doctor %}
+
+      <a href="/doctor/dashboard" class="med-btn med-btn--primary med-btn--block">
+
+        <i class="bi bi-grid"></i> <span data-i18n="navigation.dashboard">Dashboard</span>
+
+      </a>
+
+      {% elif user.is_admin %}
+
+      <a href="/admin/dashboard" class="med-btn med-btn--primary med-btn--block">
+
+        <i class="bi bi-shield-check"></i> <span data-i18n="navigation.adminPanel">Admin</span>
+
+      </a>
+
+      {% endif %}
+
+
+
+      <form method="post" action="/logout">
+
+        <button type="submit" class="med-btn med-btn--outline-neutral med-btn--block">
+
+          <i class="bi bi-box-arrow-right"></i> <span data-i18n="navigation.signOut">Sign Out</span>
+
+        </button>
+
+      </form>
+
+
+
+      {% else %}
+
+
+
+      <a href="/login" class="med-btn med-btn--outline-neutral med-btn--block">
+
+        <i class="bi bi-box-arrow-in-right"></i> <span data-i18n="navigation.signIn">Sign In</span>
+
+      </a>
+
+
+
+      <a href="/register" class="med-btn med-btn--primary med-btn--block">
+
+        <i class="bi bi-person-plus"></i> <span data-i18n="navigation.register">Register Free</span>
+
+      </a>
+
+
+
+      {% endif %}
+
+
+
+    </div>
+
+
+
+  </nav>
+
+
+
+</header>
+
+

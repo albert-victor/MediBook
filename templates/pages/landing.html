@@ -1,0 +1,19 @@
+{% extends "layouts/public.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/landing.css') }}">
+{% endblock %}
+
+{% block content %}
+  {% include "sections/landing/app_home.html" %}
+  {% include "sections/landing/available_today.html" %}
+  {% include "sections/landing/services.html" %}
+  {% include "sections/landing/how_it_works.html" %}
+  {% include "sections/landing/statistics.html" %}
+  {% include "sections/landing/testimonials.html" %}
+  {% include "sections/landing/cta.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/pages/landing.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,261 @@
+{% extends "layouts/public.html" %}
+
+
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}?v={{ static_v }}">
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/booking.css') }}?v={{ static_v }}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="catalog-page confirmation-page" id="confirmation-page" data-appointment-id="{{ appointment_id }}">
+
+  <div class="med-container">
+
+    <div class="booking-page__loading" id="confirmation-loading">
+
+      <span class="med-spinner med-spinner--lg"></span>
+
+      <span data-i18n="common.loadingConfirmation">Loading confirmation…</span>
+
+    </div>
+
+
+
+    <div id="confirmation-content" hidden>
+
+      <header class="confirmation-page__hero" data-reveal>
+
+        <div class="confirmation-page__checkmark" aria-hidden="true">
+
+          <svg viewBox="0 0 52 52" class="pay-sim__check-svg">
+
+            <circle class="pay-sim__check-circle" cx="26" cy="26" r="24" fill="none"/>
+
+            <path class="pay-sim__check-path" fill="none" d="M14 27l8 8 16-16"/>
+
+          </svg>
+
+        </div>
+
+        <span class="med-section-header__badge med-badge--success"><i class="bi bi-patch-check"></i> <span data-i18n="payment.confirmation.badge">Confirmed</span></span>
+
+        <h1 class="catalog-page__title" data-i18n="payment.confirmation.title">Appointment confirmed</h1>
+
+        <p class="catalog-page__subtitle" data-i18n="payment.confirmation.subtitle">Your visit is booked and payment has been received. A reminder will be sent before your appointment.</p>
+
+      </header>
+
+
+
+      <div class="confirmation-page__grid" data-reveal>
+
+        <section class="booking-panel__card confirmation-page__card confirmation-page__card--details">
+
+          <h2 class="booking-panel__title"><i class="bi bi-calendar-check"></i> <span data-i18n="payment.confirmation.detailsTitle">Appointment details</span></h2>
+
+          <dl class="booking-summary" id="confirmation-appointment">
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.doctor">Doctor</dt>
+
+              <dd id="conf-doctor">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.department">Department</dt>
+
+              <dd id="conf-department">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="payment.confirmation.hospital">Hospital</dt>
+
+              <dd id="conf-hospital">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="booking.stepSummary.date">Date</dt>
+
+              <dd id="conf-date">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="booking.stepSummary.time">Time</dt>
+
+              <dd id="conf-time">-</dd>
+
+            </div>
+
+            <div class="booking-summary__row">
+
+              <dt data-i18n="booking.stepSummary.status">Status</dt>
+
+              <dd><span class="med-badge med-badge--success" id="conf-status" data-i18n="status.appointment.confirmed">Confirmed</span></dd>
+
+            </div>
+
+            <div class="booking-summary__row" id="conf-notes-row" hidden>
+
+              <dt data-i18n="payment.confirmation.reason">Reason for visit</dt>
+
+              <dd id="conf-notes">-</dd>
+
+            </div>
+
+          </dl>
+
+        </section>
+
+
+
+        <div class="confirmation-page__receipt-wrap">
+
+          <article class="med-receipt" id="confirmation-receipt" aria-label="Payment receipt">
+
+            <div class="med-receipt__perforation" aria-hidden="true"></div>
+
+            <header class="med-receipt__header">
+
+              <div class="med-receipt__brand">
+
+                <span class="med-receipt__icon" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
+
+                <div>
+
+                  <span class="med-receipt__name">medi<span>Book</span></span>
+
+                  <span class="med-receipt__type" data-i18n="payment.confirmation.receiptOfficial">Official payment receipt</span>
+
+                </div>
+
+              </div>
+
+              <div class="med-receipt__stamp" id="conf-payment-status" data-i18n="payment.confirmation.paid">PAID</div>
+
+            </header>
+
+            <div class="med-receipt__amount-block">
+
+              <span class="med-receipt__amount-label" data-i18n="payment.confirmation.amountPaid">Amount paid</span>
+
+              <p class="med-receipt__amount" id="conf-amount">-</p>
+
+            </div>
+
+            <div class="med-receipt__reference">
+
+              <span class="med-receipt__ref-label" data-i18n="payment.confirmation.reference">Reference number</span>
+
+              <code class="med-receipt__ref-code" id="conf-reference">-</code>
+
+            </div>
+
+            <dl class="med-receipt__meta">
+
+              <div>
+
+                <dt data-i18n="payment.confirmation.method">Payment method</dt>
+
+                <dd id="conf-method">-</dd>
+
+              </div>
+
+              <div>
+
+                <dt data-i18n="payment.confirmation.paidAt">Paid at</dt>
+
+                <dd id="conf-paid-at">-</dd>
+
+              </div>
+
+              <div>
+
+                <dt data-i18n="payment.doctor">Doctor</dt>
+
+                <dd id="conf-receipt-doctor">-</dd>
+
+              </div>
+
+            </dl>
+
+            <footer class="med-receipt__footer">
+
+              <p class="med-receipt__thanks" data-i18n="payment.confirmation.receiptThanks">Thank you for choosing mediBook. Keep this receipt for your records.</p>
+
+              <button type="button" class="med-btn med-btn--outline-neutral med-btn--sm" id="btn-print-receipt">
+
+                <i class="bi bi-printer"></i> <span data-i18n="payment.confirmation.printReceipt">Print receipt</span>
+
+              </button>
+
+            </footer>
+
+          </article>
+
+        </div>
+
+      </div>
+
+
+
+      <footer class="confirmation-page__actions" data-reveal>
+
+        <a href="/patient/dashboard" class="med-btn med-btn--primary med-btn--lg">
+
+          <i class="bi bi-grid"></i> <span data-i18n="payment.confirmation.goDashboard">Go to dashboard</span>
+
+        </a>
+
+        <a href="/doctors" class="med-btn med-btn--outline-neutral">
+
+          <i class="bi bi-calendar2-plus"></i> <span data-i18n="payment.confirmation.bookAnother">Book another visit</span>
+
+        </a>
+
+      </footer>
+
+    </div>
+
+
+
+    <div class="med-empty" id="confirmation-error" hidden>
+
+      <div class="med-empty__illustration"><i class="bi bi-exclamation-circle"></i></div>
+
+      <h2 class="med-empty__title" data-i18n="payment.confirmation.unavailableTitle">Confirmation unavailable</h2>
+
+      <p class="med-empty__message" data-i18n="payment.confirmation.unavailableMessage">Complete payment first to view your appointment confirmation.</p>
+
+      <a href="/patient/dashboard" class="med-btn med-btn--primary" data-i18n="navigation.backToDashboard">Back to dashboard</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="module" src="{{ url_for('static', path='js/pages/confirmation.js') }}?v={{ static_v }}"></script>
+
+{% endblock %}

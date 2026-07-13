@@ -1,0 +1,238 @@
+/**
+ * mediBook branded payment receipt
+ */
+
+.med-receipt {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--med-neutral-200);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px rgba(15, 23, 42, 0.04),
+    0 20px 40px rgba(26, 111, 181, 0.08);
+}
+
+.med-receipt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+}
+
+.med-receipt__perforation {
+  height: 12px;
+  margin: var(--space-5) var(--space-6) 0;
+  background:
+    radial-gradient(circle at 8px 6px, var(--med-neutral-200) 4px, transparent 4px);
+  background-size: 16px 12px;
+  background-position: 0 0;
+  opacity: 0.7;
+}
+
+.med-receipt__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6) var(--space-4);
+}
+
+.med-receipt__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.med-receipt__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--med-primary-500), var(--med-primary-700));
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.med-receipt__name {
+  display: block;
+  font-family: var(--font-family-display, var(--font-family-base));
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.med-receipt__name span {
+  color: var(--color-primary);
+}
+
+.med-receipt__type {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-0-5);
+}
+
+.med-receipt__stamp {
+  flex-shrink: 0;
+  padding: var(--space-1-5) var(--space-3);
+  border: 2px solid var(--color-success);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  color: var(--color-success);
+  transform: rotate(-4deg);
+  opacity: 0.9;
+}
+
+.med-receipt__amount-block {
+  margin: 0 var(--space-6) var(--space-5);
+  padding: var(--space-5);
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26, 111, 181, 0.06) 0%, transparent 70%),
+    var(--med-neutral-50);
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--med-neutral-200);
+}
+
+.med-receipt__amount-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.med-receipt__amount {
+  margin: 0;
+  font-family: var(--font-family-display, var(--font-family-base));
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+.med-receipt__reference {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0 var(--space-6) var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  background: var(--med-neutral-900);
+  border-radius: var(--radius-lg);
+}
+
+.med-receipt__ref-label {
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--med-neutral-400);
+}
+
+.med-receipt__ref-code {
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: #fff;
+  letter-spacing: 0.08em;
+  word-break: break-all;
+  text-align: center;
+}
+
+.med-receipt__meta {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0 var(--space-6);
+}
+
+.med-receipt__meta > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--med-neutral-100);
+}
+
+.med-receipt__meta > div:last-child {
+  border-bottom: none;
+}
+
+.med-receipt__meta dt {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.med-receipt__meta dd {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.med-receipt__footer {
+  margin-top: var(--space-4);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  background: var(--med-neutral-50);
+  border-top: 1px solid var(--med-neutral-100);
+  text-align: center;
+}
+
+.med-receipt__thanks {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
+
+.confirmation-page__receipt-wrap {
+  min-width: 0;
+}
+
+.confirmation-page__card--details {
+  background: var(--color-surface);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .med-receipt,
+  .med-receipt * {
+    visibility: visible;
+  }
+
+  .med-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .med-receipt__footer button,
+  .confirmation-page__actions,
+  .med-topnav,
+  .med-footer {
+    display: none !important;
+  }
+}

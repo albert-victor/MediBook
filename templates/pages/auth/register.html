@@ -1,0 +1,236 @@
+{% extends "layouts/auth.html" %}
+
+{% from "macros/form_field.html" import form_input, form_password, form_checkbox %}
+
+
+
+{% block auth_layout_modifiers %}auth-layout--compact{% endblock %}
+
+
+
+{% block auth_content %}
+
+<div class="auth-card">
+
+  <div class="auth-card__header">
+
+    <span class="auth-card__badge"><i class="fa-solid fa-user-plus"></i> <span data-i18n="auth.register.badge">Patient registration</span></span>
+
+    <h1 class="auth-card__title" data-i18n="auth.register.title">Create your account</h1>
+
+    <p class="auth-card__subtitle" data-i18n="auth.register.subtitle">Join mediBook to book doctors, track appointments, and receive reminders.</p>
+
+  </div>
+
+
+
+  <form class="auth-form" method="post" action="/register" novalidate data-auth-form="register">
+
+    <div class="med-form-row med-form-row--2">
+
+      {{ form_input(
+
+        name="first_name",
+
+        label="First name",
+
+        value=form_values.get('first_name', ''),
+
+        error=errors.get('first_name'),
+
+        required=true,
+
+        placeholder="Amina",
+
+        autocomplete="given-name",
+
+        i18n_label="auth.register.firstName",
+
+        i18n_placeholder="auth.register.firstNamePlaceholder",
+
+        icon="fa-solid fa-user"
+
+      ) }}
+
+      {{ form_input(
+
+        name="last_name",
+
+        label="Last name",
+
+        value=form_values.get('last_name', ''),
+
+        error=errors.get('last_name'),
+
+        required=true,
+
+        placeholder="Hassan",
+
+        autocomplete="family-name",
+
+        i18n_label="auth.register.lastName",
+
+        i18n_placeholder="auth.register.lastNamePlaceholder",
+
+        icon="fa-solid fa-user"
+
+      ) }}
+
+    </div>
+
+
+
+    {{ form_input(
+
+      name="email",
+
+      label="Email address",
+
+      type="email",
+
+      value=form_values.get('email', ''),
+
+      error=errors.get('email'),
+
+      required=true,
+
+      placeholder="you@example.com",
+
+      autocomplete="email",
+
+      i18n_label="auth.register.email",
+
+      i18n_placeholder="auth.login.emailPlaceholder",
+
+      icon="fa-solid fa-envelope"
+
+    ) }}
+
+
+
+    {{ form_input(
+
+      name="phone",
+
+      label="Phone number",
+
+      type="tel",
+
+      value=form_values.get('phone', ''),
+
+      error=errors.get('phone'),
+
+      placeholder="+255 7XX XXX XXX",
+
+      hint="Optional - used for appointment reminders",
+
+      autocomplete="tel",
+
+      i18n_label="auth.register.phone",
+
+      i18n_placeholder="auth.register.phonePlaceholder",
+
+      i18n_hint="auth.register.phoneHint",
+
+      icon="fa-solid fa-phone"
+
+    ) }}
+
+
+
+    {{ form_password(
+
+      name="password",
+
+      label="Password",
+
+      error=errors.get('password'),
+
+      required=true,
+
+      hint="At least 8 characters with uppercase, lowercase, and a number",
+
+      autocomplete="new-password",
+
+      i18n_label="auth.register.password",
+
+      i18n_hint="auth.register.passwordHint",
+
+      icon="fa-solid fa-lock"
+
+    ) }}
+
+
+
+    {{ form_password(
+
+      name="confirm_password",
+
+      label="Confirm password",
+
+      error=errors.get('confirm_password'),
+
+      required=true,
+
+      autocomplete="new-password",
+
+      i18n_label="auth.register.confirmPassword",
+
+      icon="fa-solid fa-shield-halved"
+
+    ) }}
+
+
+
+    {{ form_checkbox(
+
+      name="terms_accepted",
+
+      label='I agree to the <a href="/terms" class="med-link">Terms of Service</a> and <a href="/privacy" class="med-link">Privacy Policy</a>',
+
+      checked=form_values.get('terms_accepted', false),
+
+      error=errors.get('terms_accepted'),
+
+      i18n_label_html="auth.register.terms"
+
+    ) }}
+
+
+
+    {% if errors.get('_form') %}
+
+    <div class="med-alert med-alert--danger med-mb-4">
+
+      <span class="med-alert__icon"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+      <div class="med-alert__content"><p class="med-alert__message">{{ errors._form }}</p></div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <button type="submit" class="med-btn med-btn--primary med-btn--block med-btn--lg">
+
+      <i class="fa-solid fa-user-check"></i> <span data-i18n="auth.register.submit">Create Account</span>
+
+    </button>
+
+  </form>
+
+
+
+  <p class="auth-card__footer">
+
+    <span data-i18n="auth.register.hasAccount">Already have an account?</span>
+
+    <a href="/login" class="med-link" data-i18n="auth.register.signIn">Sign in</a>
+
+  </p>
+
+</div>
+
+{% endblock %}
+

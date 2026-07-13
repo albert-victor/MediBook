@@ -1,0 +1,153 @@
+{% extends "layouts/admin_dashboard.html" %}
+
+{% block content %}
+<div class="adash-content med-container">
+
+  <!-- Overview -->
+  <div class="adash-panel is-active" id="panel-overview" data-panel="overview">
+    <p class="adash-panel__subtitle" id="adash-subtitle" data-i18n="dashboard.admin.subtitle">Manage doctors, patients, appointments, and revenue across mediBook.</p>
+
+    <section class="adash-stats" id="adash-stats" aria-label="Platform statistics" data-i18n-aria="dashboard.admin.statsAria"></section>
+
+    <div class="adash-charts-grid">
+      <section class="adash-card">
+        <header class="adash-card__header">
+          <h2 class="adash-card__title"><i class="bi bi-bar-chart"></i> <span data-i18n="dashboard.admin.charts.appointmentsPerMonth">Appointments Per Month</span></h2>
+        </header>
+        <div class="adash-card__body">
+          <div class="adash-chart" id="chart-appointments"></div>
+        </div>
+      </section>
+
+      <section class="adash-card">
+        <header class="adash-card__header">
+          <h2 class="adash-card__title"><i class="bi bi-cash-stack"></i> <span data-i18n="dashboard.admin.charts.monthlyPayments">Monthly Payments</span></h2>
+        </header>
+        <div class="adash-card__body">
+          <div class="adash-chart" id="chart-payments"></div>
+        </div>
+      </section>
+
+      <section class="adash-card adash-charts-grid__wide">
+        <header class="adash-card__header">
+          <h2 class="adash-card__title"><i class="bi bi-pie-chart"></i> <span data-i18n="dashboard.admin.charts.doctorDistribution">Doctor Distribution</span></h2>
+        </header>
+        <div class="adash-card__body">
+          <div class="adash-chart adash-chart--horizontal" id="chart-doctors"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Doctors -->
+  <div class="adash-panel" id="panel-doctors" data-panel="doctors" hidden>
+    <div class="adash-panel__toolbar">
+      <p class="adash-panel__hint" data-i18n="dashboard.admin.doctorsHint">Add, verify, edit, or deactivate doctors on the platform.</p>
+      <button type="button" class="med-btn med-btn--primary med-btn--sm" id="btn-add-doctor">
+        <i class="bi bi-plus-lg"></i> <span data-i18n="dashboard.admin.addDoctor">Add Doctor</span>
+      </button>
+    </div>
+    <div class="med-table-wrap">
+      <table class="med-table med-table--hover med-table--compact med-table--responsive" id="adash-doctors-table">
+        <thead>
+          <tr>
+            <th data-i18n="common.doctor">Doctor</th>
+            <th data-i18n="doctors.directory.filterSpecialty">Specialty</th>
+            <th data-i18n="payment.confirmation.hospital">Hospital</th>
+            <th data-i18n="doctors.profile.consultationFee">Fee</th>
+            <th data-i18n="common.status">Status</th>
+            <th class="med-table__cell--actions" data-i18n="common.actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adash-doctors">
+          <tr><td colspan="6" class="adash-table-loading"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Patients -->
+  <div class="adash-panel" id="panel-patients" data-panel="patients" hidden>
+    <div class="med-table-wrap">
+      <table class="med-table med-table--hover med-table--compact med-table--responsive" id="adash-patients-table">
+        <thead>
+          <tr>
+            <th data-i18n="common.patient">Patient</th>
+            <th data-i18n="auth.register.email">Email</th>
+            <th data-i18n="auth.register.phone">Phone</th>
+            <th data-i18n="dashboard.admin.nav.appointments">Appointments</th>
+            <th data-i18n="common.status">Status</th>
+            <th class="med-table__cell--actions" data-i18n="common.actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adash-patients"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Appointments -->
+  <div class="adash-panel" id="panel-appointments" data-panel="appointments" hidden>
+    <div class="med-table-wrap">
+      <table class="med-table med-table--hover med-table--compact med-table--responsive" id="adash-appointments-table">
+        <thead>
+          <tr>
+            <th data-i18n="common.patient">Patient</th>
+            <th data-i18n="common.doctor">Doctor</th>
+            <th data-i18n="booking.stepSummary.date">Date</th>
+            <th data-i18n="booking.stepSummary.time">Time</th>
+            <th data-i18n="common.status">Status</th>
+            <th data-i18n="payment.confirmation.paymentStatus">Payment</th>
+          </tr>
+        </thead>
+        <tbody id="adash-appointments"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Payments -->
+  <div class="adash-panel" id="panel-payments" data-panel="payments" hidden>
+    <div class="med-table-wrap">
+      <table class="med-table med-table--hover med-table--compact med-table--responsive" id="adash-payments-table">
+        <thead>
+          <tr>
+            <th data-i18n="payment.confirmation.amount">Amount</th>
+            <th data-i18n="common.patient">Patient</th>
+            <th data-i18n="common.doctor">Doctor</th>
+            <th data-i18n="payment.simulation.method">Method</th>
+            <th data-i18n="common.status">Status</th>
+            <th data-i18n="payment.confirmation.paidAt">Paid at</th>
+          </tr>
+        </thead>
+        <tbody id="adash-payments"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Reports -->
+  <div class="adash-panel" id="panel-reports" data-panel="reports" hidden>
+    <section class="adash-card">
+      <header class="adash-card__header">
+        <h2 class="adash-card__title"><i class="bi bi-file-earmark-bar-graph"></i> <span data-i18n="dashboard.admin.reports.title">Reports</span></h2>
+        <span class="med-badge med-badge--info" data-i18n="dashboard.admin.reports.comingSoon">PDF export coming soon</span>
+      </header>
+      <div class="adash-card__body" id="adash-reports"></div>
+    </section>
+  </div>
+
+  <!-- Notifications -->
+  <div class="adash-panel" id="panel-notifications" data-panel="notifications" hidden>
+    <div class="adash-notifs" id="adash-notifications"></div>
+  </div>
+
+  <!-- Settings -->
+  <div class="adash-panel" id="panel-settings" data-panel="settings" hidden>
+    <section class="adash-card">
+      <header class="adash-card__header">
+        <h2 class="adash-card__title"><i class="bi bi-gear"></i> <span data-i18n="dashboard.admin.settings.title">Platform Settings</span></h2>
+      </header>
+      <div class="adash-card__body" id="adash-settings"></div>
+    </section>
+  </div>
+
+</div>
+{% endblock %}

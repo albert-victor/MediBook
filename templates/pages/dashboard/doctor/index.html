@@ -1,0 +1,228 @@
+{% extends "layouts/doctor_dashboard.html" %}
+
+
+
+{% block content %}
+
+<section class="pdash-hero ddash-hero" id="ddash-hero" data-reveal>
+
+  <div class="med-container pdash-hero__inner">
+
+    <div class="pdash-hero__content">
+
+      <p class="pdash-hero__eyebrow" id="ddash-greeting" data-i18n="common.welcomeBack">Welcome back</p>
+
+      <h1 class="pdash-hero__title" id="ddash-practice-title">
+
+        <span id="ddash-doctor-name">{{ current_user.first_name }}</span>'s Practice
+
+      </h1>
+
+      <p class="pdash-hero__subtitle" id="ddash-specialty" data-i18n="dashboard.doctor.subtitle">Manage your schedule, patients, and appointments.</p>
+
+    </div>
+
+    <div class="pdash-hero__decoration" aria-hidden="true">
+
+      <div class="pdash-hero__orb pdash-hero__orb--1"></div>
+
+      <div class="pdash-hero__orb pdash-hero__orb--2"></div>
+
+      <i class="bi bi-clipboard2-pulse pdash-hero__icon"></i>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<div class="med-container pdash-body">
+
+  <!-- Statistics -->
+
+  <section class="pdash-section" data-i18n-aria="dashboard.doctor.statsAria">
+
+    <div class="pdash-stats" id="ddash-stats" data-reveal-stagger>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+      <div class="pdash-stat med-skeleton-card" data-reveal-item><div class="med-skeleton med-skeleton--title"></div><div class="med-skeleton med-skeleton--text"></div></div>
+
+    </div>
+
+  </section>
+
+
+
+  <div class="pdash-grid">
+
+    <div class="pdash-grid__primary">
+
+      <!-- Today's appointments -->
+
+      <section class="pdash-card pdash-card--featured" id="today-section" data-reveal>
+
+        <header class="pdash-card__header">
+
+          <h2 class="pdash-card__title"><i class="bi bi-sun"></i> <span data-i18n="dashboard.doctor.todayAppointments">Today's Appointments</span></h2>
+
+          <span class="pdash-card__badge" id="ddash-today-count" hidden></span>
+
+        </header>
+
+        <div class="pdash-card__body">
+
+          <div class="ddash-appt-list" id="ddash-today" data-reveal-stagger>
+
+            <div class="pdash-loading-inline"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- All appointments with search & filters -->
+
+      <section class="pdash-card" id="appointments-section" data-reveal>
+
+        <header class="pdash-card__header">
+
+          <h2 class="pdash-card__title"><i class="bi bi-calendar2-week"></i> <span data-i18n="dashboard.doctor.appointments">Appointments</span></h2>
+
+        </header>
+
+        <div class="pdash-card__body ddash-filters">
+
+          <div class="ddash-toolbar">
+
+            <div class="med-input-wrap ddash-search">
+
+              <span class="med-input-wrap__icon"><i class="bi bi-search"></i></span>
+
+              <input type="search" id="ddash-search" class="med-input" data-i18n-placeholder="dashboard.doctor.searchPlaceholder" placeholder="Search patients…" data-i18n-aria="dashboard.doctor.searchAria">
+
+            </div>
+
+            <input type="date" id="ddash-date-filter" class="med-input ddash-date" data-i18n-aria="dashboard.doctor.filterDateAria">
+
+          </div>
+
+          <div class="ddash-tabs" id="ddash-tabs" role="tablist">
+
+            <button type="button" class="ddash-tab is-active" data-status="" data-i18n="dashboard.doctor.tabs.all">All</button>
+
+            <button type="button" class="ddash-tab" data-status="upcoming" data-i18n="dashboard.doctor.tabs.upcoming">Upcoming</button>
+
+            <button type="button" class="ddash-tab" data-status="pending" data-i18n="dashboard.doctor.tabs.pending">Pending</button>
+
+            <button type="button" class="ddash-tab" data-status="completed" data-i18n="dashboard.doctor.tabs.completed">Completed</button>
+
+            <button type="button" class="ddash-tab" data-status="cancelled" data-i18n="dashboard.doctor.tabs.cancelled">Cancelled</button>
+
+          </div>
+
+          <div class="ddash-appt-list" id="ddash-appointments" data-reveal-stagger>
+
+            <div class="pdash-loading-inline"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+
+    <aside class="pdash-grid__secondary">
+
+      <!-- Calendar -->
+
+      <section class="pdash-card" id="calendar-section" data-reveal>
+
+        <header class="pdash-card__header">
+
+          <h2 class="pdash-card__title"><i class="bi bi-calendar3"></i> <span data-i18n="dashboard.doctor.calendar">Calendar</span></h2>
+
+          <div class="ddash-cal-nav">
+
+            <button type="button" class="ddash-cal-nav__btn" id="ddash-cal-prev" data-i18n-aria="dashboard.doctor.prevMonth"><i class="bi bi-chevron-left"></i></button>
+
+            <span id="ddash-cal-label">-</span>
+
+            <button type="button" class="ddash-cal-nav__btn" id="ddash-cal-next" data-i18n-aria="dashboard.doctor.nextMonth"><i class="bi bi-chevron-right"></i></button>
+
+          </div>
+
+        </header>
+
+        <div class="pdash-card__body">
+
+          <div class="ddash-calendar" id="ddash-calendar" data-reveal-stagger></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- Patients -->
+
+      <section class="pdash-card" id="patients-section" data-reveal>
+
+        <header class="pdash-card__header">
+
+          <h2 class="pdash-card__title"><i class="bi bi-people"></i> <span data-i18n="dashboard.doctor.patients">Patients</span></h2>
+
+        </header>
+
+        <div class="ddash-patients" id="ddash-patients" data-reveal-stagger>
+
+          <div class="pdash-loading-inline"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- Recent activity -->
+
+      <section class="pdash-card" id="activity-section" data-reveal>
+
+        <header class="pdash-card__header">
+
+          <h2 class="pdash-card__title"><i class="bi bi-activity"></i> <span data-i18n="dashboard.doctor.recentActivity">Recent Activity</span></h2>
+
+        </header>
+
+        <div class="ddash-activity" id="ddash-activity" data-reveal-stagger>
+
+          <div class="pdash-loading-inline"><span class="med-spinner"></span> <span data-i18n="common.loading">Loading…</span></div>
+
+        </div>
+
+      </section>
+
+    </aside>
+
+  </div>
+
+</div>
+
+{% endblock %}
+

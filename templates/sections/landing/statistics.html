@@ -1,0 +1,21 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/stat_card.html" import stat_card %}
+
+<section class="landing-section landing-page landing-stats" id="statistics" aria-labelledby="stats-title">
+  <div class="med-container">
+    {{ section_header(
+      title="Trusted at scale",
+      subtitle="Numbers that reflect real care delivered across our partner hospital network.",
+      badge="By the numbers",
+      i18n_badge="landing.statistics.badge",
+      i18n_title="landing.statistics.title",
+      i18n_subtitle="landing.statistics.subtitle"
+    ) }}
+
+    <div class="med-grid-stats" data-reveal-stagger>
+      {% for stat in statistics %}
+      {{ stat_card(stat) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>

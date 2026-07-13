@@ -1,0 +1,1047 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "loadingDoctors": "Loading doctors…",
+    "loadingSlots": "Loading time slots…",
+    "loadingPayment": "Loading payment details…",
+    "loadingConfirmation": "Loading confirmation…",
+    "loadingProfile": "Loading doctor profile…",
+    "saving": "Saving…",
+    "processing": "Processing…",
+    "searching": "Searching…",
+    "back": "Back",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "retry": "Try again",
+    "refresh": "Refresh",
+    "viewAll": "View all",
+    "seeAll": "See all",
+    "learnMore": "Learn more",
+    "optional": "Optional",
+    "required": "Required",
+    "step": "Step {step}",
+    "justNow": "Just now",
+    "minutesAgo": "{count} min ago",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago",
+    "notAvailable": "Not available",
+    "dash": "-",
+    "patient": "Patient",
+    "doctor": "Doctor",
+    "admin": "Administrator",
+    "status": "Status",
+    "actions": "Actions",
+    "goodMorning": "Good morning",
+    "goodAfternoon": "Good afternoon",
+    "goodEvening": "Good evening",
+    "welcomeBack": "Welcome back",
+    "empty": {
+      "title": "Nothing here yet",
+      "message": "Check back later for updates.",
+      "noResults": "No results found",
+      "noData": "No data available",
+      "loadFailed": "Could not load data",
+      "tryAgain": "Please try again later."
+    },
+    "newCount": "{count} new",
+    "visit": "visit",
+    "visits": "visits"
+  },
+  "navigation": {
+    "mainAria": "Main navigation",
+    "mobileAria": "Mobile navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "brandTagline": "Medical Appointment & Reminder System",
+    "brandFull": "Medical Appointment & Reminder System (mediBook)",
+    "accountMenu": "Account menu",
+    "home": "Home",
+    "findDoctors": "Find Doctors",
+    "services": "Services",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "register": "Register Free",
+    "registerFree": "Create Free Account",
+    "dashboard": "Dashboard",
+    "adminPanel": "Admin",
+    "myHealth": "My Health",
+    "bookVisit": "Book Visit",
+    "help": "Help",
+    "directory": "Directory",
+    "myProfile": "My Profile",
+    "backToHome": "Back to home",
+    "backToDoctors": "Back to doctors",
+    "backToDirectory": "Back to directory",
+    "backToDashboard": "Back to dashboard",
+    "needAssistance": "Need assistance?",
+    "support": "Support"
+  },
+  "language": {
+    "en": "English",
+    "sw": "Kiswahili",
+    "switchTo": "Switch language",
+    "ariaGroup": "Language",
+    "ariaSelect": "Select language"
+  },
+  "landing": {
+    "appHome": {
+      "greeting": "Book your doctor",
+      "subtitle": "Search, compare, and book in minutes - trusted by 12,000+ patients.",
+      "scrollHint": "Scroll for more details",
+      "topDoctors": "Top Doctors",
+      "quickServices": "Quick Services",
+      "bookAppointment": "Book Appointment",
+      "emergency": "Emergency"
+    },
+    "hero": {
+      "badge": "Trusted by 12,000+ patients",
+      "title": "Healthcare that feels",
+      "titleHighlight": "personal, not procedural",
+      "subtitle": "Book appointments with verified specialists, get timely reminders, and manage your care - all in one calm, modern platform.",
+      "primaryCta": "Create Free Account",
+      "secondaryCta": "Find a Doctor",
+      "trustVerified": "Verified doctors",
+      "trustReminders": "Smart reminders",
+      "trustSlots": "Real-time slots",
+      "previewUpcoming": "Upcoming visit",
+      "previewConfirmed": "Confirmed",
+      "previewPatient": "Patient: {name}",
+      "previewReminderTitle": "Reminder set",
+      "previewReminderSub": "24h & 2h before visit",
+      "previewRatingTitle": "4.9 avg rating",
+      "previewRatingSub": "From 2,400+ reviews"
+    },
+    "search": {
+      "badge": "Smart search",
+      "title": "Find the right doctor",
+      "subtitle": "Search by name, specialty, or hospital - see who is available today.",
+      "placeholder": "Doctor name, specialty, or hospital...",
+      "ariaSearch": "Search doctors",
+      "ariaSpecialty": "Specialty",
+      "allSpecialties": "All specialties",
+      "searchButton": "Search",
+      "popularLabel": "Popular:"
+    },
+    "services": {
+      "badge": "What we offer",
+      "title": "Comprehensive medical services",
+      "subtitle": "From routine check-ups to specialized care - everything your family needs.",
+      "allServices": "All services",
+      "ariaCarousel": "Medical services",
+      "trustHospitals": "25+ partner hospitals",
+      "trustHospitalsSub": "Across major cities in Tanzania",
+      "trustInsurance": "NHIF & insurance accepted",
+      "trustInsuranceSub": "Shown on each doctor profile",
+      "trustSameDay": "Same-day appointments",
+      "trustSameDaySub": "When slots are available",
+      "consultation": {
+        "title": "Doctor Consultation",
+        "short_title": "Consultation",
+        "description": "In-person and follow-up visits with board-certified specialists across every major department.",
+        "features": [
+          "Board-certified specialists",
+          "In-person & follow-up visits",
+          "Every major department"
+        ],
+        "duration": "30-45 min",
+        "ideal_for": "Check-ups, referrals & chronic care"
+      },
+      "diagnostics": {
+        "title": "Lab & Diagnostics",
+        "short_title": "Lab Tests",
+        "description": "Book blood work, imaging, and screening packages with results tracked in your health timeline.",
+        "features": [
+          "Blood work & imaging",
+          "Results in your health timeline",
+          "Partner lab network"
+        ],
+        "duration": "15-60 min",
+        "ideal_for": "Screenings, tests & monitoring"
+      },
+      "pharmacy": {
+        "title": "Pharmacy Services",
+        "short_title": "Pharmacy",
+        "description": "Prescription refills and medication guidance from licensed pharmacists at partner facilities.",
+        "features": [
+          "Prescription refills",
+          "Licensed pharmacist guidance",
+          "Partner facility pickup"
+        ],
+        "duration": "10-20 min",
+        "ideal_for": "Medication management & advice"
+      },
+      "emergency": {
+        "title": "Emergency Care",
+        "short_title": "Emergency",
+        "description": "Priority routing to emergency departments with estimated wait times before you arrive.",
+        "features": [
+          "Priority ER routing",
+          "Estimated wait times",
+          "24/7 partner hospitals"
+        ],
+        "duration": "Immediate",
+        "ideal_for": "Urgent care & emergencies"
+      },
+      "telehealth": {
+        "title": "Telehealth",
+        "short_title": "Telehealth",
+        "description": "Secure video consultations for follow-ups, second opinions, and chronic care management.",
+        "features": [
+          "Secure video calls",
+          "Follow-ups & second opinions",
+          "Chronic care check-ins"
+        ],
+        "duration": "20-30 min",
+        "ideal_for": "Remote consultations from home"
+      },
+      "wellness": {
+        "title": "Wellness Programs",
+        "short_title": "Wellness",
+        "description": "Preventive screenings, vaccination schedules, and personalized wellness plans for families.",
+        "features": [
+          "Preventive screenings",
+          "Vaccination schedules",
+          "Family wellness plans"
+        ],
+        "duration": "30-60 min",
+        "ideal_for": "Prevention & healthy living"
+      },
+      "maternity": {
+        "title": "Maternity Care",
+        "short_title": "Maternity",
+        "description": "Prenatal check-ups, delivery planning, and postnatal support with experienced obstetricians.",
+        "features": [
+          "Prenatal check-ups",
+          "Delivery planning",
+          "Postnatal support"
+        ],
+        "duration": "45-60 min",
+        "ideal_for": "Pregnancy & motherhood care"
+      },
+      "mental-health": {
+        "title": "Mental Health",
+        "short_title": "Mental Health",
+        "description": "Confidential counselling and psychiatric consultations with licensed mental health professionals.",
+        "features": [
+          "Confidential sessions",
+          "Licensed counsellors",
+          "Psychiatric consultations"
+        ],
+        "duration": "45-60 min",
+        "ideal_for": "Emotional wellbeing & therapy"
+      },
+      "vaccination": {
+        "title": "Vaccination",
+        "short_title": "Vaccination",
+        "description": "Childhood immunizations, travel vaccines, and flu shots scheduled at your convenience.",
+        "features": [
+          "Childhood immunizations",
+          "Travel vaccines",
+          "Flu & booster shots"
+        ],
+        "duration": "15-30 min",
+        "ideal_for": "Immunization & travel health"
+      },
+      "physiotherapy": {
+        "title": "Physiotherapy",
+        "short_title": "Physiotherapy",
+        "description": "Rehabilitation sessions for injury recovery, mobility improvement, and chronic pain management.",
+        "features": [
+          "Injury rehabilitation",
+          "Mobility improvement",
+          "Chronic pain management"
+        ],
+        "duration": "45-60 min",
+        "ideal_for": "Recovery & physical therapy"
+      }
+    },
+    "statistics": {
+      "badge": "By the numbers",
+      "title": "Trusted at scale",
+      "subtitle": "Numbers that reflect real care delivered across our partner hospital network.",
+      "patients": {
+        "label": "Patients served",
+        "shortLabel": "Patients"
+      },
+      "doctors": {
+        "label": "Verified doctors",
+        "shortLabel": "Doctors"
+      },
+      "appointments": {
+        "label": "Appointments booked",
+        "shortLabel": "Booked"
+      },
+      "satisfaction": {
+        "label": "Patient satisfaction",
+        "shortLabel": "Satisfaction"
+      }
+    },
+    "howItWorks": {
+      "badge": "Simple process",
+      "title": "How it works",
+      "subtitle": "Four simple steps from search to seated in the doctor's office - no paperwork, no queues.",
+      "stepLabel": "Step {step}",
+      "ctaTitle": "Ready to book your first appointment?",
+      "ctaSubtitle": "Join 12,000+ patients who schedule smarter with mediBook.",
+      "ctaButton": "Create your free account",
+      "ariaCarousel": "How it works steps",
+      "steps": {
+        "1": {
+          "title": "Search & compare",
+          "description": "Browse doctors by specialty, ratings, fees, and real-time availability at nearby hospitals.",
+          "details": [
+            "180+ verified specialists across partner hospitals",
+            "Filter by specialty, location, fee, and rating",
+            "Live slot availability updated in real time"
+          ]
+        },
+        "2": {
+          "title": "Book your slot",
+          "description": "Pick an open time that fits your schedule. Only available slots are selectable - no double bookings.",
+          "details": [
+            "Morning, afternoon, and evening slots",
+            "Instant booking confirmation",
+            "Automatic duplicate-booking prevention"
+          ]
+        },
+        "3": {
+          "title": "Confirm payment",
+          "description": "Pay securely via M-Pesa, Mixx, Airtel Money, or other supported mobile wallets.",
+          "details": [
+            "M-Pesa, Mixx, Airtel Money, HaloPesa & more",
+            "Secure payment with reference number",
+            "Transparent fees shown before checkout"
+          ]
+        },
+        "4": {
+          "title": "Get reminded",
+          "description": "Receive email and web notifications before your visit so you never miss an appointment.",
+          "details": [
+            "24-hour advance reminder",
+            "2-hour follow-up alert",
+            "Reschedule or cancel from your dashboard"
+          ]
+        }
+      }
+    },
+    "testimonials": {
+      "badge": "Testimonials",
+      "title": "What patients are saying",
+      "subtitle": "Real experiences from people who switched to smarter healthcare scheduling.",
+      "ariaCarousel": "Patient testimonials",
+      "items": {
+        "1": {
+          "quote": "I booked a cardiologist in under two minutes. The reminder came exactly when I needed it - no more sitting in waiting rooms guessing my turn."
+        },
+        "2": {
+          "quote": "Finding a pediatrician available the same day felt impossible before. This platform shows real slots and the doctor profiles are genuinely helpful."
+        },
+        "3": {
+          "quote": "Clean interface, clear fees upfront, and payment through M-Pesa was seamless. It feels like a modern app, not a hospital bureaucracy portal."
+        },
+        "4": {
+          "quote": "Rescheduling took seconds. The doctor profiles show everything I need before I book."
+        },
+        "5": {
+          "quote": "Finally a healthcare platform that respects my time. Reminders are accurate and helpful."
+        },
+        "6": {
+          "quote": "Booked a pediatrician for my daughter on the same day. The whole family now uses mediBook."
+        },
+        "7": {
+          "quote": "Transparent pricing and verified doctors gave me confidence to switch from walk-in queues."
+        },
+        "8": {
+          "quote": "Telehealth follow-ups saved me a second trip to the hospital. Brilliant experience."
+        },
+        "9": {
+          "quote": "The search filters make finding a specialist effortless. Registration was quick and simple."
+        },
+        "10": {
+          "quote": "I manage three family members' appointments from one account. Exactly what we needed."
+        }
+      }
+    },
+    "faqIntro": {
+      "badge": "FAQ",
+      "title": "Got questions?",
+      "subtitle": "We've answered the most common questions about booking, payments, reminders, and managing your care on mediBook.",
+      "highlights": {
+        "support": "Support replies within 2 hours",
+        "secure": "Secure & encrypted health data",
+        "helpdesk": "Dedicated patient help desk"
+      },
+      "stillQuestions": "Still have questions?",
+      "contactSupport": "Contact support",
+      "visitHelp": "Visit help centre"
+    },
+    "faq": {
+      "booking": {
+        "question": "How do I book an appointment?",
+        "answer": "Create a free account, search for a doctor by specialty or name, select an available time slot, and confirm with payment. You'll receive instant confirmation and a reminder before your visit."
+      },
+      "cancellation": {
+        "question": "Can I cancel or reschedule?",
+        "answer": "Yes. Visit your dashboard to cancel or reschedule up to 4 hours before your appointment. Refund policies depend on the hospital's terms, which are shown before you confirm."
+      },
+      "payment": {
+        "question": "What payment methods are supported?",
+        "answer": "We support M-Pesa, Mixx by Yas, Airtel Money, HaloPesa, AzamPesa, and Selcom Pay. Payment is processed securely and you'll receive a reference number for your records."
+      },
+      "reminders": {
+        "question": "How do appointment reminders work?",
+        "answer": "You'll receive an email and web notification 24 hours before your appointment, with a follow-up reminder 2 hours prior. SMS reminders are coming soon."
+      },
+      "insurance": {
+        "question": "Do you accept insurance?",
+        "answer": "Many partner hospitals accept NHIF and private insurance. Insurance eligibility is shown on each doctor's profile. You can also pay directly via mobile money."
+      },
+      "account": {
+        "question": "Who can create an account?",
+        "answer": "Patient accounts can be created freely through our registration page. Doctor accounts are managed by hospital administrators to ensure every profile is verified before going live."
+      },
+      "data": {
+        "question": "Is my health data secure?",
+        "answer": "Yes. We use encrypted connections, secure password hashing, and session-based authentication. Your medical records are only visible to you and your treating physicians."
+      },
+      "slots": {
+        "question": "What if my preferred slot gets booked?",
+        "answer": "Only available slots are shown and selectable. If a slot is taken before you confirm, you'll see a clear message to choose another time. We prevent duplicate bookings automatically."
+      },
+      "family": {
+        "question": "Can I book for family members?",
+        "answer": "Yes. After registering, you can add family members to your patient dashboard and book appointments on their behalf."
+      },
+      "first-visit": {
+        "question": "What should I bring to my first visit?",
+        "answer": "Bring your appointment confirmation, a valid ID, any previous medical records, and your NHIF or insurance card if applicable."
+      }
+    },
+    "cta": {
+      "title": "Ready to take control of your health?",
+      "subtitle": "Join thousands of patients who book smarter, arrive on time, and never miss a follow-up.",
+      "primaryCta": "Get Started - It's Free",
+      "secondaryCta": "Browse Doctors"
+    },
+    "footer": {
+      "tagline": "Modern healthcare scheduling for hospitals and patients.",
+      "copyright": "mediBook. All rights reserved.",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "columns": {
+        "services": {
+          "title": "Services",
+          "findDoctor": "Find a Doctor",
+          "bookAppointment": "Book Appointment",
+          "labDiagnostics": "Lab & Diagnostics",
+          "telehealth": "Telehealth"
+        },
+        "company": {
+          "title": "Company",
+          "about": "About Us",
+          "partners": "Partner Hospitals",
+          "careers": "Careers",
+          "contact": "Contact"
+        },
+        "support": {
+          "title": "Support",
+          "helpCentre": "Help Centre",
+          "faqs": "FAQs",
+          "privacyPolicy": "Privacy Policy",
+          "termsOfService": "Terms of Service"
+        }
+      },
+      "social": {
+        "twitter": "Twitter",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook"
+      }
+    },
+    "availableToday": {
+      "badge": "Live availability",
+      "title": "Available today",
+      "subtitle": "Real-time slots from verified doctors - book now before they're taken.",
+      "registerToBook": "Register to book",
+      "viewAll": "View all available doctors",
+      "ariaCarousel": "Doctors available today",
+      "noSlotsTitle": "No slots today",
+      "noSlotsMessage": "Check back tomorrow or browse all doctors.",
+      "browseAll": "Browse all doctors",
+      "pageTitle": "Doctors available today",
+      "pageSubtitle": "Real-time open slots from verified specialists. Book now before they're taken - updated live across partner hospitals.",
+      "doctorsAvailable": "Doctors available",
+      "openSlots": "Open slots today",
+      "partnerHospitals": "Partner hospitals",
+      "slotsRemaining": "{count} slots remaining today",
+      "bookEarliest": "Book earliest slot",
+      "noSameDayTitle": "No same-day slots right now",
+      "noSameDayMessage": "Check back later today or browse all doctors for upcoming availability."
+    },
+    "popularDoctors": {
+      "badge": "Top rated",
+      "title": "Popular doctors",
+      "subtitle": "Highly rated specialists trusted by patients across partner hospitals.",
+      "viewAll": "View all doctors",
+      "availableToday": "Available today",
+      "nextTomorrow": "Next: Tomorrow",
+      "bookAppointment": "Book Appointment",
+      "viewProfile": "View profile",
+      "reviews": "{count} reviews",
+      "experience": "{years} yrs experience",
+      "slotsToday": "{count} slots today",
+      "yearsShort": "yrs"
+    }
+  },
+  "auth": {
+    "brand": {
+      "headline": "Healthcare scheduling, reimagined.",
+      "tagline": "Book verified doctors, manage appointments, and receive timely reminders - all in one trusted platform.",
+      "featureSecure": "Secure patient accounts",
+      "featureAvailability": "Real-time availability",
+      "featureReminders": "Smart appointment reminders",
+      "trustedBy": "Trusted by 12,000+ patients"
+    },
+    "redirecting": "Signing you in…",
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to manage your appointments and health records.",
+      "email": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "rememberMe": "Stay signed in for 30 days",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create free account"
+    },
+    "register": {
+      "badge": "Patient registration",
+      "title": "Create your account",
+      "subtitle": "Join mediBook to book doctors, track appointments, and receive reminders.",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Amina",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Hassan",
+      "email": "Email address",
+      "phone": "Phone number",
+      "phonePlaceholder": "+255 7XX XXX XXX",
+      "phoneHint": "Optional - used for appointment reminders",
+      "password": "Password",
+      "passwordHint": "At least 8 characters with uppercase, lowercase, and a number",
+      "confirmPassword": "Confirm password",
+      "terms": "I agree to the <a href=\"/terms\" class=\"med-link\">Terms of Service</a> and <a href=\"/privacy\" class=\"med-link\">Privacy Policy</a>",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "forgotPassword": {
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you instructions to reset your password.",
+      "email": "Email address",
+      "submit": "Send Reset Link",
+      "backToSignIn": "Back to sign in",
+      "successTitle": "Check your email",
+      "successMessage": "If an account exists with that email, you'll receive a password reset link shortly."
+    },
+    "resetPassword": {
+      "badge": "New password",
+      "title": "Reset password",
+      "subtitle": "Choose a strong new password for your account.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "submit": "Update Password",
+      "backToSignIn": "Back to sign in",
+      "invalidTitle": "Invalid or expired link",
+      "invalidMessage": "This reset link is no longer valid. Please request a new one.",
+      "requestNew": "Request new link"
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Enter a valid email address",
+      "phone": "Enter a valid phone number",
+      "minLength": "At least {count} characters",
+      "passwordMin": "At least {count} characters",
+      "passwordUpper": "Include an uppercase letter",
+      "passwordLower": "Include a lowercase letter",
+      "passwordNumber": "Include a number",
+      "passwordMismatch": "Passwords do not match"
+    }
+  },
+  "booking": {
+    "badge": "Book appointment",
+    "title": "Schedule your visit",
+    "subtitle": "Choose your doctor, pick an available time, and confirm your appointment in a few simple steps.",
+    "progressAria": "Booking progress",
+    "steps": {
+      "doctor": "Doctor",
+      "date": "Date",
+      "time": "Time",
+      "reason": "Reason",
+      "summary": "Summary"
+    },
+    "alertTitle": "Booking unavailable",
+    "patientsOnlyTitle": "Patient accounts only",
+    "slotUnavailableTitle": "Slot unavailable",
+    "slotConflict": "This appointment slot has already been booked. Please choose another available time.",
+    "loadDoctorsFailed": "Could not load doctors. Please refresh and try again.",
+    "loadSlotsFailed": "Could not load time slots.",
+    "bookingFailed": "Booking failed. Please try again.",
+    "bookedSuccess": "Appointment booked",
+    "redirectPayment": "Redirecting to payment…",
+    "proceedPayment": "Proceed to Payment",
+    "cta": {
+      "selectedDoctor": "Selected doctor",
+      "selectedDate": "Selected date",
+      "selectedTime": "Selected time",
+      "almostDone": "Almost done",
+      "reviewBooking": "Review & pay",
+      "continueWith": "Continue with {name}"
+    },
+    "stepDoctor": {
+      "title": "Select a doctor",
+      "desc": "Choose the specialist you'd like to visit."
+    },
+    "stepDate": {
+      "title": "Select a date",
+      "desc": "Pick a day for your consultation with {doctor}.",
+      "label": "Appointment date",
+      "hint": "Available slots load automatically after you choose a date."
+    },
+    "stepTime": {
+      "title": "Select a time slot",
+      "desc": "Available slots for {date}.",
+      "available": "Available",
+      "booked": "Booked",
+      "emptyTitle": "No slots on this day",
+      "emptyMessage": "Try another date or choose a different doctor."
+    },
+    "stepReason": {
+      "title": "Reason for visit",
+      "desc": "Briefly describe your symptoms or the purpose of your visit.",
+      "label": "Reason for visit",
+      "placeholder": "e.g. Follow-up consultation, recurring headaches, annual check-up…",
+      "hint": "Optional - helps the doctor prepare for your visit."
+    },
+    "stepSummary": {
+      "title": "Booking summary",
+      "desc": "Review your appointment details before proceeding to payment.",
+      "doctor": "Doctor",
+      "department": "Department",
+      "date": "Date",
+      "time": "Time",
+      "fee": "Consultation fee",
+      "status": "Status",
+      "pendingPayment": "Pending Payment"
+    }
+  },
+  "payment": {
+    "badge": "Secure payment",
+    "title": "Complete your payment",
+    "subtitle": "Simulated mobile money checkout - your appointment is reserved while you pay.",
+    "appointment": "Appointment",
+    "doctor": "Doctor",
+    "department": "Department",
+    "dateTime": "Date & time",
+    "amountDue": "Amount due",
+    "chooseMethod": "Choose payment method",
+    "mobileNumber": "Mobile number",
+    "mobilePlaceholder": "+255 7XX XXX XXX",
+    "payNow": "Pay now",
+    "alreadyPaidTitle": "Payment already completed",
+    "alreadyPaidMessage": "This appointment has been paid. View your confirmation for full details.",
+    "viewConfirmation": "View confirmation",
+    "unavailableTitle": "Payment unavailable",
+    "notFound": "This appointment could not be found or is not ready for payment.",
+    "invalidAppointment": "Invalid appointment reference. Please book again from your dashboard.",
+    "noMethods": "No payment methods are available right now.",
+    "simulation": {
+      "processing": "Processing payment",
+      "connecting": "Connecting to provider…",
+      "awaiting": "Awaiting authorization…",
+      "verifying": "Verifying transaction…",
+      "confirming": "Confirming payment…",
+      "doNotClose": "Please do not close this window",
+      "successTitle": "Payment successful",
+      "successMessage": "Your appointment is now confirmed.",
+      "reference": "Transaction reference",
+      "method": "Method",
+      "amount": "Amount",
+      "status": "Status",
+      "redirecting": "Redirecting to confirmation…"
+    },
+    "confirmation": {
+      "badge": "Confirmed",
+      "title": "Appointment confirmed",
+      "subtitle": "Your visit is booked and payment has been received. A reminder will be sent before your appointment.",
+      "detailsTitle": "Appointment details",
+      "receiptTitle": "Payment receipt",
+      "hospital": "Hospital",
+      "reason": "Reason for visit",
+      "reference": "Reference number",
+      "method": "Payment method",
+      "amountPaid": "Amount paid",
+      "paidAt": "Paid at",
+      "paymentStatus": "Payment status",
+      "paid": "Paid",
+      "receiptOfficial": "Official payment receipt",
+      "receiptThanks": "Thank you for choosing mediBook. Keep this receipt for your records.",
+      "printReceipt": "Print receipt",
+      "goDashboard": "Go to dashboard",
+      "bookAnother": "Book another visit",
+      "unavailableTitle": "Confirmation unavailable",
+      "unavailableMessage": "Complete payment first to view your appointment confirmation."
+    },
+    "toast": {
+      "alreadyPaid": "This appointment payment was completed.",
+      "phoneRequired": "Enter your mobile money number.",
+      "failed": "Please try again."
+    }
+  },
+  "notifications": {
+    "reminder24h": "Appointment reminder - 24 hours",
+    "reminder2h": "Appointment reminder - 2 hours",
+    "reminderMessage": "Your visit with {doctor} ({department}) is {timing} on {date} at {time}. Please arrive 10 minutes early. Appointment status: {status}.",
+    "timing24h": "in 24 hours",
+    "timing2h": "in 2 hours",
+    "timingHours": "in {hours} hours"
+  },
+  "dashboard": {
+    "patient": {
+      "healthHub": "{name}'s Health Hub",
+      "subtitle": "Track appointments, payments, and care - all in one personalized space.",
+      "statsAria": "Your statistics",
+      "totalVisits": "Total Visits",
+      "completed": "Completed",
+      "upcoming": "Upcoming",
+      "totalSpent": "Total Spent",
+      "upcomingTitle": "Upcoming Appointment",
+      "noUpcomingTitle": "No upcoming visits",
+      "noUpcomingMessage": "Book an appointment with a doctor to get started.",
+      "countdownDays": "In {count} day(s)",
+      "countdownHours": "In {count} hour(s)",
+      "quickActions": "Quick Actions",
+      "bookAppointment": "Book Appointment",
+      "findDoctor": "Find Doctor",
+      "paymentHistory": "Payment History",
+      "getHelp": "Get Help",
+      "appointmentHistory": "Appointment History",
+      "noAppointmentsTitle": "No appointments yet",
+      "noAppointmentsMessage": "Your visit history will appear here.",
+      "noPaymentsTitle": "No payments yet",
+      "noPaymentsMessage": "Payment records will show here after your first visit.",
+      "notifications": "Notifications",
+      "allCaughtUp": "All caught up",
+      "noNotifications": "No notifications right now.",
+      "availableDoctors": "Available Doctors",
+      "recentlyVisited": "Recently Visited",
+      "noRecentDoctors": "No recent doctors",
+      "noRecentDoctorsMessage": "Doctors you've visited will appear here.",
+      "noDoctorsAvailable": "No doctors available",
+      "noDoctorsAvailableMessage": "Check back later for available slots.",
+      "footerTagline": "Your health, your schedule.",
+      "loadError": "Could not load dashboard data."
+    },
+    "doctor": {
+      "practice": "{name}'s Practice",
+      "subtitle": "Manage your schedule, patients, and appointments.",
+      "statsAria": "Practice statistics",
+      "todayAppointments": "Today's Appointments",
+      "appointments": "Appointments",
+      "searchPlaceholder": "Search patients…",
+      "searchAria": "Search appointments",
+      "filterDateAria": "Filter by date",
+      "tabs": {
+        "all": "All",
+        "upcoming": "Upcoming",
+        "pending": "Pending",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "calendar": "Calendar",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "patients": "Patients",
+      "recentActivity": "Recent Activity",
+      "noTodayTitle": "Clear schedule today",
+      "noTodayMessage": "No appointments scheduled for today.",
+      "noAppointmentsTitle": "No appointments found",
+      "noAppointmentsMessage": "Try adjusting your search or filters.",
+      "noPatientsTitle": "No patients yet",
+      "noPatientsMessage": "Patients appear after their first booking.",
+      "noActivityTitle": "No recent activity",
+      "noActivityMessage": "Status changes will appear here.",
+      "approve": "Approve",
+      "complete": "Complete",
+      "cancel": "Cancel",
+      "viewPatient": "View patient",
+      "cancelReasonPrompt": "Cancellation reason (required):",
+      "cancelReasonRequired": "Please provide a cancellation reason.",
+      "cancelled": "Appointment has been cancelled",
+      "footerTagline": "Caring for patients, one appointment at a time.",
+      "loadError": "Could not load dashboard data."
+    },
+    "admin": {
+      "title": "Platform Control Center",
+      "subtitle": "Manage doctors, patients, appointments, and revenue across mediBook.",
+      "statsAria": "Platform statistics",
+      "nav": {
+        "platform": "Platform",
+        "system": "System",
+        "overview": "Overview",
+        "doctors": "Doctors",
+        "patients": "Patients",
+        "appointments": "Appointments",
+        "payments": "Payments",
+        "reports": "Reports",
+        "notifications": "Notifications",
+        "settings": "Settings"
+      },
+      "totalDoctors": "Total Doctors",
+      "registeredPatients": "Registered Patients",
+      "todayAppointments": "Today's Appointments",
+      "monthlyRevenue": "Monthly Revenue",
+      "activeCount": "{count} active",
+      "totalCount": "{count} total",
+      "pendingCount": "{count} pending",
+      "charts": {
+        "appointmentsPerMonth": "Appointments Per Month",
+        "monthlyPayments": "Monthly Payments",
+        "doctorDistribution": "Doctor Distribution"
+      },
+      "addDoctor": "Add Doctor",
+      "doctorsHint": "Add, verify, edit, or deactivate doctors on the platform.",
+      "viewPublicSite": "View public site",
+      "deactivateDoctor": "Deactivate this doctor?",
+      "deleteDoctor": "Permanently delete this doctor? Only possible without appointment history.",
+      "deactivatePatient": "Deactivate this patient?",
+      "noDoctorsTitle": "No doctors",
+      "noDoctorsMessage": "Add your first doctor to get started.",
+      "noPatientsTitle": "No patients",
+      "noPatientsMessage": "Registered patients will appear here.",
+      "noAppointments": "No appointments",
+      "noPayments": "No payments",
+      "noData": "No data",
+      "noDataMessage": "Chart data will appear as activity grows.",
+      "reports": {
+        "title": "Reports",
+        "comingSoon": "PDF export coming soon",
+        "appointments": "Appointments",
+        "newPatients": "New Patients",
+        "newDoctors": "New Doctors",
+        "unavailable": "Report unavailable",
+        "appointmentStatus": "Appointment Status",
+        "paymentMethods": "Payment Methods",
+        "appointmentsTrend": "Appointments Trend (6 mo)",
+        "revenueTrend": "Revenue Trend (6 mo)",
+        "doctorDistribution": "Doctors by Specialty",
+        "platformGrowth": "Platform Growth"
+      },
+      "systemNotifications": "System Notifications",
+      "noNotifications": "No notifications",
+      "settings": {
+        "title": "Platform Settings",
+        "application": "Application",
+        "environment": "Environment",
+        "remindersEnabled": "Reminders enabled",
+        "reminderInterval": "Reminder check interval",
+        "reminderWindow": "Reminder window",
+        "emailReminders": "Email reminders",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "minutes": "{count} minutes",
+        "hoursBefore": "{count} hours before",
+        "unavailable": "Settings unavailable"
+      },
+      "footerTagline": "Platform operations & analytics.",
+      "loadError": "Could not load admin dashboard.",
+      "doctorCreated": "New doctor account is ready.",
+      "doctorUpdated": "Doctor profile saved.",
+      "doctorDeactivated": "Doctor account has been deactivated.",
+      "doctorDeleted": "Doctor removed from the platform.",
+      "patientDeactivated": "Patient account deactivated.",
+      "license": "License",
+      "currency": "Currency",
+      "visits": "Visits"
+    }
+  },
+  "doctors": {
+    "directory": {
+      "badge": "Verified specialists",
+      "title": "Find your doctor",
+      "subtitle": "Search verified specialists, compare consultation fees, and book the right care for you - updated live from our partner hospitals.",
+      "doctors": "Doctors",
+      "availableToday": "Available today",
+      "specialties": "Specialties",
+      "filters": "Filters",
+      "filterSpecialty": "Specialization",
+      "filterAvailability": "Availability",
+      "anyTime": "Any time",
+      "thisWeek": "Available this week",
+      "gender": "Gender",
+      "genderAll": "All",
+      "genderFemale": "Female",
+      "genderMale": "Male",
+      "filterFee": "Consultation fee",
+      "anyFee": "Any fee",
+      "clearFilters": "Clear filters",
+      "loading": "Loading doctors…",
+      "showingAll": "Showing all {count} doctors",
+      "resultsCount": "{count} doctors found",
+      "resultsFiltered": "{count} of {total} doctors match your filters",
+      "availableTodayBtn": "Available today",
+      "emptyTitle": "No doctors match your filters",
+      "emptyMessage": "Try adjusting your search or clearing filters to see more specialists.",
+      "clearAll": "Clear all filters",
+      "popular": "Popular",
+      "trustVerified": "Verified doctors",
+      "trustHospitals": "25+ partner hospitals",
+      "trustRating": "4.8 avg. patient rating",
+      "trustLive": "Live slot availability",
+      "bookShort": "Book",
+      "viewShort": "Profile"
+    },
+    "profile": {
+      "about": "About",
+      "education": "Education",
+      "reviews": "Patient Reviews",
+      "schedule": "Working Schedule",
+      "languages": "Languages",
+      "calendar": "Availability Calendar",
+      "bookAppointment": "Book Appointment",
+      "consultationFee": "Consultation fee",
+      "verified": "Verified",
+      "acceptingPatients": "Accepting patients",
+      "notFoundTitle": "Doctor not found",
+      "notFoundMessage": "This profile may have been removed or is no longer available.",
+      "browseDoctors": "Browse doctors"
+    }
+  },
+  "status": {
+    "appointment": {
+      "pending": "Pending",
+      "scheduled": "Scheduled",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "noShow": "No show"
+    },
+    "payment": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "refunded": "Refunded"
+    },
+    "paymentMethod": {
+      "mpesa": "M-Pesa",
+      "mixx": "Mixx by Yas",
+      "airtel": "Airtel Money",
+      "halopesa": "HaloPesa",
+      "azampesa": "AzamPesa",
+      "selcom": "Selcom Pay"
+    },
+    "doctor": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "unverified": "Unverified"
+    }
+  },
+  "toast": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "appointmentBooked": "Appointment booked",
+    "bookingFailed": "Booking failed",
+    "paymentSuccessful": "Payment successful",
+    "paymentFailed": "Payment failed",
+    "alreadyPaid": "Already paid",
+    "phoneRequired": "Phone required",
+    "deactivated": "Deactivate",
+    "deleted": "Deleted",
+    "updated": "Updated",
+    "createFailed": "Create failed",
+    "updateFailed": "Update failed",
+    "cannotDelete": "Cannot delete",
+    "cancelled": "Cancelled",
+    "cancelFailed": "Cancel failed",
+    "reasonRequired": "Reason required",
+    "actionFailed": "Action failed",
+    "dashboardError": "Dashboard error"
+  },
+  "api": {
+    "requestFailed": "Request failed",
+    "unauthorized": "You must be signed in to continue.",
+    "forbidden": "You do not have permission to perform this action.",
+    "notFound": "The requested resource was not found.",
+    "validationError": "Please check your input and try again.",
+    "serverError": "Something went wrong on our end. Please try again.",
+    "networkError": "Network error. Check your connection and try again.",
+    "slotTaken": "This appointment slot has already been booked.",
+    "appointmentNotFound": "Appointment not found.",
+    "paymentRequired": "Payment is required to confirm this appointment.",
+    "patientsOnly": "Patients only",
+    "doctorsOnly": "Doctors only",
+    "adminsOnly": "Admins only",
+    "emailExists": "A user with this email already exists",
+    "licenseExists": "License number already registered"
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "message": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to home"
+    },
+    "generic": {
+      "title": "Something went wrong",
+      "message": "An unexpected error occurred. Please try again.",
+      "retry": "Try again"
+    }
+  },
+  "footer": {
+    "tagline": "Modern healthcare scheduling for hospitals and patients.",
+    "copyright": "mediBook. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "help": {
+    "title": "Help Centre",
+    "subtitle": "Answers about booking, payments, reminders, and managing your care on mediBook.",
+    "booking": {
+      "title": "Booking appointments",
+      "text": "Search for a doctor, pick an available slot, and confirm with payment. Only open slots are selectable.",
+      "link": "Book now"
+    },
+    "payment": {
+      "title": "Payments",
+      "text": "Pay via M-Pesa, Mixx, Airtel Money, and other supported mobile wallets. You receive a reference number after payment."
+    },
+    "reminders": {
+      "title": "Reminders",
+      "text": "Email and web notifications are sent 24 hours and 2 hours before your visit."
+    },
+    "faq": {
+      "title": "FAQs",
+      "text": "Browse answers to the most common patient questions.",
+      "link": "View FAQs"
+    },
+    "contact": {
+      "title": "Need more help?",
+      "text": "Our patient support team typically replies within 2 hours on business days.",
+      "button": "Contact support"
+    }
+  }
+}

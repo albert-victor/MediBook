@@ -1,0 +1,22 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/testimonial_card.html" import testimonial_card %}
+{% from "macros/carousel.html" import carousel_shell %}
+
+<section class="landing-section landing-page landing-testimonials" id="testimonials" aria-labelledby="testimonials-title">
+  <div class="med-container landing-page__wrap">
+    {{ section_header(
+      title="What patients are saying",
+      subtitle="Real experiences from people who switched to smarter healthcare scheduling.",
+      badge="Testimonials",
+      i18n_badge="landing.testimonials.badge",
+      i18n_title="landing.testimonials.title",
+      i18n_subtitle="landing.testimonials.subtitle"
+    ) }}
+
+    {% call carousel_shell(autoplay=5500, aria_label="Patient testimonials", aria_i18n="landing.testimonials.ariaCarousel", modifier="testimonials") %}
+      {% for item in testimonials %}
+      {{ testimonial_card(item) }}
+      {% endfor %}
+    {% endcall %}
+  </div>
+</section>

@@ -1,0 +1,67 @@
+{# Dynamic-ready doctor card - pass a doctor dict from backend #}
+{% macro doctor_card(doctor, variant="default", show_hospital=true) %}
+<article class="med-doctor-card med-doctor-card--{{ variant }}" data-reveal-item>
+  <div class="med-doctor-card__visual">
+    {% if doctor.image_url %}
+    <img
+      class="med-doctor-card__image"
+      src="{{ doctor.image_url }}"
+      alt="{{ doctor.name }}"
+      loading="lazy"
+    >
+    {% else %}
+    <div class="med-doctor-card__avatar med-doctor-card__avatar--{{ doctor.avatar_gradient | default('primary') }}" aria-hidden="true">
+      {{ doctor.initials }}
+    </div>
+    {% endif %}
+    {% if doctor.available_today %}
+    <span class="med-doctor-card__live">
+      <span class="med-status-dot med-status-dot--success med-status-dot--pulse"></span>
+      <span data-i18n="landing.popularDoctors.slotsToday" data-i18n-params='{"count": {{ doctor.slots_today }} }'>{{ doctor.slots_today }} slots today</span>
+    </span>
+    {% endif %}
+  </div>
+
+  <div class="med-doctor-card__body">
+    <h3 class="med-doctor-card__name">
+      <a href="{{ doctor.profile_url }}">{{ doctor.name }}</a>
+    </h3>
+    <p class="med-doctor-card__specialty">{{ doctor.specialization }}</p>
+
+    {% if show_hospital and doctor.hospital %}
+    <p class="med-doctor-card__hospital">
+      <i class="bi bi-geo-alt"></i> {{ doctor.hospital }}
+    </p>
+    {% endif %}
+
+    <div class="med-doctor-card__meta">
+      <span class="med-doctor-card__rating">
+        <i class="bi bi-star-fill"></i>
+        {{ "%.1f" | format(doctor.rating) }}
+        <span class="med-doctor-card__reviews">({{ doctor.review_count }})</span>
+      </span>
+      <span class="med-doctor-card__experience">
+        <i class="bi bi-briefcase"></i>
+        {{ doctor.experience_years }} <span data-i18n="landing.popularDoctors.yearsShort">yrs</span>
+      </span>
+      <span class="med-doctor-card__availability {% if doctor.available_today %}is-available{% endif %}">
+        {% if doctor.available_today %}
+        <span data-i18n="landing.popularDoctors.availableToday">{{ doctor.availability_label }}</span>
+        {% else %}
+        <span data-i18n="landing.popularDoctors.nextTomorrow">{{ doctor.availability_label }}</span>
+        {% endif %}
+      </span>
+    </div>
+
+    <div class="med-doctor-card__footer">
+      <div class="med-doctor-card__fee">
+        {{ "{:,}".format(doctor.fee) }}
+        <span>{{ doctor.currency }}</span>
+      </div>
+      <a href="{{ doctor.book_url }}" class="med-btn med-btn--primary med-btn--sm" data-i18n="landing.popularDoctors.bookAppointment">
+        Book Now
+      </a>
+    </div>
+  </div>
+</article>
+{% endmacro %}

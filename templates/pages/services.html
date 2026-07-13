@@ -1,0 +1,65 @@
+{% extends "layouts/public.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-page services-page">
+  <div class="med-container">
+    <header class="catalog-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge" data-i18n="landing.services.allServices">All services</span>
+      <h1 class="catalog-page__title" data-i18n="landing.services.title">Medical services catalogue</h1>
+      <p class="catalog-page__subtitle" data-i18n="landing.services.subtitle">
+        Every service offered through mediBook partner hospitals - book consultations,
+        diagnostics, telehealth, and more from one trusted platform.
+      </p>
+      <div class="catalog-page__hero-actions">
+        <a href="/#search-doctors" class="med-btn med-btn--primary">
+          <i class="bi bi-search"></i> <span data-i18n="navigation.findDoctors">Find a doctor</span>
+        </a>
+        <a href="/register" class="med-btn med-btn--outline" data-i18n="navigation.registerFree">Create free account</a>
+      </div>
+    </header>
+
+    <div class="services-page__grid">
+      {% for service in services %}
+      <article class="services-page__card" data-reveal-item>
+        <div class="services-page__card-head">
+          <div class="med-icon-box med-icon-box--lg med-icon-box--{{ service.color }}">
+            <i class="bi {{ service.icon }}"></i>
+          </div>
+          <div>
+            <h2 class="services-page__card-title" data-i18n="landing.services.{{ service.id }}.title">{{ service.title }}</h2>
+            {% if service.duration %}
+            <span class="services-page__duration"><i class="bi bi-clock"></i> <span data-i18n="landing.services.{{ service.id }}.duration">{{ service.duration }}</span></span>
+            {% endif %}
+          </div>
+        </div>
+
+        <p class="services-page__card-desc" data-i18n="landing.services.{{ service.id }}.description">{{ service.description }}</p>
+
+        {% if service.ideal_for %}
+        <p class="services-page__ideal">
+          <span data-i18n="landing.services.{{ service.id }}.ideal_for">{{ service.ideal_for }}</span>
+        </p>
+        {% endif %}
+
+        {% if service.features %}
+        <ul class="services-page__features">
+          {% for feature in service.features %}
+          <li><i class="bi bi-check-circle-fill"></i> <span data-i18n="landing.services.{{ service.id }}.features.{{ loop.index0 }}">{{ feature }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <a href="/#search-doctors" class="med-btn med-btn--primary med-btn--sm services-page__book">
+          <span data-i18n="landing.appHome.bookAppointment">Book this service</span> <i class="bi bi-arrow-right"></i>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% from "macros/faq_item.html" import faq_item %}
+
+
+
+{% set faq_highlight_keys = ['support', 'secure', 'helpdesk'] %}
+
+<section class="landing-faq" aria-labelledby="faq-list-title">
+
+  <div class="landing-faq__layout">
+
+    <aside class="landing-faq__sidebar" data-reveal>
+
+      <h2 class="med-sr-only" id="faq-list-title" data-i18n="landing.faqIntro.badge">FAQ</h2>
+
+
+
+      <ul class="landing-faq__highlights">
+
+        {% for item in faq_intro.highlights %}
+
+        <li>
+
+          <i class="bi {{ item.icon }}"></i>
+
+          <span data-i18n="landing.faqIntro.highlights.{{ faq_highlight_keys[loop.index0] }}">{{ item.label }}</span>
+
+        </li>
+
+        {% endfor %}
+
+      </ul>
+
+
+
+      <div class="landing-faq__sidebar-cta">
+
+        <p data-i18n="landing.faqIntro.stillQuestions">Still have questions?</p>
+
+        <a href="/contact" class="med-btn med-btn--primary">
+
+          <i class="bi bi-chat-dots"></i> <span data-i18n="landing.faqIntro.contactSupport">Contact support</span>
+
+        </a>
+
+        <a href="/help" class="med-btn med-btn--outline" data-i18n="landing.faqIntro.visitHelp">Visit help centre</a>
+
+      </div>
+
+    </aside>
+
+
+
+    <div class="landing-faq__list" data-reveal>
+
+      {% for item in faqs %}
+
+      {{ faq_item(item, open=loop.first) }}
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+

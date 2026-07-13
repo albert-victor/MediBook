@@ -1,0 +1,12 @@
+{# Reusable section header #}
+{% macro section_header(title, subtitle=none, badge=none, align="center", i18n_badge=none, i18n_title=none, i18n_subtitle=none) %}
+<div class="med-section-header med-section-header--{{ align }}" data-reveal>
+  {% if badge %}
+  <span class="med-section-header__badge"{% if i18n_badge %} data-i18n="{{ i18n_badge }}"{% endif %}>{{ badge }}</span>
+  {% endif %}
+  <h2 class="med-section-header__title"{% if i18n_title %} data-i18n="{{ i18n_title }}"{% endif %}>{{ title }}</h2>
+  {% if subtitle %}
+  <p class="med-section-header__subtitle"{% if i18n_subtitle %} data-i18n="{{ i18n_subtitle }}"{% endif %}>{{ subtitle }}</p>
+  {% endif %}
+</div>
+{% endmacro %}

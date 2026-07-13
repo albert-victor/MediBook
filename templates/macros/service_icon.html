@@ -1,0 +1,8 @@
+{% macro service_icon(service) %}
+<a href="#services" class="landing-service-icon" data-service-icon data-reveal-item data-i18n-aria="landing.services.{{ service.id }}.title" aria-label="{{ service.title }}">
+  <span class="landing-service-icon__circle med-icon-box med-icon-box--sm med-icon-box--{{ service.color }}">
+    <i class="bi {{ service.icon }}"></i>
+  </span>
+  <span class="landing-service-icon__label" data-i18n="landing.services.{{ service.id }}.short_title">{{ service.short_title | default(service.title) }}</span>
+</a>
+{% endmacro %}

@@ -1,0 +1,52 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/service_card.html" import service_card %}
+{% from "macros/carousel.html" import carousel_shell %}
+
+<section class="landing-section landing-page landing-services" id="services" aria-labelledby="services-title">
+  <div class="med-container landing-page__wrap">
+    <div class="landing-section__head-row" data-reveal>
+      {{ section_header(
+        title="Comprehensive medical services",
+        subtitle="From routine check-ups to specialized care - everything your family needs.",
+        badge="What we offer",
+        align="left",
+        i18n_badge="landing.services.badge",
+        i18n_title="landing.services.title",
+        i18n_subtitle="landing.services.subtitle"
+      ) }}
+      <a href="/services" class="med-btn med-btn--outline med-btn--sm">
+        <span data-i18n="landing.services.allServices">All services</span> <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    {% call carousel_shell(autoplay=5000, aria_label="Medical services", aria_i18n="landing.services.ariaCarousel", modifier="services") %}
+      {% for service in services %}
+      {{ service_card(service, carousel=true) }}
+      {% endfor %}
+    {% endcall %}
+
+    <div class="landing-services__trust" data-reveal>
+      <div class="landing-services__trust-item">
+        <i class="bi bi-hospital"></i>
+        <div>
+          <strong data-i18n="landing.services.trustHospitals">25+ partner hospitals</strong>
+          <span data-i18n="landing.services.trustHospitalsSub">Across major cities in Tanzania</span>
+        </div>
+      </div>
+      <div class="landing-services__trust-item">
+        <i class="bi bi-shield-plus"></i>
+        <div>
+          <strong data-i18n="landing.services.trustInsurance">NHIF & insurance accepted</strong>
+          <span data-i18n="landing.services.trustInsuranceSub">Shown on each doctor profile</span>
+        </div>
+      </div>
+      <div class="landing-services__trust-item">
+        <i class="bi bi-clock"></i>
+        <div>
+          <strong data-i18n="landing.services.trustSameDay">Same-day appointments</strong>
+          <span data-i18n="landing.services.trustSameDaySub">When slots are available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

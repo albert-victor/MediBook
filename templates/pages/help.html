@@ -1,0 +1,62 @@
+{% extends "layouts/public.html" %}
+
+{% block content %}
+<section class="catalog-page help-page">
+  <div class="med-container">
+    <header class="catalog-page__hero" data-reveal>
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+      <span class="med-section-header__badge" data-i18n="navigation.help">Help</span>
+      <h1 class="catalog-page__title" data-i18n="help.title">Help Centre</h1>
+      <p class="catalog-page__subtitle" data-i18n="help.subtitle">
+        Answers about booking, payments, reminders, and managing your care on mediBook.
+      </p>
+    </header>
+
+    <div class="help-page__grid" data-reveal-stagger>
+      <article class="med-card" data-reveal-item>
+        <div class="med-icon-box med-icon-box--md med-icon-box--primary"><i class="bi bi-calendar2-plus"></i></div>
+        <h2 data-i18n="help.booking.title">Booking appointments</h2>
+        <p data-i18n="help.booking.text">Search for a doctor, pick an available slot, and confirm with payment. Only open slots are selectable.</p>
+        <a href="/appointments/book" class="med-link" data-i18n="help.booking.link">Book now</a>
+      </article>
+      <article class="med-card" data-reveal-item>
+        <div class="med-icon-box med-icon-box--md med-icon-box--teal"><i class="bi bi-credit-card"></i></div>
+        <h2 data-i18n="help.payment.title">Payments</h2>
+        <p data-i18n="help.payment.text">Pay via M-Pesa, Mixx, Airtel Money, and other supported mobile wallets. You receive a reference number after payment.</p>
+      </article>
+      <article class="med-card" data-reveal-item>
+        <div class="med-icon-box med-icon-box--md med-icon-box--green"><i class="bi bi-bell"></i></div>
+        <h2 data-i18n="help.reminders.title">Reminders</h2>
+        <p data-i18n="help.reminders.text">Email and web notifications are sent 24 hours and 2 hours before your visit.</p>
+      </article>
+      <article class="med-card" data-reveal-item>
+        <div class="med-icon-box med-icon-box--md med-icon-box--amber"><i class="bi bi-question-circle"></i></div>
+        <h2 data-i18n="help.faq.title">FAQs</h2>
+        <p data-i18n="help.faq.text">Browse answers to the most common patient questions.</p>
+        <a href="/faq" class="med-link" data-i18n="help.faq.link">View FAQs</a>
+      </article>
+    </div>
+
+    <div class="help-page__contact med-callout" data-reveal>
+      <span class="med-callout__icon"><i class="bi bi-headset"></i></span>
+      <div>
+        <strong data-i18n="help.contact.title">Need more help?</strong>
+        <p data-i18n="help.contact.text">Our patient support team typically replies within 2 hours on business days.</p>
+        <a href="/contact" class="med-btn med-btn--primary med-btn--sm med-mt-4" data-i18n="help.contact.button">Contact support</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+<style>
+.help-page__grid { display: grid; gap: var(--space-6); margin-block: var(--space-8); }
+@media (min-width: 768px) { .help-page__grid { grid-template-columns: repeat(2, 1fr); } }
+.help-page__grid .med-card { padding: var(--space-6); }
+.help-page__grid h2 { font-size: var(--font-size-lg); margin: var(--space-4) 0 var(--space-2); }
+.help-page__grid p { color: var(--color-text-muted); font-size: var(--font-size-sm); margin-bottom: var(--space-3); }
+.help-page__contact { margin-top: var(--space-8); }
+</style>
+{% endblock %}

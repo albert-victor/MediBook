@@ -1,0 +1,112 @@
+/**
+ * mediBook Design System - Grid
+ * Custom 12-column responsive grid (not Bootstrap)
+ */
+
+.med-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+}
+
+.med-grid--sm-gap { gap: var(--grid-gap-sm); }
+.med-grid--lg-gap { gap: var(--grid-gap-lg); }
+
+/* Column spans */
+.med-col-1  { grid-column: span 1; }
+.med-col-2  { grid-column: span 2; }
+.med-col-3  { grid-column: span 3; }
+.med-col-4  { grid-column: span 4; }
+.med-col-5  { grid-column: span 5; }
+.med-col-6  { grid-column: span 6; }
+.med-col-7  { grid-column: span 7; }
+.med-col-8  { grid-column: span 8; }
+.med-col-9  { grid-column: span 9; }
+.med-col-10 { grid-column: span 10; }
+.med-col-11 { grid-column: span 11; }
+.med-col-12 { grid-column: span 12; }
+
+.med-col-full { grid-column: 1 / -1; }
+
+/* Auto-fit card grids */
+.med-grid-auto {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.med-grid-auto--sm {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.med-grid-auto--lg {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* Stats row */
+.med-grid-stats {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .med-grid-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 767px) {
+  .med-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .med-col-1, .med-col-2, .med-col-3, .med-col-4,
+  .med-col-5, .med-col-6, .med-col-7, .med-col-8,
+  .med-col-9, .med-col-10, .med-col-11, .med-col-12 {
+    grid-column: span 1;
+  }
+
+  .med-col-sm-6  { grid-column: span 1; }
+  .med-col-sm-12 { grid-column: span 1; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .med-col-md-4  { grid-column: span 4; }
+  .med-col-md-6  { grid-column: span 6; }
+  .med-col-md-8  { grid-column: span 8; }
+  .med-col-md-12 { grid-column: span 12; }
+}
+
+@media (min-width: 1024px) {
+  .med-col-lg-3  { grid-column: span 3; }
+  .med-col-lg-4  { grid-column: span 4; }
+  .med-col-lg-6  { grid-column: span 6; }
+  .med-col-lg-8  { grid-column: span 8; }
+  .med-col-lg-9  { grid-column: span 9; }
+}
+
+/* Dashboard layout shell */
+.med-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.med-layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.med-layout__content {
+  flex: 1;
+  padding: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .med-layout__content {
+    padding: var(--space-8);
+  }
+}

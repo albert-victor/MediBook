@@ -1,0 +1,59 @@
+{% extends "layouts/auth.html" %}
+{% from "macros/form_field.html" import form_input, form_password, form_checkbox %}
+
+{% block auth_content %}
+<div class="auth-card">
+  <div class="auth-card__header">
+    <span class="auth-card__badge"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="auth.login.badge">Sign in</span></span>
+    <h1 class="auth-card__title" data-i18n="auth.login.title">Welcome back</h1>
+    <p class="auth-card__subtitle" data-i18n="auth.login.subtitle">Sign in to manage your appointments and health records.</p>
+  </div>
+
+  <form class="auth-form" method="post" action="/login" novalidate data-auth-form="login">
+    <input type="hidden" name="next" value="{{ next_url }}">
+
+    {{ form_input(
+      name="email",
+      label="Email address",
+      type="email",
+      value=form_values.get('email', ''),
+      error=errors.get('email'),
+      required=true,
+      placeholder="you@example.com",
+      autocomplete="email",
+      i18n_label="auth.login.email",
+      i18n_placeholder="auth.login.emailPlaceholder",
+      icon="fa-solid fa-envelope"
+    ) }}
+
+    {{ form_password(
+      name="password",
+      label="Password",
+      error=errors.get('password'),
+      required=true,
+      autocomplete="current-password",
+      i18n_label="auth.login.password",
+      icon="fa-solid fa-lock"
+    ) }}
+
+    <div class="auth-form__row">
+      {{ form_checkbox(
+        name="remember_me",
+        label="Stay signed in for 30 days",
+        checked=form_values.get('remember_me', false),
+        i18n_label="auth.login.rememberMe"
+      ) }}
+      <a href="/forgot-password" class="med-link auth-form__forgot" data-i18n="auth.login.forgotPassword">Forgot password?</a>
+    </div>
+
+    <button type="submit" class="med-btn med-btn--primary med-btn--block med-btn--lg">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i> <span data-i18n="auth.login.submit">Sign In</span>
+    </button>
+  </form>
+
+  <p class="auth-card__footer">
+    <span data-i18n="auth.login.noAccount">Don't have an account?</span>
+    <a href="/register" class="med-link" data-i18n="auth.login.createAccount">Create free account</a>
+  </p>
+</div>
+{% endblock %}

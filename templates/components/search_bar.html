@@ -1,0 +1,40 @@
+{# Reusable doctor search bar #}
+{% macro search_bar(search, id="doctor-search", compact=false) %}
+<div class="med-search-block{% if compact %} med-search-block--compact{% endif %}" id="{{ id }}">
+  <form class="med-search{% if compact %} med-search--compact{% else %} med-search--hero{% endif %}" action="/doctors" method="get" role="search">
+    <i class="bi bi-search med-search-block__icon"></i>
+    <input
+      type="search"
+      name="q"
+      class="med-search__input"
+      placeholder="Doctor name, specialty, or hospital..."
+      data-i18n-placeholder="landing.search.placeholder"
+      data-i18n-aria="landing.search.ariaSearch"
+      aria-label="Search doctors"
+      autocomplete="off"
+    >
+    <select name="specialty" class="med-search-block__select" data-i18n-aria="landing.search.ariaSpecialty" aria-label="Specialty">
+      <option value="" data-i18n="landing.search.allSpecialties">All specialties</option>
+      {% for specialty in search.specialties %}
+      <option value="{{ specialty }}">{{ specialty }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="med-btn med-btn--primary med-search__btn"{% if compact %} data-i18n-aria="landing.search.searchButton" aria-label="Search"{% endif %}>
+      {% if compact %}
+      <i class="bi bi-search"></i>
+      {% else %}
+      <i class="bi bi-search"></i> <span data-i18n="landing.search.searchButton">Search</span>
+      {% endif %}
+    </button>
+  </form>
+
+  {% if search.popular_searches and not compact %}
+  <div class="med-search-block__tags">
+    <span class="med-search-block__tags-label" data-i18n="landing.search.popularLabel">Popular:</span>
+    {% for term in search.popular_searches %}
+    <a href="/doctors?specialty={{ term | replace(' ', '+') }}" class="med-pill">{{ term }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endmacro %}

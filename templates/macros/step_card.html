@@ -1,0 +1,10 @@
+{% macro step_card(step) %}
+<article class="landing-step-card med-carousel__slide" data-carousel-slide>
+  <div class="landing-step-card__icon med-icon-circle med-icon-circle--lg med-icon-circle--primary">
+    <i class="bi {{ step.icon }}"></i>
+  </div>
+  <span class="landing-step-card__num" data-i18n="landing.howItWorks.stepLabel" data-i18n-params='{"step": {{ step.step }} }'>Step {{ step.step }}</span>
+  <h3 class="landing-step-card__title" data-i18n="landing.howItWorks.steps.{{ step.step }}.title">{{ step.title }}</h3>
+  <p class="landing-step-card__desc" data-i18n="landing.howItWorks.steps.{{ step.step }}.description">{{ step.description }}</p>
+</article>
+{% endmacro %}

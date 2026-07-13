@@ -1,0 +1,87 @@
+{% macro form_input(name, label, type="text", value="", error=none, required=false, placeholder="", hint=none, autocomplete=none, i18n_label=none, i18n_placeholder=none, i18n_hint=none, icon=none) %}
+<div class="med-form-group" data-field="{{ name }}">
+  <label class="med-form-label {% if required %}med-form-label--required{% endif %}" for="{{ name }}"{% if i18n_label %} data-i18n="{{ i18n_label }}"{% endif %}>
+    {{ label }}
+  </label>
+  {% if icon %}
+  <div class="med-input-wrap{% if type == 'email' or type == 'tel' or type == 'text' %} med-input-wrap--icon-left{% endif %}">
+    <span class="med-input-wrap__icon" aria-hidden="true"><i class="{{ icon }}"></i></span>
+    <input
+      type="{{ type }}"
+      id="{{ name }}"
+      name="{{ name }}"
+      class="med-input med-input--with-icon {% if error %}med-input--error{% endif %}"
+      value="{{ value }}"
+      {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+      {% if i18n_placeholder %}data-i18n-placeholder="{{ i18n_placeholder }}"{% endif %}
+      {% if required %}required{% endif %}
+      {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+      data-validate
+    >
+  </div>
+  {% else %}
+  <input
+    type="{{ type }}"
+    id="{{ name }}"
+    name="{{ name }}"
+    class="med-input {% if error %}med-input--error{% endif %}"
+    value="{{ value }}"
+    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% if i18n_placeholder %}data-i18n-placeholder="{{ i18n_placeholder }}"{% endif %}
+    {% if required %}required{% endif %}
+    {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+    data-validate
+  >
+  {% endif %}
+  {% if hint and not error %}
+  <span class="med-form-hint"{% if i18n_hint %} data-i18n="{{ i18n_hint }}"{% endif %}>{{ hint }}</span>
+  {% endif %}
+  {% if error %}
+  <span class="med-form-error" role="alert"><i class="bi bi-exclamation-circle"></i> {{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro form_password(name, label, error=none, required=false, hint=none, autocomplete="new-password", i18n_label=none, i18n_hint=none, icon=none) %}
+<div class="med-form-group" data-field="{{ name }}">
+  <label class="med-form-label {% if required %}med-form-label--required{% endif %}" for="{{ name }}"{% if i18n_label %} data-i18n="{{ i18n_label }}"{% endif %}>
+    {{ label }}
+  </label>
+  <div class="med-input-wrap{% if icon %} med-input-wrap--dual{% endif %}">
+    {% if icon %}
+    <span class="med-input-wrap__icon" aria-hidden="true"><i class="{{ icon }}"></i></span>
+    {% endif %}
+    <input
+      type="password"
+      id="{{ name }}"
+      name="{{ name }}"
+      class="med-input{% if icon %} med-input--with-icon{% endif %} {% if error %}med-input--error{% endif %}"
+      {% if required %}required{% endif %}
+      autocomplete="{{ autocomplete }}"
+      data-validate
+      data-password-field
+    >
+    <button type="button" class="med-input-wrap__icon med-input-wrap__icon--right med-password-toggle" aria-label="Show password" data-toggle-password="{{ name }}">
+      <i class="bi bi-eye"></i>
+    </button>
+  </div>
+  {% if hint and not error %}
+  <span class="med-form-hint"{% if i18n_hint %} data-i18n="{{ i18n_hint }}"{% endif %}>{{ hint }}</span>
+  {% endif %}
+  {% if error %}
+  <span class="med-form-error" role="alert"><i class="bi bi-exclamation-circle"></i> {{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro form_checkbox(name, label, checked=false, error=none, i18n_label=none, i18n_label_html=none) %}
+<div class="med-form-group" data-field="{{ name }}">
+  <label class="med-check">
+    <input type="checkbox" name="{{ name }}" class="med-check__input" {% if checked %}checked{% endif %} data-validate>
+    <span class="med-check__label"{% if i18n_label %} data-i18n="{{ i18n_label }}"{% elif i18n_label_html %} data-i18n-html="{{ i18n_label_html }}"{% endif %}>{{ label | safe }}</span>
+  </label>
+  {% if error %}
+  <span class="med-form-error" role="alert"><i class="bi bi-exclamation-circle"></i> {{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}

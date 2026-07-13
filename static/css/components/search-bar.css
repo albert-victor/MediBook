@@ -1,0 +1,165 @@
+/**
+ * mediBook - Shared search bar component
+ * Used on landing, doctor directory, and catalogue pages.
+ */
+
+.med-search-block {
+  position: relative;
+  width: 100%;
+}
+
+.med-search-block__icon {
+  position: absolute;
+  left: var(--space-5);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.med-search-block__select {
+  height: 2.75rem;
+  padding: 0 var(--space-8) 0 var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-base);
+  color: var(--med-primary-700);
+  background: var(--med-neutral-50);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.med-search-block__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.med-search-block__tags-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Hero variant */
+.med-search--hero {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 800px;
+  margin-inline: auto;
+  padding: var(--space-2);
+  border-radius: var(--radius-2xl);
+}
+
+@media (min-width: 768px) {
+  .med-search--hero {
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+  }
+
+  .med-search--hero .med-search__input {
+    padding-left: var(--space-12);
+  }
+}
+
+/* Compact variant */
+.med-search-block--compact .med-search--compact {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+  padding: var(--space-1-5);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  overflow: visible;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.med-search-block--compact .med-search--compact:focus-within {
+  border-color: var(--med-primary-300);
+  box-shadow: 0 0 0 4px rgba(26, 111, 181, 0.12), var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.med-search-block--compact .med-search__input:focus {
+  outline: none;
+}
+
+.med-search-block--compact .med-search-block__select:hover,
+.med-search-block--compact .med-search-block__select:focus {
+  border-color: var(--med-primary-300);
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.med-search-block--compact .med-search__btn:hover {
+  transform: scale(1.04);
+}
+
+@media (min-width: 640px) {
+  .med-search-block--compact .med-search--compact {
+    grid-template-columns: 1fr auto auto;
+  }
+}
+
+.med-search-block--compact .med-search-block__icon {
+  left: var(--space-4);
+}
+
+.med-search-block--compact .med-search__input {
+  width: 100%;
+  min-width: 0;
+  padding-left: var(--space-10);
+  height: 2.5rem;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-lg);
+}
+
+.med-search-block--compact .med-search-block__select {
+  display: none;
+  height: 2.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .med-search-block--compact .med-search-block__select {
+    display: block;
+    width: 9.5rem;
+  }
+}
+
+.med-search-block--compact .med-search__btn {
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .med-search-block--compact .med-search__btn {
+    width: auto;
+    padding-inline: var(--space-4);
+  }
+}

@@ -1,0 +1,272 @@
+{% extends "layouts/public.html" %}
+
+{% from "components/search_bar.html" import search_bar %}
+
+
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/services.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/doctors.css') }}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="catalog-page doctors-page">
+
+  <div class="med-container">
+
+    <header class="catalog-page__hero doctors-page__hero" data-reveal>
+
+      <a href="/" class="catalog-page__back"><i class="bi bi-arrow-left"></i> <span data-i18n="navigation.backToHome">Back to home</span></a>
+
+      <span class="med-section-header__badge"><i class="bi bi-patch-check-fill"></i> <span data-i18n="doctors.directory.badge">Verified specialists</span></span>
+
+      <h1 class="catalog-page__title" data-i18n="doctors.directory.title">Find your doctor</h1>
+
+      <p class="catalog-page__subtitle" data-i18n="doctors.directory.subtitle">
+
+        Search verified specialists, compare consultation fees, and book the right care for you -
+
+        updated live from our partner hospitals.
+
+      </p>
+
+
+
+      <div class="doctors-page__search-wrap">
+
+        {{ search_bar(search, id="doctors-directory-search", compact=true) }}
+
+      </div>
+
+
+
+      <ul class="doctors-page__trust" aria-label="Trust indicators">
+
+        <li><i class="bi bi-patch-check-fill" aria-hidden="true"></i> <span data-i18n="doctors.directory.trustVerified">Verified doctors</span></li>
+
+        <li><i class="bi bi-hospital-fill" aria-hidden="true"></i> <span data-i18n="doctors.directory.trustHospitals">25+ partner hospitals</span></li>
+
+        <li><i class="bi bi-star-fill" aria-hidden="true"></i> <span data-i18n="doctors.directory.trustRating">4.8 avg. patient rating</span></li>
+
+        <li><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> <span data-i18n="doctors.directory.trustLive">Live slot availability</span></li>
+
+      </ul>
+
+
+
+      <div class="doctors-page__stats" id="doctors-stats" aria-live="polite">
+
+        <div class="doctors-page__stat">
+
+          <span class="doctors-page__stat-value" id="doctors-total">-</span>
+
+          <span class="doctors-page__stat-label" data-i18n="doctors.directory.doctors">Doctors</span>
+
+        </div>
+
+        <div class="doctors-page__stat">
+
+          <span class="doctors-page__stat-value" id="doctors-available">-</span>
+
+          <span class="doctors-page__stat-label" data-i18n="doctors.directory.availableToday">Available today</span>
+
+        </div>
+
+        <div class="doctors-page__stat">
+
+          <span class="doctors-page__stat-value" id="doctors-specialties">-</span>
+
+          <span class="doctors-page__stat-label" data-i18n="doctors.directory.specialties">Specialties</span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <div class="doctors-page__quick-filters" id="doctors-quick-filters" hidden>
+
+      <span class="doctors-page__quick-label" data-i18n="doctors.directory.popular">Popular:</span>
+
+    </div>
+
+
+
+    <button type="button" class="med-btn med-btn--outline med-btn--sm doctors-page__filters-toggle" id="doctors-filters-toggle" aria-expanded="false" aria-controls="doctors-filters">
+
+      <i class="bi bi-sliders"></i> <span data-i18n="doctors.directory.filters">Filters</span>
+
+    </button>
+
+
+
+    <div class="doctors-page__layout">
+
+      <aside class="doctors-page__filters" id="doctors-filters" data-reveal data-i18n-aria="doctors.directory.filters">
+
+        <h2 class="doctors-page__filters-title"><i class="bi bi-sliders"></i> <span data-i18n="doctors.directory.filters">Filters</span></h2>
+
+
+
+        <div class="doctors-page__filter-group">
+
+          <label class="doctors-page__filter-label" for="filter-specialty" data-i18n="doctors.directory.filterSpecialty">Specialization</label>
+
+          <select id="filter-specialty" class="med-input med-select">
+
+            <option value="" data-i18n="landing.search.allSpecialties">All specialties</option>
+
+          </select>
+
+        </div>
+
+
+
+        <div class="doctors-page__filter-group">
+
+          <label class="doctors-page__filter-label" for="filter-availability" data-i18n="doctors.directory.filterAvailability">Availability</label>
+
+          <select id="filter-availability" class="med-input med-select">
+
+            <option value="" data-i18n="doctors.directory.anyTime">Any time</option>
+
+            <option value="today" data-i18n="doctors.directory.availableToday">Available today</option>
+
+            <option value="week" data-i18n="doctors.directory.thisWeek">Available this week</option>
+
+          </select>
+
+        </div>
+
+
+
+        <div class="doctors-page__filter-group">
+
+          <span class="doctors-page__filter-label" data-i18n="doctors.directory.gender">Gender</span>
+
+          <div class="doctors-page__chip-group" role="group" data-i18n-aria="doctors.directory.gender">
+
+            <button type="button" class="doctors-page__chip is-active" data-gender="" data-i18n="doctors.directory.genderAll">All</button>
+
+            <button type="button" class="doctors-page__chip" data-gender="female" data-i18n="doctors.directory.genderFemale">Female</button>
+
+            <button type="button" class="doctors-page__chip" data-gender="male" data-i18n="doctors.directory.genderMale">Male</button>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="doctors-page__filter-group">
+
+          <label class="doctors-page__filter-label" for="filter-fee" data-i18n="doctors.directory.filterFee">Consultation fee</label>
+
+          <select id="filter-fee" class="med-input med-select">
+
+            <option value="any" data-i18n="doctors.directory.anyFee">Any fee</option>
+
+          </select>
+
+        </div>
+
+
+
+        <button type="button" class="med-btn med-btn--ghost med-btn--block med-btn--sm" id="doctors-clear-filters">
+
+          <i class="bi bi-x-circle"></i> <span data-i18n="doctors.directory.clearFilters">Clear filters</span>
+
+        </button>
+
+      </aside>
+
+
+
+      <div class="doctors-page__results">
+
+        <div class="doctors-page__results-header">
+
+          <div class="doctors-page__results-meta">
+
+            <p class="doctors-page__results-count" id="doctors-results-count" data-i18n="doctors.directory.loading">Loading doctors…</p>
+
+            <button type="button" class="doctors-page__results-clear" id="doctors-results-clear" hidden>
+
+              <i class="bi bi-x-circle"></i> <span data-i18n="doctors.directory.clearFilters">Clear filters</span>
+
+            </button>
+
+          </div>
+
+          <a href="/doctors/available-today" class="med-btn med-btn--outline med-btn--sm">
+
+            <i class="bi bi-lightning-charge-fill"></i> <span data-i18n="doctors.directory.availableTodayBtn">Available today</span>
+
+          </a>
+
+        </div>
+
+
+
+        <div class="doctors-page__grid" id="doctors-grid" aria-live="polite">
+
+          {% for i in range(6) %}
+
+          <div class="doctors-page__skeleton" aria-hidden="true">
+
+            <div class="med-skeleton med-skeleton--avatar"></div>
+
+            <div class="doctors-page__skeleton-body">
+
+              <div class="med-skeleton med-skeleton--title"></div>
+
+              <div class="med-skeleton med-skeleton--text"></div>
+
+            </div>
+
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+
+
+        <div class="med-empty" id="doctors-empty" hidden>
+
+          <div class="med-empty__illustration"><i class="bi bi-search"></i></div>
+
+          <h2 class="med-empty__title" data-i18n="doctors.directory.emptyTitle">No doctors match your filters</h2>
+
+          <p class="med-empty__message" data-i18n="doctors.directory.emptyMessage">Try adjusting your search or clearing filters to see more specialists.</p>
+
+          <button type="button" class="med-btn med-btn--primary" id="doctors-empty-reset" data-i18n="doctors.directory.clearAll">Clear all filters</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="module" src="{{ url_for('static', path='js/pages/doctors.js') }}"></script>
+
+{% endblock %}
+

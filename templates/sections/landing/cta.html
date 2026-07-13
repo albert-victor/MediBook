@@ -1,0 +1,18 @@
+<section class="landing-cta" aria-labelledby="cta-title">
+  <div class="landing-cta__bg" aria-hidden="true"></div>
+  <div class="med-container landing-cta__inner" data-reveal>
+    <div class="landing-cta__content">
+      <h2 class="landing-cta__title" id="cta-title" data-i18n="landing.cta.title">{{ cta.title }}</h2>
+      <p class="landing-cta__subtitle" data-i18n="landing.cta.subtitle">{{ cta.subtitle }}</p>
+    </div>
+    <div class="landing-cta__actions">
+      <a href="{{ cta.primary_cta.url }}" class="med-btn med-btn--primary med-btn--lg">
+        <span data-i18n="landing.cta.primaryCta">{{ cta.primary_cta.label }}</span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
+      <a href="{{ cta.secondary_cta.url }}" class="med-btn med-btn--outline-neutral med-btn--lg" data-i18n="landing.cta.secondaryCta">
+        {{ cta.secondary_cta.label }}
+      </a>
+    </div>
+  </div>
+</section>

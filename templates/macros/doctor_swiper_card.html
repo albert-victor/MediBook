@@ -1,0 +1,38 @@
+{% macro doctor_swiper_card(doctor) %}
+<article class="landing-swiper-card med-carousel__slide" data-carousel-slide>
+  <div class="landing-swiper-card__visual">
+    <div class="landing-swiper-card__avatar landing-swiper-card__avatar--{{ doctor.avatar_gradient | default('primary') }}" aria-hidden="true">
+      {{ doctor.initials }}
+    </div>
+    {% if doctor.available_today %}
+    <span class="landing-swiper-card__badge">
+      <span class="med-status-dot med-status-dot--success med-status-dot--pulse"></span>
+      <span data-i18n="landing.popularDoctors.availableToday">Available</span>
+    </span>
+    {% endif %}
+  </div>
+
+  <div class="landing-swiper-card__content">
+    <h3 class="landing-swiper-card__name">
+      <a href="{{ doctor.profile_url }}">{{ doctor.name }}</a>
+    </h3>
+    <p class="landing-swiper-card__specialty">{{ doctor.specialization }}</p>
+
+    <div class="landing-swiper-card__meta">
+      <span class="landing-swiper-card__rating">
+        <i class="bi bi-star-fill"></i>
+        {{ "%.1f" | format(doctor.rating) }}
+        <span class="landing-swiper-card__reviews">({{ doctor.review_count }})</span>
+      </span>
+      <span class="landing-swiper-card__fee">
+        {{ "{:,}".format(doctor.fee) }} <span>{{ doctor.currency }}</span>
+      </span>
+    </div>
+
+    <a href="{{ doctor.book_url }}" class="landing-swiper-card__btn">
+      <span data-i18n="landing.popularDoctors.bookAppointment">Book Now</span>
+      <i class="bi bi-arrow-right"></i>
+    </a>
+  </div>
+</article>
+{% endmacro %}

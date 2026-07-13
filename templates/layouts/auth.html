@@ -1,0 +1,109 @@
+{% extends "layouts/base.html" %}
+
+
+
+{% block body_class %}auth-page{% endblock %}
+
+
+
+{% block styles %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/auth.css') }}">
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="auth-layout {% block auth_layout_modifiers %}{% endblock %}">
+
+  <aside class="auth-layout__brand" aria-hidden="false">
+
+    <div class="auth-layout__brand-shapes" aria-hidden="true">
+
+      <span class="auth-layout__shape auth-layout__shape--1"></span>
+
+      <span class="auth-layout__shape auth-layout__shape--2"></span>
+
+      <span class="auth-layout__shape auth-layout__shape--3"></span>
+
+    </div>
+
+    <a href="/" class="auth-layout__logo">
+
+      <span class="auth-layout__logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+
+      <span class="auth-layout__logo-text">medi<span>Book</span></span>
+
+    </a>
+
+    <div class="auth-layout__brand-content">
+
+      <h2 class="auth-layout__headline" data-i18n="auth.brand.headline">Healthcare scheduling, reimagined.</h2>
+
+      <p class="auth-layout__tagline" data-i18n="auth.brand.tagline">Book verified doctors, manage appointments, and receive timely reminders - all in one trusted platform.</p>
+
+      <ul class="auth-layout__features">
+
+        <li><i class="fa-solid fa-shield-heart"></i> <span data-i18n="auth.brand.featureSecure">Secure patient accounts</span></li>
+
+        <li><i class="fa-solid fa-calendar-check"></i> <span data-i18n="auth.brand.featureAvailability">Real-time availability</span></li>
+
+        <li><i class="fa-solid fa-bell"></i> <span data-i18n="auth.brand.featureReminders">Smart appointment reminders</span></li>
+
+      </ul>
+
+    </div>
+
+    <div class="auth-layout__brand-footer">
+
+      <p>&copy; mediBook · <span data-i18n="auth.brand.trustedBy">Trusted by 12,000+ patients</span></p>
+
+    </div>
+
+  </aside>
+
+
+
+  <div class="auth-layout__slice" aria-hidden="true"></div>
+
+
+
+  <main class="auth-layout__main">
+
+    <div class="auth-layout__lang">{% include "components/language_switcher.html" %}</div>
+
+    <div class="auth-layout__form-wrap">
+
+      {% set flash = get_flash(request) %}
+
+      {% include "components/flash.html" %}
+
+      {% block auth_content %}{% endblock %}
+
+    </div>
+
+  </main>
+
+</div>
+
+<div class="auth-loading" id="auth-loading" hidden aria-live="polite" aria-busy="true">
+  <div class="auth-loading__card">
+    <span class="med-spinner auth-loading__spinner" aria-hidden="true"></span>
+    <p data-i18n="auth.redirecting">Signing you in…</p>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="module" src="{{ url_for('static', path='js/pages/auth.js') }}"></script>
+
+{% endblock %}
+

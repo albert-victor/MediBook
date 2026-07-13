@@ -1,0 +1,123 @@
+/**
+ * mediBook Design System - Tables
+ */
+
+.med-table-wrap {
+  overflow-x: auto;
+  border: var(--card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  background: var(--color-surface);
+}
+
+.med-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.med-table th,
+.med-table td {
+  padding: var(--space-3-5) var(--space-5);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.med-table th {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  background: var(--med-neutral-25);
+  border-bottom: 1px solid var(--color-divider);
+  white-space: nowrap;
+}
+
+.med-table td {
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.med-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.med-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.med-table--hover tbody tr:hover {
+  background: var(--med-neutral-25);
+}
+
+.med-table--striped tbody tr:nth-child(even) {
+  background: var(--med-neutral-25);
+}
+
+.med-table--striped tbody tr:nth-child(even):hover {
+  background: var(--med-neutral-50);
+}
+
+/* Cell utilities */
+.med-table__cell--primary {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.med-table__cell--numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.med-table__cell--actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Compact variant */
+.med-table--compact th,
+.med-table--compact td {
+  padding: var(--space-2-5) var(--space-4);
+}
+
+/* Empty table state inside */
+.med-table__empty {
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* Responsive card-style rows on mobile */
+@media (max-width: 767px) {
+  .med-table--responsive thead {
+    display: none;
+  }
+
+  .med-table--responsive tbody tr {
+    display: block;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .med-table--responsive tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .med-table--responsive td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: none;
+  }
+
+  .med-table--responsive td::before {
+    content: attr(data-label);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+}

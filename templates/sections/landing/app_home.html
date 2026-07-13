@@ -1,0 +1,71 @@
+{% from "components/search_bar.html" import search_bar %}
+{% from "macros/doctor_swiper_card.html" import doctor_swiper_card %}
+{% from "macros/service_icon.html" import service_icon %}
+{% from "macros/carousel.html" import carousel_shell %}
+
+<section class="landing-app" id="app-home" aria-label="Book a doctor" data-i18n-aria="landing.appHome.greeting">
+  <div class="med-container landing-app__inner">
+
+    <header class="landing-app__header" data-reveal>
+      <div class="landing-app__greeting">
+        <h1 class="landing-app__title" data-i18n="landing.appHome.greeting">{{ app_home.greeting }}</h1>
+        <p class="landing-app__subtitle" data-i18n="landing.appHome.subtitle">{{ app_home.subtitle }}</p>
+      </div>
+      <div class="landing-app__search" id="search-doctors">
+        {{ search_bar(search, id="doctor-search", compact=true) }}
+      </div>
+    </header>
+
+    <div class="landing-app__block" data-reveal>
+      <div class="landing-app__block-head">
+        <h2 class="landing-app__block-title" id="top-doctors-title" data-i18n="landing.appHome.topDoctors">Top Doctors</h2>
+        <a href="/doctors" class="landing-app__block-link">
+          <span data-i18n="common.seeAll">See all</span> <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+
+      {% call carousel_shell(autoplay=4000, aria_label="Top doctors", aria_i18n="landing.appHome.topDoctors", modifier="doctors") %}
+        {% for doctor in popular_doctors %}
+        {{ doctor_swiper_card(doctor) }}
+        {% endfor %}
+      {% endcall %}
+    </div>
+
+    <div class="landing-app__block" data-reveal>
+      <h2 class="landing-app__block-title" id="quick-services-title" data-i18n="landing.appHome.quickServices">Quick Services</h2>
+      <div class="landing-app__services" data-reveal-stagger>
+        {% for service in services[:6] %}
+        {{ service_icon(service) }}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="landing-app__stats" data-reveal-stagger aria-label="Platform statistics" data-i18n-aria="landing.statistics.title">
+      {% for stat in statistics %}
+      <div class="landing-app__stat" data-reveal-item data-stat-card tabindex="0">
+        <i class="bi {{ stat.icon }} landing-app__stat-icon landing-app__stat-icon--{{ stat.color }}"></i>
+        <span class="landing-app__stat-value">{{ stat.value }}</span>
+        <span class="landing-app__stat-label" data-i18n="landing.statistics.{{ stat.id }}.shortLabel">{{ stat.short_label | default(stat.label) }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="landing-app__actions" data-reveal>
+      {% for action in app_home.quick_actions %}
+      <a
+        href="{{ action.url }}"
+        class="landing-app__action landing-app__action--{{ action.style }}"
+      >
+        <i class="bi {{ action.icon }}"></i>
+        <span data-i18n="landing.appHome.{% if action.style == 'primary' %}bookAppointment{% else %}emergency{% endif %}">{{ action.label }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="landing-app__hint" data-reveal>
+      <i class="bi bi-chevron-double-down"></i>
+      <span data-i18n="landing.appHome.scrollHint">{{ app_home.scroll_hint }}</span>
+    </p>
+
+  </div>
+</section>

@@ -1,0 +1,28 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/carousel.html" import carousel_shell %}
+{% from "macros/step_card.html" import step_card %}
+
+<section class="landing-section landing-page landing-steps" id="how-it-works" aria-labelledby="steps-title">
+  <div class="med-container landing-page__wrap">
+    <div class="landing-section__head-row" data-reveal>
+      {{ section_header(
+        title="How it works",
+        subtitle="Four simple steps from search to seated in the doctor's office.",
+        badge="Simple process",
+        align="left",
+        i18n_badge="landing.howItWorks.badge",
+        i18n_title="landing.howItWorks.title",
+        i18n_subtitle="landing.howItWorks.subtitle"
+      ) }}
+      <a href="/register" class="med-btn med-btn--primary med-btn--sm">
+        <span data-i18n="landing.howItWorks.ctaButton">Create your free account</span> <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    {% call carousel_shell(autoplay=4500, aria_label="How it works", aria_i18n="landing.howItWorks.ariaCarousel", modifier="steps") %}
+      {% for step in how_it_works %}
+      {{ step_card(step) }}
+      {% endfor %}
+    {% endcall %}
+  </div>
+</section>

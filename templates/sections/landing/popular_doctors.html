@@ -1,0 +1,26 @@
+{% from "macros/section_header.html" import section_header %}
+{% from "macros/doctor_card.html" import doctor_card %}
+
+<section class="landing-section landing-doctors" id="popular-doctors" aria-labelledby="popular-doctors-title">
+  <div class="med-container">
+  <div class="landing-section__head" data-reveal>
+    {{ section_header(
+      title="Popular doctors",
+      subtitle="Highly rated specialists trusted by patients across partner hospitals.",
+      badge="Top rated",
+      i18n_badge="landing.popularDoctors.badge",
+      i18n_title="landing.popularDoctors.title",
+      i18n_subtitle="landing.popularDoctors.subtitle"
+    ) }}
+    <a href="/doctors" class="med-btn med-btn--outline med-btn--sm landing-section__link">
+      <span data-i18n="landing.popularDoctors.viewAll">View all doctors</span> <i class="bi bi-arrow-right"></i>
+    </a>
+  </div>
+
+    <div class="med-grid-auto" data-reveal-stagger>
+      {% for doctor in popular_doctors %}
+      {{ doctor_card(doctor) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
