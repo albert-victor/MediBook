@@ -250,7 +250,7 @@ async function openAppointmentModal(id) {
     const a = await apiRequest(`/doctor/dashboard/appointments/${id}`);
     const cls = STATUS_CLASS[a.status] || "scheduled";
     const statusLabel = appointmentStatus(a.status, a.status_label);
-    const canApprove = ["pending", "scheduled"].includes(a.status);
+    const canApprove = ["pending", "scheduled", "confirmed"].includes(a.status);
     const canComplete = ["confirmed", "scheduled"].includes(a.status);
     const canCancel = ["pending", "scheduled", "confirmed"].includes(a.status);
 

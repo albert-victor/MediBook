@@ -31,8 +31,15 @@ from app.schemas.appointment import (
     ProcessPaymentRequest,
 )
 from app.services.appointment_service import STATUS_LABELS
+from app.services import sms_service
+from app.services import sms_templates
+from app.config import get_settings
 from app.utils.exceptions import ConflictError, NotFoundError
 from app.utils.helpers import ensure_utc, utcnow
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 SIMULATION_SECONDS = 6
 
@@ -104,6 +111,86 @@ def generate_transaction_reference(method: str) -> str:
     if generator:
         return generator()
     return f"MED-{utcnow().strftime('%Y%m%d')}-{secrets.token_hex(4).upper()}"
+
+
+def _payment_sms_already_sent(db: Session, appointment_id: int) -> bool:
+    return (
+        db.scalar(
+            select(Notification.id).where(
+                Notification.appointment_id == appointment_id,
+                Notification.notification_type == NotificationType.PAYMENT_SUCCESS.value,
+                Notification.channel == NotificationChannel.SMS.value,
+            )
+        )
+        is not None
+    )
+
+
+def _dispatch_payment_success_sms(
+    db: Session,
+    appointment: Appointment,
+    *,
+    reference: str,
+    amount: float,
+    currency: str,
+    method: str,
+    now,
+) -> None:
+    """Send at most one payment/confirmation SMS. Never blocks payment completion."""
+    settings = get_settings()
+    if not settings.sms_payment_enabled:
+        logger.info("Payment SMS disabled via SMS_PAYMENT_ENABLED")
+        return
+
+    patient = appointment.patient
+    if not patient or not patient.phone:
+        logger.info("Payment SMS skipped - no patient phone (appointment %s)", appointment.id)
+        return
+
+    if _payment_sms_already_sent(db, appointment.id):
+        logger.info("Payment SMS already sent for appointment %s", appointment.id)
+        return
+
+    doctor = appointment.doctor
+    doctor_name = _display_name(doctor) if doctor else "your doctor"
+    department = (
+        doctor.specialization.name if doctor and doctor.specialization else "General"
+    )
+    method_label = METHOD_LABELS.get(method, method)
+
+    body = sms_templates.format_payment_success_sms(
+        patient,
+        doctor_name=doctor_name,
+        department=department,
+        scheduled_start=appointment.scheduled_start,
+        amount=amount,
+        currency=currency,
+        reference=reference,
+        method_label=method_label,
+    )
+
+    try:
+        sent = sms_service.send_sms(to_phone=patient.phone, message=body)
+    except Exception:
+        logger.exception("Payment SMS failed for appointment %s", appointment.id)
+        sent = False
+
+    db.add(
+        Notification(
+            user_id=patient.id,
+            appointment_id=appointment.id,
+            notification_type=NotificationType.PAYMENT_SUCCESS.value,
+            channel=NotificationChannel.SMS.value,
+            title="Payment received",
+            message=body,
+            is_read=False,
+            sent_at=now if sent and sms_service.is_sms_configured() else None,
+        )
+    )
+    if sent and sms_service.is_sms_configured():
+        logger.info("Payment SMS sent for appointment %s to %s", appointment.id, patient.phone)
+    else:
+        logger.warning("Payment SMS not delivered for appointment %s", appointment.id)
 
 
 def _display_name(doctor: Doctor) -> str:
@@ -370,6 +457,17 @@ def complete_payment(
                 sent_at=now,
             )
         )
+
+    # One SMS only: payment + confirmation combined (conserves credits)
+    _dispatch_payment_success_sms(
+        db,
+        appointment,
+        reference=reference,
+        amount=float(payment.amount),
+        currency=payment.currency,
+        method=payment.payment_method,
+        now=now,
+    )
 
     db.commit()
 

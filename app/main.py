@@ -18,6 +18,7 @@ from app.auth.middleware import AuthMiddleware
 from app.auth.user_context import UserContextMiddleware
 from app.config import get_settings
 from app.database import Base, engine
+from app.database.schema_patches import ensure_schema_patches
 from app.models import (  # noqa: F401 - register all models
     Admin,
     Appointment,
@@ -51,6 +52,7 @@ async def lifespan(app: FastAPI):
     """Startup and shutdown lifecycle hooks."""
     settings.data_dir.mkdir(parents=True, exist_ok=True)
     Base.metadata.create_all(bind=engine)
+    ensure_schema_patches()
     start_scheduler()
     logger.info("%s is running at http://%s:%s", settings.app_name, settings.host, settings.port)
     yield

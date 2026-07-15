@@ -2,19 +2,27 @@
 
 from __future__ import annotations
 
+import logging
 from datetime import date, datetime, time, timedelta
 
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
+from app.config import get_settings
 from app.models import (
     Appointment,
     AppointmentStatusHistory,
     Doctor,
+    Notification,
     Payment,
     User,
 )
-from app.models.enums import AppointmentStatus, PaymentStatus
+from app.models.enums import (
+    AppointmentStatus,
+    NotificationChannel,
+    NotificationType,
+    PaymentStatus,
+)
 from app.schemas.doctor_dashboard import (
     DoctorActivityItem,
     DoctorAppointmentItem,
@@ -24,9 +32,13 @@ from app.schemas.doctor_dashboard import (
     DoctorPatientBrief,
     DoctorPatientDetail,
 )
+from app.services import sms_service
+from app.services import sms_templates
 from app.services.appointment_service import STATUS_LABELS, release_availability_for_appointment
 from app.utils.exceptions import ConflictError, NotFoundError
 from app.utils.helpers import ensure_utc, utcnow
+
+logger = logging.getLogger(__name__)
 
 ACTIVE_STATUSES = (
     AppointmentStatus.PENDING.value,
@@ -486,17 +498,173 @@ def _update_status(
 
 
 def approve_appointment(db: Session, user: User, appointment_id: int) -> DoctorAppointmentItem:
-    appt = get_appointment(db, user, appointment_id)
-    if appt.status not in (
+    """Doctor confirms appointment and notifies the patient (web + SMS).
+
+    After payment the booking is often already `confirmed`. In that case we still
+    allow this action so the patient receives the doctor-confirm SMS without
+    changing status again.
+    """
+    # get_appointment returns a schema (DoctorAppointmentItem), not an ORM row
+    current = get_appointment(db, user, appointment_id)
+
+    if current.status in (
         AppointmentStatus.PENDING.value,
         AppointmentStatus.SCHEDULED.value,
     ):
-        raise ConflictError("Only pending or scheduled appointments can be approved")
-    return _update_status(
-        db, user, appointment_id,
-        AppointmentStatus.CONFIRMED.value,
-        notes="Approved by doctor",
+        result = _update_status(
+            db,
+            user,
+            appointment_id,
+            AppointmentStatus.CONFIRMED.value,
+            notes="Approved by doctor",
+        )
+    elif current.status == AppointmentStatus.CONFIRMED.value:
+        # Already confirmed (e.g. after payment) - keep status, just notify
+        result = current
+    else:
+        raise ConflictError(
+            "Only pending, scheduled, or confirmed appointments can be approved"
+        )
+
+    # Notify patient after status is saved - never breaks approve if SMS fails
+    try:
+        _notify_patient_doctor_confirmed(db, appointment_id)
+    except Exception:
+        logger.exception(
+            "Doctor-confirm notification failed for appointment %s (status already saved)",
+            appointment_id,
+        )
+    return result
+
+
+def _doctor_confirm_sms_already_sent(db: Session, appointment_id: int) -> bool:
+    return (
+        db.scalar(
+            select(Notification.id).where(
+                Notification.appointment_id == appointment_id,
+                Notification.notification_type == NotificationType.BOOKING_CONFIRMED.value,
+                Notification.channel == NotificationChannel.SMS.value,
+            )
+        )
+        is not None
     )
+
+
+def _notify_patient_doctor_confirmed(db: Session, appointment_id: int) -> None:
+    """Create web + SMS messages after doctor approves. Safe to call more than once."""
+    # Pick up .env changes after server restart without stale false negatives
+    get_settings.cache_clear()
+
+    appt = db.scalar(
+        select(Appointment)
+        .options(
+            joinedload(Appointment.patient),
+            joinedload(Appointment.doctor).joinedload(Doctor.user),
+            joinedload(Appointment.doctor).joinedload(Doctor.specialization),
+        )
+        .where(Appointment.id == appointment_id)
+    )
+    if not appt or not appt.patient:
+        logger.warning("Doctor-confirm notify skipped - appointment/patient missing (%s)", appointment_id)
+        return
+
+    patient = appt.patient
+    doctor = appt.doctor
+    doctor_name = "your doctor"
+    department = "General"
+    if doctor:
+        name = doctor.user.full_name if doctor.user else f"Doctor #{doctor.id}"
+        doctor_name = name if name.startswith("Dr.") else f"Dr. {name}"
+        if doctor.specialization:
+            department = doctor.specialization.name
+
+    start = ensure_utc(appt.scheduled_start)
+    now = utcnow()
+    web_message = (
+        f"Your appointment with {doctor_name} ({department}) on "
+        f"{start.strftime('%A, %d %B %Y')} at {start.strftime('%H:%M')} "
+        f"has been confirmed by the doctor."
+    )
+
+    # Avoid duplicate web rows if doctor clicks Approve twice
+    web_exists = db.scalar(
+        select(Notification.id).where(
+            Notification.appointment_id == appt.id,
+            Notification.notification_type == NotificationType.BOOKING_CONFIRMED.value,
+            Notification.channel == NotificationChannel.WEB.value,
+            Notification.title == "Appointment confirmed by doctor",
+        )
+    )
+    if not web_exists:
+        db.add(
+            Notification(
+                user_id=patient.id,
+                appointment_id=appt.id,
+                notification_type=NotificationType.BOOKING_CONFIRMED.value,
+                channel=NotificationChannel.WEB.value,
+                title="Appointment confirmed by doctor",
+                message=web_message,
+                is_read=False,
+                sent_at=now,
+            )
+        )
+
+    settings = get_settings()
+    if not settings.sms_doctor_confirm_enabled:
+        db.commit()
+        logger.info("Doctor-confirm SMS disabled via SMS_DOCTOR_CONFIRM_ENABLED")
+        return
+
+    if not patient.phone:
+        db.commit()
+        logger.info("Doctor-confirm SMS skipped - no phone (appointment %s)", appt.id)
+        return
+
+    if _doctor_confirm_sms_already_sent(db, appt.id):
+        db.commit()
+        logger.info("Doctor-confirm SMS already sent for appointment %s", appt.id)
+        return
+
+    body = sms_templates.format_doctor_confirm_sms(
+        patient,
+        doctor_name=doctor_name,
+        department=department,
+        scheduled_start=appt.scheduled_start,
+    )
+
+    try:
+        sent = sms_service.send_sms(to_phone=patient.phone, message=body)
+    except Exception:
+        logger.exception("Doctor-confirm SMS send failed for appointment %s", appt.id)
+        sent = False
+
+    db.add(
+        Notification(
+            user_id=patient.id,
+            appointment_id=appt.id,
+            notification_type=NotificationType.BOOKING_CONFIRMED.value,
+            channel=NotificationChannel.SMS.value,
+            title="Appointment confirmed by doctor",
+            message=body,
+            is_read=False,
+            sent_at=now if sent and sms_service.is_sms_configured() else None,
+        )
+    )
+    db.commit()
+    if sent and sms_service.is_sms_configured():
+        logger.info(
+            "Doctor-confirm SMS sent for appointment %s to %s",
+            appt.id,
+            patient.phone,
+        )
+    else:
+        logger.warning(
+            "Doctor-confirm SMS not delivered for appointment %s (sent=%s configured=%s phone=%s)",
+            appt.id,
+            sent,
+            sms_service.is_sms_configured(),
+            patient.phone,
+        )
 
 
 def cancel_appointment(

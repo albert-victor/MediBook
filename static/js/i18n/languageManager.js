@@ -134,6 +134,25 @@ export async function setLanguage(locale, options = {}) {
   localStorage.setItem(STORAGE_KEY, code);
   applyTranslations();
   if (!options.silent) notifyListeners();
+  syncLanguageToServer(code);
+}
+
+/**
+ * Persist language for logged-in users so SMS reminders match SW/EN choice.
+ * @param {string} locale
+ */
+async function syncLanguageToServer(locale) {
+  try {
+    const res = await fetch("/api/v1/me/language", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ language: locale }),
+    });
+    if (res.status === 401) return;
+  } catch {
+    /* offline / logged out */
+  }
 }
 
 /** @returns {string} */
@@ -161,6 +180,7 @@ export async function initI18n() {
     applyTranslations();
     initialized = true;
     notifyListeners();
+    syncLanguageToServer(currentLocale);
   };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", run, { once: true });

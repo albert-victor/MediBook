@@ -22,6 +22,7 @@ class User(Base, TimestampMixin):
     phone: Mapped[str | None] = mapped_column(String(20), nullable=True)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[str] = mapped_column(String(20), default=UserRole.PATIENT.value, nullable=False)
+    preferred_language: Mapped[str] = mapped_column(String(5), default="sw", nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
     # Role profiles (one per role type - no duplicated auth data)

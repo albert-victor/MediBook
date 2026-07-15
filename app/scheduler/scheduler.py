@@ -28,7 +28,7 @@ async def check_upcoming_appointments() -> None:
                 result.checked,
                 result.sent_web,
                 result.sent_email,
-                result.sms_placeholder,
+                result.sent_sms,
             )
     except Exception:
         logger.exception("Reminder check failed")

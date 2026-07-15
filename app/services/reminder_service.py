@@ -32,13 +32,13 @@ class ReminderCheckResult:
     checked: int = 0
     sent_web: int = 0
     sent_email: int = 0
-    sms_placeholder: int = 0
+    sent_sms: int = 0
     skipped: int = 0
     errors: int = 0
 
     @property
     def total_sent(self) -> int:
-        return self.sent_web + self.sent_email
+        return self.sent_web + self.sent_email + self.sent_sms
 
 
 def _display_name(doctor: Doctor) -> str:
@@ -143,9 +143,9 @@ def _dispatch_reminder(
     if email:
         result.sent_email += 1
 
-    sms = notify.dispatch_sms_reminder_placeholder(db, patient, appointment, content)
+    sms = notify.dispatch_sms_reminder(db, patient, appointment, content)
     if sms:
-        result.sms_placeholder += 1
+        result.sent_sms += 1
 
 
 def process_reminder_check(db: Session) -> ReminderCheckResult:
@@ -179,10 +179,10 @@ def process_reminder_check(db: Session) -> ReminderCheckResult:
     if result.total_sent:
         db.commit()
         logger.info(
-            "Reminder check complete - web=%s email=%s sms_placeholder=%s errors=%s",
+            "Reminder check complete - web=%s email=%s sms=%s errors=%s",
             result.sent_web,
             result.sent_email,
-            result.sms_placeholder,
+            result.sent_sms,
             result.errors,
         )
     else:

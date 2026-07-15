@@ -15,6 +15,8 @@ from app.models.enums import (
     NotificationType,
 )
 from app.services import email_service
+from app.services import sms_service
+from app.services import sms_templates
 from app.utils.helpers import ensure_utc, utcnow
 
 logger = logging.getLogger(__name__)
@@ -172,23 +174,71 @@ def dispatch_email_reminder(
     )
 
 
-def dispatch_sms_reminder_placeholder(
+def dispatch_sms_reminder(
     db: Session,
     patient: User,
     appointment: Appointment,
     content: ReminderContent,
 ) -> Notification | None:
-    """Future-ready SMS hook - logs intent and records placeholder history."""
+    """Send appointment reminder SMS via KilaKona and record delivery history."""
+    from app.config import get_settings
+
+    settings = get_settings()
+    if not settings.sms_reminders_enabled:
+        return None
+
+    # Follow-up window (default 2h) - off by default to conserve SMS credits
+    if content.hours_before < settings.reminder_hours_before:
+        if not settings.sms_reminder_followup_enabled:
+            return None
+
     if reminder_already_sent(db, appointment.id, content.hours_before, NotificationChannel.SMS.value):
         return None
 
-    logger.info(
-        "[SMS PLACEHOLDER] Would send to %s - %s | %s at %s",
-        patient.phone,
-        content.doctor_name,
-        content.date_label,
-        content.time_label,
+    if not patient.phone:
+        logger.info(
+            "SMS skipped - patient %s has no phone (appointment %s)",
+            patient.id,
+            appointment.id,
+        )
+        return None
+
+    # Credit guard: day-before SMS only while still ~1 day out (not same-day leftovers)
+    hours_left = (
+        ensure_utc(appointment.scheduled_start) - utcnow()
+    ).total_seconds() / 3600
+    if content.hours_before >= settings.reminder_hours_before:
+        min_left = max(settings.reminder_hours_before - 4, 12)
+        if hours_left < min_left:
+            logger.info(
+                "SMS reminder skipped for appointment %s - already closer than %sh (%.1fh left)",
+                appointment.id,
+                min_left,
+                hours_left,
+            )
+            return None
+
+    sms_body = sms_templates.format_sms_reminder(
+        patient,
+        doctor_name=content.doctor_name,
+        department=content.department,
+        hours_before=content.hours_before,
+        scheduled_start=appointment.scheduled_start,
     )
+    sent = sms_service.send_sms(
+        to_phone=patient.phone,
+        message=sms_body,
+    )
+
+    if not sms_service.is_sms_configured():
+        delivery = NotificationDeliveryStatus.SKIPPED.value
+        sent_at = None
+    elif sent:
+        delivery = NotificationDeliveryStatus.SENT.value
+        sent_at = utcnow()
+    else:
+        delivery = NotificationDeliveryStatus.FAILED.value
+        sent_at = None
 
     return create_notification(
         db,
@@ -197,9 +247,9 @@ def dispatch_sms_reminder_placeholder(
         notification_type=NotificationType.APPOINTMENT_REMINDER.value,
         channel=NotificationChannel.SMS.value,
         title=content.title,
-        message=content.message,
-        delivery_status=NotificationDeliveryStatus.SKIPPED.value,
-        sent_at=None,
+        message=sms_body,
+        delivery_status=delivery,
+        sent_at=sent_at,
     )
 
 
